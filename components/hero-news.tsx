@@ -6,13 +6,16 @@ import type { NewsArticle } from "@/lib/news-service"
 
 export function HeroNews({ article }: { article: NewsArticle }) {
   return (
-    <motion.section
+    <section
       aria-label="Wyróżniona aktualność"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10"
+      className="bg-[#f1f3ef] pb-20 pt-10"
     >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+      >
       <div className="group relative overflow-hidden rounded-[3rem] bg-white shadow-2xl shadow-[#344e41]/10 border border-[#dad7cd]/40">
         <div className="flex flex-col lg:flex-row min-h-[550px]">
           {/* Image Side */}
@@ -85,6 +88,7 @@ export function HeroNews({ article }: { article: NewsArticle }) {
           <div className="h-64 w-64 rounded-full border-[32px] border-[#3a5a40] -mr-32 -mb-32" />
         </div>
       </div>
-    </motion.section>
+      </motion.div>
+    </section>
   )
 }

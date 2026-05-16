@@ -57,7 +57,8 @@ const item = {
 
 export function QuickAccess() {
   return (
-    <section aria-labelledby="quick-access" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 relative z-20">
+    <section aria-labelledby="quick-access" className="bg-[#f1f3ef] border-b border-[#dad7cd]/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 relative z-20">
       <h2 id="quick-access" className="sr-only">
         Szybki dostęp
       </h2>
@@ -102,6 +103,7 @@ export function QuickAccess() {
           )
         })}
       </motion.div>
+      </div>
     </section>
   )
 }

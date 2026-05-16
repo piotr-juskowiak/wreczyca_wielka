@@ -51,7 +51,7 @@ export function HeroNews({ article }: { article: NewsArticle }) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#344e41] text-balance leading-[1.05] tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#344e41] text-balance leading-[1.05] tracking-tight">
               {article.title}
             </h1>
 

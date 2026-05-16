@@ -1,16 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Search, Menu, Shield } from "lucide-react"
-import { useState } from "react"
+import { Search, Menu, Shield, Cloud, Sun, CloudRain } from "lucide-react"
+import { useState, useEffect } from "react"
 import { SearchDialog } from "@/components/search-dialog"
 import { AnnouncementTicker } from "@/components/announcement-ticker"
 
+function WeatherWidget() {
+  const [weather, setWeather] = useState({ temp: 18, icon: <Sun className="h-4 w-4 text-amber-500" /> })
+
+  return (
+    <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80">
+      {weather.icon}
+      <span>{weather.temp}°C</span>
+      <span className="text-muted-foreground/60 font-normal">Wręczyca</span>
+    </div>
+  )
+}
+
 const navLinks = [
   { label: "Aktualności", href: "/aktualnosci" },
-  { label: "Urząd", href: "#urzad" },
-  { label: "Mieszkaniec", href: "#mieszkaniec" },
-  { label: "Turystyka", href: "#turystyka" },
+  { label: "Oceń radnego", href: "/ocen-radnego" },
+  { label: "Galeria", href: "/galeria" },
+  { label: "Sport", href: "/sport" },
+  { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },
   { label: "Kontakt", href: "/kontakt" },
 ]
 
@@ -21,74 +34,76 @@ export function SiteHeader() {
   return (
     <>
       <AnnouncementTicker />
-      <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between gap-4">
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#1d4ed8] shadow-md transition-transform group-hover:scale-105">
-                <Shield className="h-6 w-6 text-white" strokeWidth={2.5} />
+          {/* Top Row: Brand + Search + Actions */}
+          <div className="flex h-20 items-center justify-between gap-8">
+            <a href="/" className="flex items-center gap-4 group shrink-0">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-border/50 transition-transform group-hover:scale-105 overflow-hidden ring-4 ring-emerald-50">
+                <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-10 w-10 object-contain" />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-lg font-bold text-foreground">
+                <span className="text-xl font-black text-foreground whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
-                <span className="text-xs font-medium text-muted-foreground">
-                  Gmina · Portal Mieszkańca
+                <span className="text-xs font-bold text-primary/80 uppercase tracking-widest">
+                  Serwis internetowy
                 </span>
               </div>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-xl px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-2">
+            <div className="flex-1 max-w-xl hidden md:block">
               <button
                 aria-label="Szukaj"
                 onClick={() => setSearchOpen(true)}
-                className="hidden sm:flex h-11 items-center gap-2 rounded-xl border border-border/70 bg-secondary/60 px-3 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-primary/30"
               >
                 <Search className="h-4 w-4" />
-                <span className="hidden md:inline">Szukaj...</span>
-                <kbd className="hidden md:inline-flex items-center rounded-md bg-white px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground shadow-sm">
-                  /
+                <span className="flex-1 text-left">Szukaj informacji w serwisie...</span>
+                <kbd className="hidden lg:inline-flex items-center rounded-lg bg-white px-2 py-1 text-[10px] font-bold text-muted-foreground shadow-sm border border-border/50">
+                  CTRL + K
                 </kbd>
               </button>
+            </div>
 
-              <button
-                aria-label="Szukaj"
-                onClick={() => setSearchOpen(true)}
-                className="sm:hidden flex h-11 w-11 items-center justify-center rounded-xl text-foreground/70 hover:bg-secondary"
-              >
-                <Search className="h-5 w-5" />
-              </button>
-
+            <div className="flex items-center gap-3">
+              <WeatherWidget />
               <motion.a
                 href="#bip"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#dc2626] px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-shadow hover:shadow-md"
+                className="inline-flex items-center gap-2.5 rounded-xl bg-[#dc2626] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-red-600/20 transition-all hover:bg-red-700"
               >
-                <span className="inline-block h-2 w-2 rounded-full bg-white/90" />
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
                 BIP
               </motion.a>
 
               <button
                 aria-label="Menu"
                 onClick={() => setOpen((v) => !v)}
-                className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-foreground/70 hover:bg-secondary"
+                className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-foreground/70 hover:bg-secondary transition-colors"
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="h-6 w-6" />
               </button>
             </div>
+          </div>
+
+          {/* Bottom Row: Navigation */}
+          <div className="hidden lg:flex h-12 items-center border-t border-border/40">
+            <nav className="flex items-center gap-1 -ml-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-xl px-4 py-2 text-[13px] font-bold text-foreground/70 transition-all hover:text-primary hover:bg-emerald-50/50 whitespace-nowrap uppercase tracking-wider"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </div>
 
           {open && (

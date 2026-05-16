@@ -16,50 +16,26 @@ const services = [
   {
     label: "E-Urząd",
     icon: Building2,
-    bg: "bg-blue-100",
-    fg: "text-blue-600",
+    bg: "bg-[#a3b18a]/20",
+    fg: "text-[#3a5a40]",
   },
   {
     label: "Odpady",
     icon: Trash2,
-    bg: "bg-emerald-100",
-    fg: "text-emerald-600",
+    bg: "bg-[#588157]/10",
+    fg: "text-[#344e41]",
   },
   {
     label: "Kontakt",
     icon: Phone,
-    bg: "bg-amber-100",
-    fg: "text-amber-600",
-  },
-  {
-    label: "Formularze",
-    icon: FileText,
-    bg: "bg-rose-100",
-    fg: "text-rose-600",
-  },
-  {
-    label: "Podatki",
-    icon: CreditCard,
-    bg: "bg-sky-100",
-    fg: "text-sky-600",
+    bg: "bg-[#3a5a40]",
+    fg: "text-white",
   },
   {
     label: "Wydarzenia",
     icon: Calendar,
-    bg: "bg-orange-100",
-    fg: "text-orange-600",
-  },
-  {
-    label: "Sołectwa",
-    icon: MapPin,
-    bg: "bg-teal-100",
-    fg: "text-teal-600",
-  },
-  {
-    label: "Pomoc",
-    icon: HeartHandshake,
-    bg: "bg-pink-100",
-    fg: "text-pink-600",
+    bg: "bg-[#dad7cd]/40",
+    fg: "text-[#344e41]",
   },
 ]
 
@@ -89,7 +65,7 @@ export function QuickAccess() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8 gap-3 sm:gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
       >
         {services.map((service) => {
           const Icon = service.icon
@@ -97,18 +73,23 @@ export function QuickAccess() {
             <motion.button
               key={service.label}
               variants={item}
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.96 }}
-              className="group flex flex-col items-center gap-2 rounded-2xl bg-white p-4 shadow-sm transition-shadow hover:shadow-xl"
+              whileHover={{ y: -4, scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative flex flex-col items-center justify-center gap-3 rounded-[2rem] bg-white p-6 shadow-sm border border-[#dad7cd]/40 transition-all hover:shadow-xl hover:shadow-[#3a5a40]/5 hover:border-[#a3b18a]/40 text-center overflow-hidden"
             >
-              <span
-                className={`flex h-12 w-12 items-center justify-center rounded-full ${service.bg} ${service.fg}`}
-              >
-                <Icon className="h-6 w-6" strokeWidth={2.2} />
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-foreground text-center">
-                {service.label}
-              </span>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#a3b18a]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl shadow-sm transition-all duration-500 group-hover:rotate-[10deg] group-hover:scale-110 ${service.bg} ${service.fg}`}>
+                <Icon className="h-6 w-6" strokeWidth={1.8} />
+                <div className="absolute inset-0 rounded-xl bg-current opacity-0 group-hover:opacity-5 transition-opacity" />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <span className="text-xs font-black text-[#344e41] uppercase tracking-[0.12em]">
+                  {service.label}
+                </span>
+                <div className="h-0.5 w-3 bg-[#a3b18a]/30 mt-2 rounded-full group-hover:w-6 transition-all duration-500" />
+              </div>
             </motion.button>
           )
         })}

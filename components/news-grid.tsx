@@ -20,7 +20,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
     >
       <div className="flex items-end justify-between mb-8 gap-4 flex-wrap">
         <div>
-          <span className="inline-block rounded-full bg-emerald-100 text-emerald-700 px-3 py-1 text-xs font-semibold mb-3">
+          <span className="inline-block rounded-full bg-[#a3b18a]/20 text-[#3a5a40] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-[#a3b18a]/30">
             Aktualności
           </span>
           <h2 id="latest-news" className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -32,9 +32,10 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         </div>
         <a
           href="/aktualnosci"
-          className="text-sm font-semibold text-primary hover:underline"
+          className="group inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#3a5a40] hover:text-[#588157] transition-colors"
         >
-          Zobacz wszystkie →
+          Zobacz wszystkie
+          <span className="h-0.5 w-6 bg-[#a3b18a]/40 group-hover:w-10 transition-all duration-300" />
         </a>
       </div>
 

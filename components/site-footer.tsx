@@ -10,164 +10,176 @@ import {
   Instagram,
   Shield,
   ArrowRight,
+  CheckCircle2,
+  ExternalLink,
 } from "lucide-react"
 import { motion } from "framer-motion"
+import { useState } from "react"
 
 const columns = [
   {
-    title: "Urząd",
+    title: "Na skróty",
     links: [
-      { label: "Wójt Gminy", href: "#" },
-      { label: "Rada Gminy", href: "#" },
-      { label: "Referaty i wydziały", href: "#" },
-      { label: "Zamówienia publiczne", href: "#" },
-      { label: "Praca w urzędzie", href: "#" },
+      { label: "Oceń radnego", href: "/ocen-radnego" },
+      { label: "Galeria zdjęć", href: "/galeria" },
+      { label: "Sport lokalny", href: "/sport" },
+      { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },
+      { label: "Aktualności", href: "/aktualnosci" },
     ],
   },
   {
     title: "Mieszkaniec",
     links: [
-      { label: "E-Urząd", href: "#" },
+      { label: "Harmonogram odpadów", href: "#" },
+      { label: "E-Urząd (BIP)", href: "#" },
       { label: "Podatki i opłaty", href: "#" },
-      { label: "Gospodarka odpadami", href: "#" },
-      { label: "Druki i formularze", href: "#" },
-      { label: "Świadczenia rodzinne", href: "#" },
+      { label: "Druki do pobrania", href: "#" },
+      { label: "Dyżury aptek", href: "#" },
     ],
   },
   {
-    title: "Gmina",
+    title: "Współpraca",
     links: [
-      { label: "Sołectwa", href: "#" },
-      { label: "Turystyka", href: "#" },
-      { label: "Kultura i sport", href: "#" },
-      { label: "Inwestycje", href: "#" },
-      { label: "Galeria", href: "#" },
+      { label: "Gmina Krzepice", href: "#" },
+      { label: "Gmina Miedźno", href: "#" },
+      { label: "Lipie", href: "#" },
+      { label: "Myszków", href: "#" },
+      { label: "Portal klobuck.pl", href: "#" },
     ],
   },
 ]
 
 const socials = [
-  { label: "Facebook", href: "#", icon: Facebook },
-  { label: "YouTube", href: "#", icon: Youtube },
-  { label: "Instagram", href: "#", icon: Instagram },
+  { label: "Facebook", href: "#", icon: Facebook, color: "hover:bg-[#1877F2]" },
+  { label: "YouTube", href: "#", icon: Youtube, color: "hover:bg-[#FF0000]" },
+  { label: "Instagram", href: "#", icon: Instagram, color: "hover:bg-[#E4405F]" },
 ]
 
 export function SiteFooter() {
+  const [subscribed, setSubscribed] = useState(false)
+
   return (
-    <footer className="mt-20 bg-white">
-      {/* Newsletter band */}
+    <footer className="mt-20 border-t border-border/40 bg-slate-50/50">
+      {/* Newsletter Section */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-br from-primary to-[#1d4ed8] px-8 py-10 md:px-12 md:py-12 shadow-sm">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="max-w-xl">
-              <h3 className="text-2xl md:text-3xl font-bold text-white text-balance">
-                Bądź na bieżąco z życiem gminy
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#344e41]/10 flex items-center bg-[#3a5a40]">
+          {/* Subtle Background Texture */}
+          <div className="absolute inset-0 z-0 opacity-20">
+            <img 
+              src="/newsletter-bg.jpg" 
+              alt="Wręczyca Wielka" 
+              className="h-full w-full object-cover mix-blend-overlay grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#3a5a40] via-[#3a5a40]/80 to-transparent" />
+          </div>
+          
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
+                Zapisz się do <span className="text-[#a3b18a]">newslettera</span>
               </h3>
-              <p className="mt-2 text-sm md:text-base text-white/85 leading-relaxed">
-                Zapisz się do newslettera i otrzymuj informacje o wydarzeniach, inwestycjach
-                i ogłoszeniach prosto na swój e-mail.
+              <p className="text-sm text-[#dad7cd]/80 max-w-md mx-auto lg:mx-0">
+                Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
               </p>
             </div>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex w-full md:w-auto flex-col sm:flex-row gap-3 sm:items-center"
-            >
-              <label htmlFor="newsletter" className="sr-only">
-                Twój adres e-mail
-              </label>
-              <input
-                id="newsletter"
-                type="email"
-                required
-                placeholder="twoj@email.pl"
-                className="h-12 w-full sm:w-72 rounded-xl bg-white px-4 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-2 ring-transparent focus:ring-white/70"
-              />
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                type="submit"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-primary shadow-sm"
-              >
-                Zapisz się
-                <ArrowRight className="h-4 w-4" />
-              </motion.button>
-            </form>
+
+            <div className="lg:w-1/2 w-full max-w-md">
+              {!subscribed ? (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    setSubscribed(true)
+                  }}
+                  className="flex flex-col sm:flex-row gap-2 p-1.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10"
+                >
+                  <input
+                    type="email"
+                    required
+                    placeholder="Twój adres e-mail"
+                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#344e41] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="h-12 px-6 rounded-xl bg-[#a3b18a] text-[#344e41] font-bold text-xs uppercase tracking-widest shadow-lg hover:bg-[#dad7cd] transition-all whitespace-nowrap"
+                  >
+                    Zapisz się
+                  </motion.button>
+                </form>
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"
+                >
+                  <div className="h-10 w-10 rounded-full bg-[#a3b18a] text-[#344e41] flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-5 w-5" />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-sm font-bold text-white uppercase tracking-wider">Dziękujemy!</h4>
+                    <p className="text-xs text-[#dad7cd]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
+                  </div>
+                </motion.div>
+              )}
+              <div className="mt-3 flex items-center gap-2 px-2">
+                <CheckCircle2 className="h-3 w-3 text-[#a3b18a]/60" />
+                <p className="text-[10px] text-[#dad7cd]/50 uppercase tracking-widest font-bold">
+                  Akceptujesz politykę prywatności i RODO.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main footer */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-          {/* Brand + contact */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+          {/* Brand + info */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#1d4ed8] shadow-md">
-                <Shield className="h-5 w-5 text-white" strokeWidth={2.5} />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white shadow-sm border border-border/50 overflow-hidden">
+                <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-9 w-9 object-contain" />
               </div>
               <div className="leading-tight">
                 <p className="text-base font-bold text-foreground">Wręczyca Wielka</p>
-                <p className="text-xs text-muted-foreground">Gmina · Portal Mieszkańca</p>
+                <p className="text-xs text-muted-foreground">Serwis internetowy</p>
               </div>
             </div>
-            <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-md">
-              Oficjalny portal Gminy Wręczyca Wielka. Bądź na bieżąco z aktualnościami,
-              korzystaj z e-usług i poznawaj naszą okolicę.
+            <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
+              Twój codzienny punkt styku z życiem Wręczycy Wielkiej. Dostarczamy rzetelnych informacji, promujemy lokalne inicjatywy i wspieramy społeczność mieszkańców.
             </p>
 
-            <ul className="mt-6 space-y-3 text-sm text-foreground/85">
-              <li className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl bg-blue-100 text-primary shrink-0">
-                  <MapPin className="h-4 w-4" />
-                </span>
-                <span className="leading-relaxed">
-                  ul. Sienkiewicza 1<br />
-                  42-130 Wręczyca Wielka
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 shrink-0">
-                  <Phone className="h-4 w-4" />
-                </span>
-                <a href="tel:+48343170245" className="hover:text-primary transition-colors">
-                  +48 34 317 02 45
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-100 text-amber-700 shrink-0">
-                  <Mail className="h-4 w-4" />
-                </span>
-                <a
-                  href="mailto:urzad@wreczyca-wielka.pl"
-                  className="hover:text-primary transition-colors"
-                >
-                  urzad@wreczyca-wielka.pl
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl bg-rose-100 text-rose-700 shrink-0">
-                  <Clock className="h-4 w-4" />
-                </span>
-                <div className="leading-relaxed">
-                  <div>Pon: 8:00 – 16:00</div>
-                  <div>Wt–Pt: 7:30 – 15:30</div>
-                </div>
-              </li>
-            </ul>
+            <div className="mt-8 flex items-center gap-3">
+              {socials.map((s) => {
+                const Icon = s.icon
+                return (
+                  <motion.a
+                    key={s.label}
+                    href={s.href}
+                    whileHover={{ y: -4 }}
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-border text-foreground/70 transition-all ${s.color} hover:text-white hover:border-transparent shadow-sm`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </motion.a>
+                )
+              })}
+            </div>
           </div>
 
           {/* Link columns */}
           {columns.map((col) => (
             <div key={col.title} className="lg:col-span-2">
-              <h4 className="text-sm font-bold text-foreground mb-4">{col.title}</h4>
-              <ul className="space-y-2.5 text-sm">
+              <h4 className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">{col.title}</h4>
+              <ul className="space-y-3.5 text-sm">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 group"
                     >
                       {l.label}
+                      <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
                   </li>
                 ))}
@@ -175,51 +187,58 @@ export function SiteFooter() {
             </div>
           ))}
 
-          {/* Social + emergency */}
+          {/* Contact widget */}
           <div className="lg:col-span-2">
-            <h4 className="text-sm font-bold text-foreground mb-4">Obserwuj nas</h4>
-            <div className="flex items-center gap-2">
-              {socials.map((s) => {
-                const Icon = s.icon
-                return (
-                  <motion.a
-                    key={s.label}
-                    href={s.href}
-                    aria-label={s.label}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.94 }}
-                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-foreground/80 transition-colors hover:bg-primary hover:text-primary-foreground"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </motion.a>
-                )
-              })}
-            </div>
-
-            <div className="mt-6 rounded-2xl bg-rose-50 p-4">
-              <p className="text-xs font-bold uppercase tracking-wide text-rose-700">
-                Telefon alarmowy
+            <h4 className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">Kontakt</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex gap-3">
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <a href="mailto:kontakt@wreczyca-wielka.pl" className="text-muted-foreground hover:text-primary break-all">
+                  kontakt@wreczyca-wielka.pl
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                <span className="text-muted-foreground">+48 500 000 000</span>
+              </li>
+            </ul>
+            
+            <div className="mt-8 rounded-2xl bg-rose-50 p-5 border border-rose-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-rose-600 mb-1">
+                Pogotowie / Alarm
               </p>
-              <a
-                href="tel:112"
-                className="mt-1 block text-2xl font-bold text-rose-700 hover:text-rose-800"
-              >
+              <a href="tel:112" className="block text-2xl font-black text-rose-600">
                 112
               </a>
-              <p className="mt-1 text-xs text-rose-700/80">Numer alarmowy całodobowy</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Urząd Gminy Wręczyca Wielka. Wszelkie prawa zastrzeżone.
-          </p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Polityka prywatności</a>
-            <a href="#" className="hover:text-foreground">Deklaracja dostępności</a>
-            <a href="#" className="hover:text-foreground">RODO</a>
-            <a href="#" className="hover:text-foreground">Mapa strony</a>
+        {/* Disclaimer Area */}
+        <div className="mt-16 pt-8 border-t border-border/60">
+          <div className="bg-slate-100/50 rounded-2xl p-6 md:p-8 mb-10">
+            <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
+              <span className="font-bold text-foreground/80">Ważna informacja:</span> Serwis internetowy <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
+            </p>
+            <div className="mt-4 text-center">
+              <span className="text-[10px] text-muted-foreground/60">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: redakcja@wreczyca-wielka.pl</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <p className="text-xs text-muted-foreground">
+                © {new Date().getFullYear()} WreczycaWielka.pl. Wszelkie prawa zastrzeżone.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+              <a href="/reklama" className="hover:text-primary transition-colors">Reklama</a>
+              <span className="h-1 w-1 rounded-full bg-border" />
+              <a href="/redakcja" className="hover:text-primary transition-colors">Redakcja</a>
+              <span className="h-1 w-1 rounded-full bg-border" />
+              <a href="/polityka-prywatnosci" className="hover:text-primary transition-colors">Polityka prywatności</a>
+            </div>
           </div>
         </div>
       </div>

@@ -2,8 +2,10 @@ import { XMLParser } from "fast-xml-parser"
 
 export type NewsArticle = {
   id: string
+  slug: string
   title: string
   excerpt: string
+  content: string
   image: string
   category: string
   date: string
@@ -83,20 +85,17 @@ function guessCategory(title: string, body: string): string {
   return "Aktualności"
 }
 
-type AtomEntry = {
-  title?: unknown
-  link?: unknown
-  summary?: unknown
-  content?: unknown
-  updated?: string
-  id?: string
-}
-
 function getText(v: unknown): string {
   if (typeof v === "string") return v
-  if (v && typeof v === "object") {
+  if (v && typeof v === "object" && v !== null) {
     const obj = v as Record<string, unknown>
-    if ("#text" in obj) return String(obj["#text"] ?? "")
+    const val = obj["#text"]
+    if (Array.isArray(val)) {
+      return val.map((item) => getText(item)).join("")
+    }
+    if (val !== undefined && val !== null) {
+      return typeof val === "string" ? val : getText(val)
+    }
   }
   return ""
 }
@@ -104,13 +103,24 @@ function getText(v: unknown): string {
 function getLink(entry: AtomEntry): string {
   const l = entry.link as unknown
   if (Array.isArray(l)) {
-    const first = l[0] as Record<string, unknown> | undefined
+    const first = l.find((item: any) => item?.["@_rel"] === "alternate") || l[0]
     return String(first?.["@_href"] ?? "#")
   }
   if (l && typeof l === "object") {
     return String((l as Record<string, unknown>)["@_href"] ?? "#")
   }
   return "#"
+}
+
+type AtomEntry = {
+  title?: unknown
+  link?: unknown
+  summary?: unknown
+  content?: unknown
+  updated?: string
+  id?: string
+  enclosure?: any
+  "link:enclosure"?: any
 }
 
 export async function fetchNews(): Promise<NewsArticle[]> {
@@ -135,23 +145,51 @@ export async function fetchNews(): Promise<NewsArticle[]> {
       const title = stripHtml(getText(entry.title))
       const contentRaw = getText(entry.content) || getText(entry.summary)
       const excerpt = stripHtml(getText(entry.summary) || contentRaw).slice(0, 260)
-      const image = extractFirstImage(contentRaw) ?? "/placeholder.svg?height=600&width=900"
+
+      // Try enclosure first
+      let image = ""
+      const enc = entry.enclosure || entry["link:enclosure"]
+      if (enc) {
+        if (Array.isArray(enc)) {
+          image = enc[0]["@_url"]
+        } else {
+          image = enc["@_url"]
+        }
+      }
+
+      if (!image) {
+        image = extractFirstImage(contentRaw) ?? "/placeholder.svg?height=600&width=900"
+      }
+
       const updated = entry.updated ?? ""
+      const id = entry.id ?? `news-${i}`
       const href = getLink(entry)
+      
+      // Extract slug from URL like https://.../aktualnosc-1310-name.html
+      const slugMatch = id.match(/aktualnosc-(\d+)-/)
+      const slug = slugMatch ? slugMatch[1] : `art-${i}`
+
       return {
-        id: entry.id ?? `news-${i}`,
+        id,
+        slug,
         title,
         excerpt,
+        content: contentRaw,
         image,
         category: guessCategory(title, excerpt),
         date: formatDate(updated),
         readTime: calcReadTime(stripHtml(contentRaw)),
-        author: "Urząd Gminy",
+        author: "Redakcja strony",
         href,
       }
     })
-  } catch (err) {
-    console.log("[v0] News fetch failed:", err)
+  } catch (error) {
+    console.error("Error fetching news:", error)
     return []
   }
+}
+
+export async function fetchArticleBySlug(slug: string): Promise<NewsArticle | null> {
+  const articles = await fetchNews()
+  return articles.find((a) => a.slug === slug) || null
 }

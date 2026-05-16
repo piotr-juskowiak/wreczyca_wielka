@@ -8,8 +8,12 @@ export function HeroNews({ article }: { article: NewsArticle }) {
   return (
     <section
       aria-label="Wyróżniona aktualność"
-      className="bg-[#f1f3ef] pb-20 pt-10"
+      className="bg-[#3a5a40] pb-8 pt-0 relative overflow-hidden"
     >
+      {/* Decorative background element */}
+      <div className="absolute top-0 left-0 p-24 opacity-[0.05] pointer-events-none text-white">
+        <Calendar className="h-96 w-96 -ml-48 -mt-48 -rotate-12" />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

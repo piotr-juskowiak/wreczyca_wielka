@@ -53,13 +53,13 @@ const item = {
 
 export function QuickAccess() {
   return (
-    <section aria-labelledby="quick-access" className="bg-[#f1f3ef] border-b border-[#dad7cd]/40 relative overflow-hidden">
+    <section aria-labelledby="quick-access" className="bg-[#3a5a40] border-b border-[#dad7cd]/10 relative overflow-hidden">
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 p-24 opacity-[0.03] pointer-events-none">
+      <div className="absolute top-0 right-0 p-24 opacity-[0.05] pointer-events-none text-white">
         <Building2 className="h-96 w-96 -mr-48 -mt-48 rotate-12" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 relative z-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 relative z-20">
         <h2 id="quick-access" className="sr-only">
           Szybki dostęp
         </h2>

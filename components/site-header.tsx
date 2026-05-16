@@ -34,11 +34,22 @@ export function SiteHeader() {
   return (
     <>
       <AnnouncementTicker />
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40">
+      <motion.header 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-border/40"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Top Row: Brand + Search + Actions */}
           <div className="flex h-20 items-center justify-between gap-8">
-            <a href="/" className="flex items-center gap-4 group shrink-0">
+            <motion.a 
+              href="/" 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center gap-4 group shrink-0"
+            >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-border/50 transition-transform group-hover:scale-105 overflow-hidden ring-4 ring-emerald-50">
                 <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-10 w-10 object-contain" />
               </div>
@@ -46,17 +57,22 @@ export function SiteHeader() {
                 <span className="text-xl font-black text-foreground whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
-                <span className="text-xs font-bold text-primary/80 uppercase tracking-widest">
+                <span className="text-xs font-bold text-[#3a5a40]/80 uppercase tracking-widest">
                   Serwis internetowy
                 </span>
               </div>
-            </a>
+            </motion.a>
 
-            <div className="flex-1 max-w-xl hidden md:block">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex-1 max-w-xl hidden md:block"
+            >
               <button
                 aria-label="Szukaj"
                 onClick={() => setSearchOpen(true)}
-                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-primary/30"
+                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-[#3a5a40]/30"
               >
                 <Search className="h-4 w-4" />
                 <span className="flex-1 text-left">Szukaj informacji w serwisie...</span>
@@ -64,9 +80,14 @@ export function SiteHeader() {
                   CTRL + K
                 </kbd>
               </button>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-3">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center gap-3"
+            >
               <WeatherWidget />
               <motion.a
                 href="#bip"
@@ -88,43 +109,49 @@ export function SiteHeader() {
               >
                 <Menu className="h-6 w-6" />
               </button>
-            </div>
+            </motion.div>
           </div>
 
           {/* Bottom Row: Navigation */}
           <div className="hidden lg:flex h-12 items-center border-t border-border/40">
             <nav className="flex items-center gap-1 -ml-4">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, idx) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
-                  className="rounded-xl px-4 py-2 text-[13px] font-bold text-foreground/70 transition-all hover:text-primary hover:bg-emerald-50/50 whitespace-nowrap uppercase tracking-wider"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + idx * 0.05 }}
+                  className="rounded-xl px-4 py-2 text-[13px] font-bold text-foreground/70 transition-all hover:text-[#3a5a40] hover:bg-emerald-50/50 whitespace-nowrap uppercase tracking-wider"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </nav>
           </div>
 
-          {open && (
-            <motion.nav
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="lg:hidden pb-4 flex flex-col gap-1"
-            >
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-secondary"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </motion.nav>
-          )}
+          <AnimatePresence>
+            {open && (
+              <motion.nav
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="lg:hidden pb-4 flex flex-col gap-1 overflow-hidden"
+              >
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-secondary"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </motion.nav>
+            )}
+          </AnimatePresence>
         </div>
-      </header>
+      </motion.header>
 
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>

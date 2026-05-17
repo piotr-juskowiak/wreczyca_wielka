@@ -154,7 +154,7 @@ export function GalleryCarousel() {
       aria-labelledby="guide-title"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden bg-gradient-to-br from-[#0f1c2e] via-[#162539] to-[#0a1422] py-20 lg:py-24 text-white border-y border-slate-800/40 select-none"
+      className="relative overflow-hidden bg-gradient-to-br from-[#333d29] via-[#414833] to-[#2a3322] py-20 lg:py-24 text-white border-y border-stone-800/40 select-none"
     >
       {/* Ambient glows */}
       <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-digital-blue/15 blur-3xl pointer-events-none" />
@@ -186,14 +186,14 @@ export function GalleryCarousel() {
             </span>
             <button
               onClick={prev}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#0f1c2e] hover:border-municipal-gold transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#333d29] hover:border-municipal-gold transition-all cursor-pointer group"
               aria-label="Poprzedni przewodnik"
             >
               <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={next}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#0f1c2e] hover:border-municipal-gold transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#333d29] hover:border-municipal-gold transition-all cursor-pointer group"
               aria-label="Następny przewodnik"
             >
               <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -213,7 +213,7 @@ export function GalleryCarousel() {
           >
 
             {/* LEFT — hero card with image + summary */}
-            <div className="lg:col-span-7 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group min-h-[480px] lg:min-h-[520px] bg-[#0a1422]">
+            <div className="lg:col-span-7 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group min-h-[480px] lg:min-h-[520px] bg-[#2a3322]">
               <motion.img
                 src={active.image}
                 alt={active.title}
@@ -223,7 +223,7 @@ export function GalleryCarousel() {
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f1c2e]/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#333d29]/40 via-transparent to-transparent" />
 
               {/* Top tags */}
               <div className="absolute top-5 left-5 right-5 z-10 flex items-center justify-between gap-3">
@@ -248,10 +248,10 @@ export function GalleryCarousel() {
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <a
                     href={active.href}
-                    className="group/btn inline-flex items-center gap-3 rounded-full bg-municipal-gold pl-5 pr-1.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#0f1c2e] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
+                    className="group/btn inline-flex items-center gap-3 rounded-full bg-municipal-gold pl-5 pr-1.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#333d29] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
                   >
                     <span>{active.actionText}</span>
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0f1c2e]/10 group-hover/btn:bg-[#0f1c2e]/20 transition-all">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#333d29]/10 group-hover/btn:bg-[#333d29]/20 transition-all">
                       <ArrowRight className="h-3 w-3" />
                     </span>
                   </a>
@@ -272,7 +272,7 @@ export function GalleryCarousel() {
               {/* Quick facts / tips card */}
               <div className="rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 p-6 lg:p-7 shadow-lg">
                 <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/10">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#0f1c2e] shadow-md shadow-municipal-gold/20">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#333d29] shadow-md shadow-municipal-gold/20">
                     <Lightbulb className="h-4.5 w-4.5" strokeWidth={2.2} />
                   </div>
                   <div>
@@ -340,7 +340,7 @@ export function GalleryCarousel() {
                         <span
                           className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
                             isActive
-                              ? "bg-municipal-gold text-[#0f1c2e]"
+                              ? "bg-municipal-gold text-[#333d29]"
                               : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
                           }`}
                         >

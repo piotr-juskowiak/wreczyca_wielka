@@ -23,7 +23,7 @@ export default function RedakcjaPage() {
         <div className="grid gap-8 md:grid-cols-2">
           {/* Publisher Card */}
           <div className="rounded-3xl bg-white p-8 shadow-sm border border-border/50">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary mb-6">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f1efe2] text-primary mb-6">
               <Building2 className="h-6 w-6" />
             </div>
             <h2 className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-2">Wydawca</h2>

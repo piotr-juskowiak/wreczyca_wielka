@@ -58,10 +58,10 @@ export function SiteFooter() {
   const [subscribed, setSubscribed] = useState(false)
 
   return (
-    <footer className="mt-20 border-t border-border/40 bg-slate-50/50">
+    <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#0f172a]/10 flex items-center bg-[#2c5e3b]">
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#0f172a]/10 flex items-center bg-[#414833]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
             <img 
@@ -69,7 +69,7 @@ export function SiteFooter() {
               alt="Wręczyca Wielka" 
               className="h-full w-full object-cover mix-blend-overlay grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2c5e3b] via-[#2c5e3b]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#414833] via-[#414833]/80 to-transparent" />
           </div>
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
@@ -211,7 +211,7 @@ export function SiteFooter() {
 
         {/* Disclaimer Area */}
         <div className="mt-16 pt-8 border-t border-border/60">
-          <div className="bg-slate-100/50 rounded-2xl p-6 md:p-8 mb-10">
+          <div className="bg-stone-100/50 rounded-2xl p-6 md:p-8 mb-10">
             <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
               <span className="font-bold text-foreground/80">Ważna informacja:</span> Portal <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
             </p>

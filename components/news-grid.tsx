@@ -104,7 +104,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
     toast.success(`Wybrano sołectwo: ${solectwoName}`, {
       description: "Filtrowanie wiadomości oraz ogłoszeń dedykowanych dla wybranej miejscowości...",
       duration: 3500,
-      icon: <MapPin className="h-4 w-4 text-[#2c5e3b]" />
+      icon: <MapPin className="h-4 w-4 text-[#414833]" />
     })
   }
 
@@ -130,7 +130,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           <h2 id="latest-news" className="text-4xl md:text-5xl font-light text-[#0f172a] text-balance leading-tight">
             Co nowego w gminie?
           </h2>
-          <p className="mt-4 text-lg text-slate-500 font-medium">
+          <p className="mt-4 text-lg text-stone-500 font-medium">
             Przeglądaj zorganizowane informacje, sport, kulturę oraz znajdź wieści ze swojego sołectwa.
           </p>
         </div>
@@ -139,7 +139,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           className="group inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.25em] text-digital-blue hover:text-digital-blue-hover transition-all"
         >
           Wszystkie wpisy
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm border border-slate-200 group-hover:bg-digital-blue group-hover:text-white transition-all">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm border border-stone-200 group-hover:bg-digital-blue group-hover:text-white transition-all">
             <ChevronDown className="h-4 w-4 -rotate-90" />
           </div>
         </a>
@@ -153,7 +153,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           
           {/* ROW 1: SPORT */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
                   <Trophy className="h-4.5 w-4.5" />
@@ -183,7 +183,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 2: KULTURA I ROZRYWKA */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
                   <Music className="h-4.5 w-4.5" />
@@ -213,7 +213,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 3: SOŁECTWA */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
                   <MapPin className="h-4.5 w-4.5" />
@@ -241,7 +241,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
               ))}
             </div>
 
-            <p className="text-xs text-[#2c5e3b]/65 font-medium leading-relaxed max-w-2xl pt-2">
+            <p className="text-xs text-[#414833]/65 font-medium leading-relaxed max-w-2xl pt-2">
               Wybierz swoje sołectwo z poniższej listy, aby szybko filtrować dedykowane wiadomości, obwieszczenia oraz lokalne inicjatywy mieszkańców.
             </p>
 
@@ -253,7 +253,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                   onClick={() => handleSolectwoClick(sol)}
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group p-3.5 rounded-2xl bg-white border border-slate-200 text-center text-xs font-semibold text-[#0f172a] hover:bg-digital-blue hover:text-white hover:border-digital-blue hover:shadow-md transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+                  className="group p-3.5 rounded-2xl bg-white border border-stone-200 text-center text-xs font-semibold text-[#0f172a] hover:bg-digital-blue hover:text-white hover:border-digital-blue hover:shadow-md transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
                 >
                   <MapPin className="h-3.5 w-3.5 text-digital-blue group-hover:text-white transition-colors duration-300 shrink-0" />
                   <span className="truncate">{sol}</span>
@@ -292,10 +292,10 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
               className="relative w-full max-w-4xl bg-gradient-to-b from-[#f1f5f9] to-[#e4e7e1] border border-[#cbd5e1]/80 rounded-[2.5rem] p-6 sm:p-10 text-[#0f172a] shadow-2xl overflow-hidden max-h-[90vh] flex flex-col z-10"
             >
               {/* Decorative subtle ambient circle inside modal */}
-              <div className="absolute top-0 right-0 p-40 bg-[#5cb87e]/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 p-40 bg-[#a4ac86]/10 rounded-full blur-3xl pointer-events-none" />
 
               {/* Modal Header */}
-              <div className="flex items-start justify-between pb-6 border-b border-slate-200 mb-6 shrink-0 pr-10 relative z-20">
+              <div className="flex items-start justify-between pb-6 border-b border-stone-200 mb-6 shrink-0 pr-10 relative z-20">
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-digital-blue-light text-digital-blue px-3.5 py-1 text-[9px] font-black uppercase tracking-widest mb-2 border border-digital-blue/20">
                     Archiwum kategorii
@@ -324,7 +324,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                         key={article.id}
                         href={`/aktualnosci/${article.slug}`}
                         onClick={() => setActivePopupCategory(null)}
-                        className="flex gap-4 p-3.5 bg-white hover:bg-digital-blue-light border border-slate-200 hover:border-digital-blue/30 rounded-2xl transition-all duration-300 group items-center shadow-sm"
+                        className="flex gap-4 p-3.5 bg-white hover:bg-digital-blue-light border border-stone-200 hover:border-digital-blue/30 rounded-2xl transition-all duration-300 group items-center shadow-sm"
                       >
                         {/* Thumbnail */}
                         <div className="h-16 w-24 rounded-xl overflow-hidden shrink-0 bg-secondary shadow-sm">
@@ -349,7 +349,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                           <h4 className="text-sm font-bold text-[#0f172a] group-hover:text-digital-blue-hover transition-colors leading-snug line-clamp-1">
                             {article.title}
                           </h4>
-                          <p className="text-[11px] text-slate-500 font-medium leading-relaxed line-clamp-1">
+                          <p className="text-[11px] text-stone-500 font-medium leading-relaxed line-clamp-1">
                             {article.excerpt}
                           </p>
                         </div>

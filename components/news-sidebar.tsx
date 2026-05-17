@@ -62,13 +62,13 @@ const DEFAULT_COMMENTS = [
 ]
 
 const WEATHER_FORECAST = [
-  { day: "Poniedziałek", tempDay: 19, tempNight: 10, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
-  { day: "Wtorek", tempDay: 21, tempNight: 12, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
+  { day: "Poniedziałek", tempDay: 19, tempNight: 10, icon: Sun, desc: "Słonecznie", color: "text-[#a68a64]" },
+  { day: "Wtorek", tempDay: 21, tempNight: 12, icon: Sun, desc: "Słonecznie", color: "text-[#a68a64]" },
   { day: "Środa", tempDay: 22, tempNight: 13, icon: CloudSun, desc: "Umiarkowane zachmurzenie", color: "text-sky-500" },
   { day: "Czwartek", tempDay: 17, tempNight: 11, icon: CloudRain, desc: "Przelotny deszcz", color: "text-blue-400" },
-  { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-slate-400" },
+  { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-stone-400" },
   { day: "Sobota", tempDay: 18, tempNight: 10, icon: CloudSun, desc: "Częściowe zachmurzenie", color: "text-sky-500" },
-  { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
+  { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-[#a68a64]" },
 ]
 
 export function NewsSidebar() {
@@ -107,7 +107,7 @@ export function NewsSidebar() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f1c2e] via-[#162539] to-[#0f1c2e] p-6 shadow-xl shadow-[#0f1c2e]/20 border border-[#0f1c2e]"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#333d29] via-[#414833] to-[#333d29] p-6 shadow-xl shadow-[#333d29]/20 border border-[#333d29]"
       >
         {/* Ambient glow */}
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-digital-blue/20 blur-3xl pointer-events-none" />
@@ -115,7 +115,7 @@ export function NewsSidebar() {
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#0f1c2e] shadow-lg shadow-municipal-gold/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#333d29] shadow-lg shadow-municipal-gold/20">
               <Megaphone className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
@@ -135,7 +135,7 @@ export function NewsSidebar() {
                 className="group cursor-pointer rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-municipal-gold/30 p-4 transition-all duration-300 backdrop-blur-sm"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-[#0f1c2e] bg-municipal-gold px-2.5 py-0.5 rounded-full">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-[#333d29] bg-municipal-gold px-2.5 py-0.5 rounded-full">
                     {ann.category}
                   </span>
                   <span className="text-[9px] font-bold text-white/50 flex items-center gap-1">
@@ -154,7 +154,7 @@ export function NewsSidebar() {
 
           <a
             href="/ogloszenia"
-            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-municipal-gold py-3 text-[10px] font-black uppercase tracking-wider text-[#0f1c2e] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
+            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-municipal-gold py-3 text-[10px] font-black uppercase tracking-wider text-[#333d29] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
           >
             <span>Wszystkie ogłoszenia</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -225,7 +225,7 @@ export function NewsSidebar() {
 
           <a
             href="/glos-mieszkancow"
-            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#0f1c2e] py-3 text-[10px] font-black uppercase tracking-wider text-white hover:bg-foreground transition-all duration-300 shadow-lg"
+            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#333d29] py-3 text-[10px] font-black uppercase tracking-wider text-white hover:bg-foreground transition-all duration-300 shadow-lg"
           >
             <span>Dołącz do dyskusji</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -255,7 +255,7 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between bg-gradient-to-br from-[#1d6fb8] to-[#155a96] text-white p-5 rounded-2xl mb-6 shadow-md shadow-digital-blue/20">
+        <div className="flex items-center justify-between bg-gradient-to-br from-[#656d4a] to-[#414833] text-white p-5 rounded-2xl mb-6 shadow-md shadow-digital-blue/20">
           <div className="space-y-1">
             <span className="text-[9px] font-black uppercase tracking-widest text-municipal-gold animate-pulse">Aktualnie</span>
             <div className="text-4xl font-extralight tracking-tighter">18°C</div>

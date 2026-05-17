@@ -57,7 +57,7 @@ const item = {
 
 export function QuickAccess() {
   return (
-    <section aria-labelledby="quick-access" className="bg-slate-50/80 border-y border-slate-200/60 relative overflow-hidden">
+    <section aria-labelledby="quick-access" className="bg-stone-50/80 border-y border-stone-200/60 relative overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none text-[#0f172a]">
         <Building2 className="h-96 w-96 -mr-48 -mt-48 rotate-12" />
@@ -82,7 +82,7 @@ export function QuickAccess() {
                 variants={item}
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative flex items-center gap-5 rounded-[2.5rem] bg-white p-6 shadow-xl shadow-[#0f172a]/2 border border-slate-100 transition-all hover:border-primary/20 hover:shadow-2xl text-left overflow-hidden"
+                className="group relative flex items-center gap-5 rounded-[2.5rem] bg-white p-6 shadow-xl shadow-[#0f172a]/2 border border-stone-100 transition-all hover:border-primary/20 hover:shadow-2xl text-left overflow-hidden"
               >
                 <div className="absolute -right-4 -bottom-4 opacity-[0.01] group-hover:opacity-[0.04] transition-opacity duration-500">
                   <Icon className="h-24 w-24" />
@@ -102,7 +102,7 @@ export function QuickAccess() {
                   </span>
                 </div>
                 
-                <div className="h-10 w-10 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-400 group-hover:text-primary group-hover:bg-primary-light/10 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                <div className="h-10 w-10 flex items-center justify-center rounded-2xl bg-stone-50 text-stone-400 group-hover:text-primary group-hover:bg-primary-light/10 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                   <Icon className="h-4 w-4" />
                 </div>
               </motion.button>

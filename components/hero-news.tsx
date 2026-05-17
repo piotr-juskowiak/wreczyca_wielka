@@ -62,7 +62,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
       aria-label="Wyróżnione artykuły"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full overflow-hidden border-b border-slate-200 bg-[#0f1c2e] select-none"
+      className="relative w-full overflow-hidden border-b border-stone-200 bg-[#333d29] select-none"
     >
       <div className="relative w-full min-h-[600px] lg:h-[640px]">
         <AnimatePresence mode="wait" initial={false}>
@@ -95,14 +95,14 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
         <>
           <button
             onClick={handlePrev}
-            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#0f1c2e]/50 text-white/70 hover:text-white hover:bg-[#0f1c2e]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#333d29]/50 text-white/70 hover:text-white hover:bg-[#333d29]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
             aria-label="Poprzedni slajd"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#0f1c2e]/50 text-white/70 hover:text-white hover:bg-[#0f1c2e]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#333d29]/50 text-white/70 hover:text-white hover:bg-[#333d29]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
             aria-label="Następny slajd"
           >
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -147,7 +147,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
 
       {/* Counter w prawym górnym rogu */}
       {totalPages > 1 && (
-        <div className="absolute top-6 right-6 z-30 hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f1c2e]/60 border border-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-white/80">
+        <div className="absolute top-6 right-6 z-30 hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-[#333d29]/60 border border-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-white/80">
           <span className="text-municipal-gold">{String(currentIndex + 1).padStart(2, "0")}</span>
           <span className="text-white/30">/</span>
           <span>{String(totalPages).padStart(2, "0")}</span>
@@ -189,7 +189,7 @@ function HeroPanel({
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/75 to-[#0f1c2e]/15 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#333d29] via-[#333d29]/75 to-[#333d29]/15 z-10 pointer-events-none" />
         <div className="absolute inset-0 bg-black/15 z-10 pointer-events-none" />
         <div className="absolute inset-0 bg-digital-blue opacity-0 group-hover:opacity-15 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
       </div>

@@ -20,17 +20,17 @@ const categoryColors: Record<string, string> = {
 
 // Light gradient backgrounds tinted by category
 const cardTints: Record<string, string> = {
-  Inwestycje: "bg-gradient-to-br from-[#1d6fb8]/[0.04] via-card to-card",
-  Biznes: "bg-gradient-to-br from-[#1d6fb8]/[0.04] via-card to-card",
-  "E-Urząd": "bg-gradient-to-br from-[#1d6fb8]/[0.04] via-card to-card",
-  Edukacja: "bg-gradient-to-br from-[#1d6fb8]/[0.04] via-card to-card",
-  Sołectwa: "bg-gradient-to-br from-[#1d6fb8]/[0.04] via-card to-card",
-  Wydarzenia: "bg-gradient-to-br from-[#225e3c]/[0.05] via-card to-card",
-  Sport: "bg-gradient-to-br from-[#225e3c]/[0.05] via-card to-card",
-  Ekologia: "bg-gradient-to-br from-[#225e3c]/[0.05] via-card to-card",
-  Konsultacje: "bg-gradient-to-br from-[#225e3c]/[0.05] via-card to-card",
-  Ogłoszenia: "bg-gradient-to-br from-[#b8861f]/[0.06] via-card to-card",
-  Kultura: "bg-gradient-to-br from-[#b8861f]/[0.06] via-card to-card",
+  Inwestycje: "bg-gradient-to-br from-[#656d4a]/[0.04] via-card to-card",
+  Biznes: "bg-gradient-to-br from-[#656d4a]/[0.04] via-card to-card",
+  "E-Urząd": "bg-gradient-to-br from-[#656d4a]/[0.04] via-card to-card",
+  Edukacja: "bg-gradient-to-br from-[#656d4a]/[0.04] via-card to-card",
+  Sołectwa: "bg-gradient-to-br from-[#656d4a]/[0.04] via-card to-card",
+  Wydarzenia: "bg-gradient-to-br from-[#414833]/[0.05] via-card to-card",
+  Sport: "bg-gradient-to-br from-[#414833]/[0.05] via-card to-card",
+  Ekologia: "bg-gradient-to-br from-[#414833]/[0.05] via-card to-card",
+  Konsultacje: "bg-gradient-to-br from-[#414833]/[0.05] via-card to-card",
+  Ogłoszenia: "bg-gradient-to-br from-[#936639]/[0.06] via-card to-card",
+  Kultura: "bg-gradient-to-br from-[#936639]/[0.06] via-card to-card",
 }
 
 export function NewsCard({ article }: { article: NewsArticle }) {

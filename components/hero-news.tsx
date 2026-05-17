@@ -5,6 +5,10 @@ import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 export function HeroNews({ article }: { article: NewsArticle }) {
+  // Limit the excerpt to 60% of its original length, splitting by words to maintain sentence flow
+  const words = article.excerpt.split(" ")
+  const truncatedExcerpt = words.slice(0, Math.floor(words.length * 0.6)).join(" ") + "..."
+
   return (
     <section
       aria-label="Wyróżniona aktualność"
@@ -95,7 +99,7 @@ export function HeroNews({ article }: { article: NewsArticle }) {
             transition={{ type: "spring", stiffness: 100, damping: 22, delay: 0.3 }}
             className="mt-8 text-base sm:text-lg md:text-xl text-[#dad7cd]/80 leading-relaxed max-w-2xl font-medium"
           >
-            {article.excerpt}
+            {truncatedExcerpt}
           </motion.p>
 
           {/* Actions & Metadata Row */}
@@ -108,12 +112,14 @@ export function HeroNews({ article }: { article: NewsArticle }) {
             {/* Elegant Primary Button */}
             <motion.a
               href={`/aktualnosci/${article.slug}`}
-              whileHover={{ scale: 1.03, x: 5 }}
-              whileTap={{ scale: 0.97 }}
-              className="group/btn inline-flex items-center gap-4 rounded-2xl bg-[#a3b18a] px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0d1c12] shadow-2xl shadow-[#a3b18a]/10 hover:bg-[#dad7cd] transition-all"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn relative inline-flex items-center justify-between gap-6 rounded-full bg-[#a3b18a] pl-8 pr-3 py-3 text-xs font-black uppercase tracking-widest text-[#0d1c12] hover:bg-[#dad7cd] shadow-xl shadow-[#a3b18a]/10 hover:shadow-[#a3b18a]/20 transition-all cursor-pointer duration-300"
             >
-              Czytaj artykuł
-              <ArrowRight className="h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
+              <span>Czytaj artykuł</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0d1c12] text-[#a3b18a] group-hover/btn:bg-[#1a3520] group-hover/btn:text-white transition-all duration-300 shrink-0">
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+              </div>
             </motion.a>
 
             {/* In-Line Metadata Widget */}

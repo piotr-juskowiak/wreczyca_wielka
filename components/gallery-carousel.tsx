@@ -113,7 +113,7 @@ export function GalleryCarousel() {
       case "Ciekawostka":
         return "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30"
       case "Zabytki":
-        return "bg-[#5cb87e]/15 text-[#5cb87e] border-[#5cb87e]/20"
+        return "bg-vibrant-emerald-light text-white border-vibrant-emerald-solid/30"
       case "Przewodnik":
       case "Poradnik":
       default:
@@ -127,11 +127,11 @@ export function GalleryCarousel() {
       aria-labelledby="guide-title"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden bg-gradient-to-br from-[#0b1f11] via-[#142f1a] to-[#08150c] py-24 text-white border-y border-[#2c5e3b]/30 select-none"
+      className="relative overflow-hidden bg-gradient-to-br from-[#0f1c2e] via-[#162539] to-[#0a1422] py-24 text-white border-y border-slate-800/40 select-none"
     >
       {/* Premium ambient light glow effects */}
-      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-[#2e854b]/10 blur-3xl pointer-events-none" />
-      <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-digital-blue/5 blur-3xl pointer-events-none" />
+      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-digital-blue/10 blur-3xl pointer-events-none" />
+      <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-municipal-gold/5 blur-3xl pointer-events-none" />
       
       {/* Background elegant dots pattern */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.015] pointer-events-none select-none bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -141,7 +141,7 @@ export function GalleryCarousel() {
         {/* Header Block */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 text-[#5cb87e] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 text-municipal-gold px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
               <Compass className="h-3.5 w-3.5 text-municipal-gold" />
               Odkryj naszą gminę
             </span>
@@ -180,7 +180,7 @@ export function GalleryCarousel() {
                 key={item.id}
                 className="pl-6 min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 lg:basis-1/3"
               >
-                <div className="h-[400px] w-full relative rounded-3xl overflow-hidden group border border-white/10 shadow-sm hover:shadow-xl hover:border-digital-blue/45 transition-all duration-500 bg-[#08150c]">
+                <div className="h-[400px] w-full relative rounded-3xl overflow-hidden group border border-white/10 shadow-sm hover:shadow-xl hover:border-digital-blue/45 transition-all duration-500 bg-[#0a1422]">
                   
                   {/* Item Image */}
                   <img
@@ -212,7 +212,7 @@ export function GalleryCarousel() {
                     </p>
                     <a
                       href={item.href}
-                      className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-[#5cb87e] group-hover:text-digital-blue transition-colors duration-300 pointer-events-auto w-fit"
+                      className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-municipal-gold group-hover:text-white transition-colors duration-300 pointer-events-auto w-fit"
                     >
                       <span>{item.actionText}</span>
                       <ArrowRight className="h-3 w-3" />

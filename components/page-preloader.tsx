@@ -29,7 +29,7 @@ export function PagePreloader() {
       initial={{ y: "0%" }}
       animate={{ y: "-100%" }}
       transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[9999] bg-[#082310] pointer-events-none w-full h-full"
+      className="fixed inset-0 z-[9999] bg-[#0f1c2e] pointer-events-none w-full h-full"
     />
   )
 }

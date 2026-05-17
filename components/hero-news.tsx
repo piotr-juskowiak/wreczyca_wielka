@@ -142,7 +142,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
       aria-label="Wyróżniony dwukolumnowy pokaz slajdów"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full overflow-hidden border-b border-slate-200 bg-[#082310] select-none"
+      className="relative w-full overflow-hidden border-b border-slate-200 bg-[#0f1c2e] select-none"
     >
       <div className="flex flex-col lg:flex-row w-full min-h-[600px] lg:h-[650px] relative">
         <AnimatePresence mode="wait" initial={false}>
@@ -163,7 +163,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
                   alt=""
                   className="w-full h-full object-cover scale-105 filter blur-[4px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#082310] via-[#082310]/70 to-[#082310]/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/70 to-[#0f1c2e]/20" />
               </div>
 
               {/* Content */}
@@ -222,7 +222,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
                     }}
                   />
                   {/* Elegant editorial overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082310] via-[#082310]/60 to-[#082310]/10 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/60 to-[#0f1c2e]/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-digital-blue opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
                 </div>
@@ -290,7 +290,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
                     }}
                   />
                   {/* Elegant editorial overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082310] via-[#082310]/60 to-[#082310]/10 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/60 to-[#0f1c2e]/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-digital-blue opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
                 </div>
@@ -345,14 +345,14 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
         <>
           <button
             onClick={handlePrev}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-[#082310]/40 text-[#cbd5e1]/60 hover:text-white hover:bg-[#082310]/80 hover:border-white/30 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-[#0f1c2e]/40 text-[#cbd5e1]/60 hover:text-white hover:bg-[#0f1c2e]/80 hover:border-white/30 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
             aria-label="Poprzedni slajd"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-[#082310]/40 text-[#cbd5e1]/60 hover:text-white hover:bg-[#082310]/80 hover:border-white/30 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-[#0f1c2e]/40 text-[#cbd5e1]/60 hover:text-white hover:bg-[#0f1c2e]/80 hover:border-white/30 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
             aria-label="Następny slajd"
           >
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />

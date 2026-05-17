@@ -2,53 +2,69 @@
 @import 'tw-animate-css';
 
 :root {
-  --background: #f8fafc; /* Crisp slate-50 background for a premium modern feel */
-  --foreground: #0f172a; /* Sleek charcoal Slate-900 for high-contrast typography */
+  /* ─────────────────────────────────────────────────────────────
+     CORE NEUTRALS  (3 kolory rdzenne)
+     ───────────────────────────────────────────────────────────── */
+  --background: #f7f8fa;          /* miękki, ciepły off-white (zamiast zimnego slate) */
+  --foreground: #0f1c2e;          /* głęboki granat zamiast czarni — bardziej elegancki */
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #0f1c2e;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  
-  /* Primary color is a sophisticated, soft forest green that is highly readable and calming (#2c5e3b) */
-  --primary: #2c5e3b;
-  --primary-foreground: #ffffff; /* pure white for perfect AA contrast */
-  
-  /* Secondary color is a clean slate/mint mix */
-  --secondary: #e2e8f0;
-  --secondary-foreground: #0f172a;
-  
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  
-  --accent: #2e854b;
+  --popover-foreground: #0f1c2e;
+
+  --secondary: #eef1f6;           /* delikatne, neutralne tło sekcji/etykiet */
+  --secondary-foreground: #0f1c2e;
+
+  --muted: #f1f4f8;
+  --muted-foreground: #64748b;    /* CZYSTY neutralny szary (bez zielonego odcienia) */
+
+  --border: #e3e8ef;              /* delikatna obwódka */
+  --input: #e3e8ef;
+
+  /* ─────────────────────────────────────────────────────────────
+     BRAND  (granat → niebieski jako wiodący akcent)
+     ───────────────────────────────────────────────────────────── */
+  --primary: #1d6fb8;             /* zrefinowany niebieski (logo gminne) */
+  --primary-foreground: #ffffff;
+  --ring: #1d6fb8;
+
+  /* ─────────────────────────────────────────────────────────────
+     ACCENTS  (2 akcenty: złoto + butelkowa zieleń)
+     ───────────────────────────────────────────────────────────── */
+  --accent: #b8861f;              /* dojrzałe, czytelne złoto (wcześniej za jasne) */
   --accent-foreground: #ffffff;
-  
-  --destructive: #dc2626;
+
+  --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
-  
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #2c5e3b;
-  --radius: 1.25rem; /* modern premium curved corners */
 
-  /* Custom Digital Blue theme colors (exact logo blue: #0073bc) */
-  --digital-blue: #0073bc;
-  --digital-blue-hover: #005a9c;
-  --digital-blue-light: rgba(0, 115, 188, 0.08);
+  --radius: 1.25rem;
 
-  /* Custom Vibrant Emerald theme colors (softened to be elegant and calming) */
-  --vibrant-emerald: rgba(46, 133, 75, 0.85);
-  --vibrant-emerald-solid: #2e854b;
-  --vibrant-emerald-light: rgba(46, 133, 75, 0.08);
+  /* ─────────────────────────────────────────────────────────────
+     SEMANTIC TOKENS (zachowuję nazewnictwo, ale wartości spójne)
+     ───────────────────────────────────────────────────────────── */
 
-  /* Custom Municipal Gold theme colors (exact logo gold: #fcd116, slightly darkened for accessibility) */
-  --municipal-gold: #d1ab02;
-  --municipal-gold-hover: #b29102;
-  --municipal-gold-light: rgba(209, 171, 2, 0.08);
+  /* Digital Blue — wiodący akcent brandowy */
+  --digital-blue: #1d6fb8;
+  --digital-blue-hover: #155a96;
+  --digital-blue-light: rgba(29, 111, 184, 0.08);
+
+  /* Vibrant Emerald — butelkowa zieleń, używana oszczędnie (sport, sukces) */
+  --vibrant-emerald: rgba(34, 94, 60, 0.85);
+  --vibrant-emerald-solid: #225e3c;
+  --vibrant-emerald-light: rgba(34, 94, 60, 0.08);
+
+  /* Municipal Gold — ciepły akcent (ogłoszenia, kultura) */
+  --municipal-gold: #b8861f;
+  --municipal-gold-hover: #966c14;
+  --municipal-gold-light: rgba(184, 134, 31, 0.10);
+
+  /* Dark surface (sekcje hero/gallery) — elegancki granat zamiast brudnej zieleni */
+  --surface-dark: #0f1c2e;
+  --surface-dark-2: #162539;
 }
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -70,7 +86,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Map custom digital blue, vibrant emerald & municipal gold theme colors */
   --color-digital-blue: var(--digital-blue);
   --color-digital-blue-hover: var(--digital-blue-hover);
   --color-digital-blue-light: var(--digital-blue-light);
@@ -80,6 +95,8 @@
   --color-municipal-gold: var(--municipal-gold);
   --color-municipal-gold-hover: var(--municipal-gold-hover);
   --color-municipal-gold-light: var(--municipal-gold-light);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-2: var(--surface-dark-2);
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
@@ -97,12 +114,23 @@
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .article-content {
+    color: #1f2a3d;
+  }
+
+  .article-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
   }
 
   .article-content a {
     color: var(--digital-blue);
     text-decoration: underline;
-    text-decoration-color: rgba(32, 143, 207, 0.3);
+    text-decoration-color: rgba(29, 111, 184, 0.3);
     text-underline-offset: 4px;
     font-weight: 600;
     transition: color 0.2s, text-decoration-color 0.2s;
@@ -119,6 +147,23 @@
   h4 {
     line-height: 1.2;
     letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+
+  /* Customowy scrollbar — bardziej elegancki */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
   }
 }
 

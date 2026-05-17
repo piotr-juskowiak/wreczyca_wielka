@@ -29,6 +29,16 @@
   --input: #dad7cd;
   --ring: #3a5a40;
   --radius: 1rem;
+
+  /* Custom Digital Blue theme colors */
+  --digital-blue: #208fcf;
+  --digital-blue-hover: #167fb9;
+  --digital-blue-light: rgba(32, 143, 207, 0.12);
+
+  /* Custom Vibrant Emerald theme colors */
+  --vibrant-emerald: rgba(0, 147, 63, 0.8);
+  --vibrant-emerald-solid: #00933f;
+  --vibrant-emerald-light: rgba(0, 147, 63, 0.12);
 }
 
 @theme inline {
@@ -53,6 +63,15 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Map custom digital blue & vibrant emerald theme colors */
+  --color-digital-blue: var(--digital-blue);
+  --color-digital-blue-hover: var(--digital-blue-hover);
+  --color-digital-blue-light: var(--digital-blue-light);
+  --color-vibrant-emerald: var(--vibrant-emerald);
+  --color-vibrant-emerald-solid: var(--vibrant-emerald-solid);
+  --color-vibrant-emerald-light: var(--vibrant-emerald-light);
+
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
@@ -69,6 +88,20 @@
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
     line-height: 1.6;
+  }
+
+  .article-content a {
+    color: var(--digital-blue);
+    text-decoration: underline;
+    text-decoration-color: rgba(32, 143, 207, 0.3);
+    text-underline-offset: 4px;
+    font-weight: 600;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+
+  .article-content a:hover {
+    color: var(--digital-blue-hover);
+    text-decoration-color: var(--digital-blue-hover);
   }
 
   h1,

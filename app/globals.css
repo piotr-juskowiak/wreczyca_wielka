@@ -39,9 +39,17 @@
   --primary-foreground: #dad7cd;
   --ring: #3a5a40;
 
-  /* AKCENT GŁÓWNY — wyrazisty żółty */
+  /* AKCENT GŁÓWNY — złoty żółty + skala odcieni */
   --accent: #ffd230;
   --accent-foreground: #344e41;
+
+  --golden: #ffd230;              /* bazowy żółty akcent */
+  --golden-hover: #e6b800;        /* ciemniejszy hover */
+  --golden-dark: #c9a000;         /* najciemniejszy — tekst na jasnym tle */
+  --golden-light: #ffe680;        /* jasny — tła podświetleń */
+  --golden-lighter: #fff3c4;      /* bardzo jasny — subtelne tła */
+  --golden-lightest: #fff9e0;     /* najjaśniejszy — delikatne sekcje */
+  --golden-glow: rgba(255, 210, 48, 0.15); /* poświata / shadow */
 
   --destructive: #8a2e1a;         /* przygaszony, ziemisty czerwony */
   --destructive-foreground: #dad7cd;
@@ -116,6 +124,15 @@
   --color-toffee-brown-light: var(--toffee-brown-light);
   --color-surface-dark: var(--surface-dark);
   --color-surface-dark-2: var(--surface-dark-2);
+
+  /* Złoty akcent — klasy: bg-golden, text-golden-dark, bg-golden-lightest itd. */
+  --color-golden: var(--golden);
+  --color-golden-hover: var(--golden-hover);
+  --color-golden-dark: var(--golden-dark);
+  --color-golden-light: var(--golden-light);
+  --color-golden-lighter: var(--golden-lighter);
+  --color-golden-lightest: var(--golden-lightest);
+  --color-golden-glow: var(--golden-glow);
 
   /* Nowe tokeny ziemi — dostępne jako klasy: bg-camel, text-khaki, bg-sage itd. */
   --color-camel: #a3b18a;

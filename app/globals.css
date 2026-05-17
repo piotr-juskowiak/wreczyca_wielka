@@ -2,43 +2,49 @@
 @import 'tw-animate-css';
 
 :root {
-  --background: #f1f3ef;
-  /* Very light version of sage for bg */
-  --foreground: #344e41;
-  /* Pine Teal */
+  --background: #f8fafc; /* Crisp slate-50 background for a premium modern feel */
+  --foreground: #0f172a; /* Sleek charcoal Slate-900 for high-contrast typography */
   --card: #ffffff;
-  --card-foreground: #344e41;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #344e41;
-  --primary: #3a5a40;
-  /* Hunter Green */
-  --primary-foreground: #dad7cd;
-  --secondary: #a3b18a;
-  /* Dry Sage */
-  --secondary-foreground: #344e41;
-  --muted: #dad7cd;
-  /* Dust Grey */
-  --muted-foreground: #588157;
-  /* Fern */
-  --accent: #588157;
-  /* Fern */
+  --popover-foreground: #0f172a;
+  
+  /* Primary color is a sophisticated, soft forest green that is highly readable and calming (#2c5e3b) */
+  --primary: #2c5e3b;
+  --primary-foreground: #ffffff; /* pure white for perfect AA contrast */
+  
+  /* Secondary color is a clean slate/mint mix */
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+  
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  
+  --accent: #2e854b;
   --accent-foreground: #ffffff;
+  
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #dad7cd;
-  --input: #dad7cd;
-  --ring: #3a5a40;
-  --radius: 1rem;
+  
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2c5e3b;
+  --radius: 1.25rem; /* modern premium curved corners */
 
-  /* Custom Digital Blue theme colors */
-  --digital-blue: #208fcf;
-  --digital-blue-hover: #167fb9;
-  --digital-blue-light: rgba(32, 143, 207, 0.12);
+  /* Custom Digital Blue theme colors (exact logo blue: #0073bc) */
+  --digital-blue: #0073bc;
+  --digital-blue-hover: #005a9c;
+  --digital-blue-light: rgba(0, 115, 188, 0.08);
 
-  /* Custom Vibrant Emerald theme colors */
-  --vibrant-emerald: rgba(0, 147, 63, 0.8);
-  --vibrant-emerald-solid: #00933f;
-  --vibrant-emerald-light: rgba(0, 147, 63, 0.12);
+  /* Custom Vibrant Emerald theme colors (softened to be elegant and calming) */
+  --vibrant-emerald: rgba(46, 133, 75, 0.85);
+  --vibrant-emerald-solid: #2e854b;
+  --vibrant-emerald-light: rgba(46, 133, 75, 0.08);
+
+  /* Custom Municipal Gold theme colors (exact logo gold: #fcd116, slightly darkened for accessibility) */
+  --municipal-gold: #d1ab02;
+  --municipal-gold-hover: #b29102;
+  --municipal-gold-light: rgba(209, 171, 2, 0.08);
 }
 
 @theme inline {
@@ -64,13 +70,16 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Map custom digital blue & vibrant emerald theme colors */
+  /* Map custom digital blue, vibrant emerald & municipal gold theme colors */
   --color-digital-blue: var(--digital-blue);
   --color-digital-blue-hover: var(--digital-blue-hover);
   --color-digital-blue-light: var(--digital-blue-light);
   --color-vibrant-emerald: var(--vibrant-emerald);
   --color-vibrant-emerald-solid: var(--vibrant-emerald-solid);
   --color-vibrant-emerald-light: var(--vibrant-emerald-light);
+  --color-municipal-gold: var(--municipal-gold);
+  --color-municipal-gold-hover: var(--municipal-gold-hover);
+  --color-municipal-gold-light: var(--municipal-gold-light);
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);

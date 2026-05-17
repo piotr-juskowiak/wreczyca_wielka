@@ -19,11 +19,11 @@ interface CommentItem {
 
 // Helper to generate a random botanical color theme for custom avatars
 const AVATAR_PALETTES = [
-  "bg-[#588157]/20 text-[#344e41]",
-  "bg-[#a3b18a]/20 text-[#3a5a40]",
-  "bg-[#dad7cd]/45 text-[#3a5a40]",
-  "bg-[#3a5a40]/15 text-[#3a5a40]",
-  "bg-[#344e41]/10 text-[#344e41]"
+  "bg-[#2e854b]/20 text-[#0f172a]",
+  "bg-[#5cb87e]/20 text-[#2c5e3b]",
+  "bg-[#cbd5e1]/45 text-[#2c5e3b]",
+  "bg-[#2c5e3b]/15 text-[#2c5e3b]",
+  "bg-[#0f172a]/10 text-[#0f172a]"
 ]
 
 export function ArticleComments({ articleId, articleTitle }: { articleId: string; articleTitle: string }) {
@@ -117,17 +117,17 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
   }
 
   return (
-    <div className="mt-20 border-t border-[#dad7cd]/40 pt-16 select-none">
+    <div className="mt-20 border-t border-[#cbd5e1]/40 pt-16 select-none">
       
-      <div className="flex items-center gap-3.5 mb-10 pb-3 border-b border-[#dad7cd]/35">
-        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#3a5a40]/10 text-[#3a5a40]">
+      <div className="flex items-center gap-3.5 mb-10 pb-3 border-b border-[#cbd5e1]/35">
+        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#2c5e3b]/10 text-[#2c5e3b]">
           <MessageSquare className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-[#344e41] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-[#0f172a] uppercase tracking-wider">
             Głos Mieszkańców ({comments.length})
           </h3>
-          <span className="text-[10px] text-[#a3b18a] font-bold uppercase tracking-wider block">
+          <span className="text-[10px] text-[#5cb87e] font-bold uppercase tracking-wider block">
             Komentarze i opinie społeczności lokalnej
           </span>
         </div>
@@ -147,19 +147,19 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ type: "spring", stiffness: 100, damping: 18 }}
-                  className="flex gap-4 p-5 rounded-3xl bg-white border border-[#dad7cd]/40 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="flex gap-4 p-5 rounded-3xl bg-white border border-[#cbd5e1]/40 shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <div className={`h-10 w-10 rounded-full shrink-0 flex items-center justify-center font-bold text-sm ${com.avatarBg}`}>
                     {com.initials}
                   </div>
                   <div className="flex-1 space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-bold text-[#344e41]">{com.author}</span>
-                      <span className="text-[10px] font-bold text-[#3a5a40]/30 flex items-center gap-1">
+                      <span className="text-sm font-bold text-[#0f172a]">{com.author}</span>
+                      <span className="text-[10px] font-bold text-[#2c5e3b]/30 flex items-center gap-1">
                         <Calendar className="h-3 w-3" /> {com.time}
                       </span>
                     </div>
-                    <p className="text-sm text-[#3a5a40]/75 font-medium leading-relaxed">
+                    <p className="text-sm text-[#2c5e3b]/75 font-medium leading-relaxed">
                       {com.comment}
                     </p>
                   </div>
@@ -169,11 +169,11 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center py-16 px-6 text-center bg-[#f1f3ef]/35 border border-[#dad7cd]/30 rounded-[2rem]"
+                className="flex flex-col items-center justify-center py-16 px-6 text-center bg-[#f1f5f9]/35 border border-[#cbd5e1]/30 rounded-[2rem]"
               >
-                <MessageSquare className="h-10 w-10 text-[#a3b18a]/40 mb-3" />
-                <p className="text-sm font-bold text-[#344e41] mb-1">Brak komentarzy</p>
-                <p className="text-xs text-[#3a5a40]/50 max-w-xs font-medium leading-relaxed">
+                <MessageSquare className="h-10 w-10 text-[#5cb87e]/40 mb-3" />
+                <p className="text-sm font-bold text-[#0f172a] mb-1">Brak komentarzy</p>
+                <p className="text-xs text-[#2c5e3b]/50 max-w-xs font-medium leading-relaxed">
                   Bądź pierwszym mieszkańcem, który podzieli się swoją opinią pod tym artykułem!
                 </p>
               </motion.div>
@@ -183,9 +183,9 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
 
         {/* Right Column: Form submission card (lg:col-span-5) */}
         <div className="lg:col-span-5">
-          <div className="bg-white border border-[#dad7cd]/40 rounded-[2rem] p-6 shadow-sm">
-            <h4 className="text-xs font-black uppercase tracking-widest text-[#344e41] mb-5 flex items-center gap-2">
-              <Send className="h-3.5 w-3.5 text-[#a3b18a]" />
+          <div className="bg-white border border-[#cbd5e1]/40 rounded-[2rem] p-6 shadow-sm">
+            <h4 className="text-xs font-black uppercase tracking-widest text-[#0f172a] mb-5 flex items-center gap-2">
+              <Send className="h-3.5 w-3.5 text-[#5cb87e]" />
               Dodaj swój komentarz
             </h4>
 
@@ -193,11 +193,11 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
               
               {/* Author Field */}
               <div className="space-y-1.5">
-                <label htmlFor="comment-author" className="text-[10px] font-black uppercase tracking-wider text-[#344e41]/60">
+                <label htmlFor="comment-author" className="text-[10px] font-black uppercase tracking-wider text-[#0f172a]/60">
                   Podpis (imię / pseudonim)
                 </label>
                 <div className="relative flex items-center">
-                  <User className="absolute left-4 h-4 w-4 text-[#a3b18a] pointer-events-none" />
+                  <User className="absolute left-4 h-4 w-4 text-[#5cb87e] pointer-events-none" />
                   <input
                     id="comment-author"
                     type="text"
@@ -205,14 +205,14 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     placeholder="np. Anna, Mieszkaniec"
-                    className="w-full bg-[#f1f3ef]/45 border border-[#dad7cd]/40 text-xs font-semibold text-[#344e41] rounded-2xl pl-11 pr-4 py-3.5 outline-none focus:border-[#3a5a40] focus:bg-white transition-all"
+                    className="w-full bg-[#f1f5f9]/45 border border-[#cbd5e1]/40 text-xs font-semibold text-[#0f172a] rounded-2xl pl-11 pr-4 py-3.5 outline-none focus:border-[#2c5e3b] focus:bg-white transition-all"
                   />
                 </div>
               </div>
 
               {/* Text Field */}
               <div className="space-y-1.5">
-                <label htmlFor="comment-text" className="text-[10px] font-black uppercase tracking-wider text-[#344e41]/60">
+                <label htmlFor="comment-text" className="text-[10px] font-black uppercase tracking-wider text-[#0f172a]/60">
                   Treść komentarza
                 </label>
                 <textarea
@@ -222,13 +222,13 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Napisz co myślisz o tym artykule..."
                   rows={4}
-                  className="w-full bg-[#f1f3ef]/45 border border-[#dad7cd]/40 text-xs font-semibold text-[#344e41] rounded-2xl p-4 outline-none focus:border-[#3a5a40] focus:bg-white transition-all resize-none leading-relaxed"
+                  className="w-full bg-[#f1f5f9]/45 border border-[#cbd5e1]/40 text-xs font-semibold text-[#0f172a] rounded-2xl p-4 outline-none focus:border-[#2c5e3b] focus:bg-white transition-all resize-none leading-relaxed"
                 />
               </div>
 
-              <div className="flex items-start gap-2 bg-[#f1f3ef]/30 p-3 rounded-2xl border border-[#dad7cd]/20">
-                <AlertCircle className="h-3.5 w-3.5 text-[#a3b18a] shrink-0 mt-0.5" />
-                <p className="text-[9px] font-medium text-[#3a5a40]/65 leading-relaxed">
+              <div className="flex items-start gap-2 bg-[#f1f5f9]/30 p-3 rounded-2xl border border-[#cbd5e1]/20">
+                <AlertCircle className="h-3.5 w-3.5 text-[#5cb87e] shrink-0 mt-0.5" />
+                <p className="text-[9px] font-medium text-[#2c5e3b]/65 leading-relaxed">
                   Komentarze podlegają moderacji społecznościowej. Prosimy o kulturalną dyskusję dbającą o dobro wspólne gminy.
                 </p>
               </div>
@@ -239,7 +239,7 @@ export function ArticleComments({ articleId, articleTitle }: { articleId: string
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 rounded-2xl bg-[#3a5a40] hover:bg-[#2f4834] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[#3a5a40]/15 hover:shadow-[#3a5a40]/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-4 rounded-2xl bg-[#2c5e3b] hover:bg-[#0b5e28] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[#2c5e3b]/15 hover:shadow-[#2c5e3b]/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 <span>{isSubmitting ? "Publikowanie..." : "Opublikuj komentarz"}</span>
                 <Send className="h-3.5 w-3.5 shrink-0" />

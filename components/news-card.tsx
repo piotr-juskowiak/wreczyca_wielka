@@ -9,12 +9,12 @@ const categoryColors: Record<string, string> = {
   Biznes: "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
   "E-Urząd": "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
   Wydarzenia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Ogłoszenia: "bg-[#a3b18a]/20 text-[#3a5a40] border-[#a3b18a]/30",
-  Edukacja: "bg-[#dad7cd]/40 text-[#344e41] border-[#dad7cd]/50",
-  Konsultacje: "bg-[#3a5a40]/10 text-[#3a5a40] border-[#3a5a40]/20",
+  Ogłoszenia: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/20 bg-white/40 shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
+  Edukacja: "bg-digital-blue-light text-digital-blue border-digital-blue/25 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Konsultacje: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/15 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
   Sport: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
   Ekologia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Kultura: "bg-[#a3b18a]/10 text-[#588157] border-[#a3b18a]/20",
+  Kultura: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/20 bg-white/40 shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
 }
 
 export function NewsCard({ article }: { article: NewsArticle }) {
@@ -57,7 +57,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
             </span>
           </div>
 
-          <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-digital-blue transition-colors line-clamp-2">
             {article.title}
           </h3>
           
@@ -66,10 +66,10 @@ export function NewsCard({ article }: { article: NewsArticle }) {
           </p>
 
           <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between">
-            <span className="text-xs font-bold text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+            <span className="text-xs font-bold text-digital-blue opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
               Czytaj więcej
             </span>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-primary group-hover:text-white group-hover:rotate-12 shadow-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-digital-blue group-hover:text-white group-hover:rotate-12 shadow-sm">
               <ArrowUpRight className="h-5 w-5" />
             </span>
           </div>

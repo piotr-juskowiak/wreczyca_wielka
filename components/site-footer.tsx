@@ -61,7 +61,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border/40 bg-slate-50/50">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#344e41]/10 flex items-center bg-[#3a5a40]">
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#0f172a]/10 flex items-center bg-[#2c5e3b]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
             <img 
@@ -69,15 +69,15 @@ export function SiteFooter() {
               alt="Wręczyca Wielka" 
               className="h-full w-full object-cover mix-blend-overlay grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3a5a40] via-[#3a5a40]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2c5e3b] via-[#2c5e3b]/80 to-transparent" />
           </div>
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
             <div className="lg:w-1/2 text-center lg:text-left">
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
-                Zapisz się do <span className="text-[#a3b18a]">newslettera</span>
+                Zapisz się do <span className="text-municipal-gold font-extrabold">newslettera</span>
               </h3>
-              <p className="text-sm text-[#dad7cd]/80 max-w-md mx-auto lg:mx-0">
+              <p className="text-sm text-[#cbd5e1]/80 max-w-md mx-auto lg:mx-0">
                 Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
               </p>
             </div>
@@ -95,13 +95,13 @@ export function SiteFooter() {
                     type="email"
                     required
                     placeholder="Twój adres e-mail"
-                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#344e41] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
+                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#0f172a] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="h-12 px-6 rounded-xl bg-[#a3b18a] text-[#344e41] font-bold text-xs uppercase tracking-widest shadow-lg hover:bg-[#dad7cd] transition-all whitespace-nowrap"
+                    className="h-12 px-6 rounded-xl bg-municipal-gold text-white font-bold text-xs uppercase tracking-widest shadow-lg hover:bg-digital-blue hover:text-white transition-all whitespace-nowrap"
                   >
                     Zapisz się
                   </motion.button>
@@ -112,18 +112,18 @@ export function SiteFooter() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"
                 >
-                  <div className="h-10 w-10 rounded-full bg-[#a3b18a] text-[#344e41] flex items-center justify-center shrink-0">
+                  <div className="h-10 w-10 rounded-full bg-municipal-gold text-white flex items-center justify-center shrink-0">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div className="text-left">
                     <h4 className="text-sm font-bold text-white uppercase tracking-wider">Dziękujemy!</h4>
-                    <p className="text-xs text-[#dad7cd]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
+                    <p className="text-xs text-[#cbd5e1]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
                   </div>
                 </motion.div>
               )}
               <div className="mt-3 flex items-center gap-2 px-2">
-                <CheckCircle2 className="h-3 w-3 text-[#a3b18a]/60" />
-                <p className="text-[10px] text-[#dad7cd]/50 uppercase tracking-widest font-bold">
+                <CheckCircle2 className="h-3 w-3 text-municipal-gold/80" />
+                <p className="text-[10px] text-[#cbd5e1]/50 uppercase tracking-widest font-bold">
                   Akceptujesz politykę prywatności i RODO.
                 </p>
               </div>

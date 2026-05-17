@@ -14,21 +14,11 @@ const categoryColors: Record<string, string> = {
   Kultura: "bg-[#a3b18a]/10 text-[#588157] border-[#a3b18a]/20",
 }
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 18 },
-  },
-}
-
 export function NewsCard({ article }: { article: NewsArticle }) {
   const badgeClass = categoryColors[article.category] ?? "bg-secondary text-foreground border-border"
 
   return (
     <motion.article
-      variants={item}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
       className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-card border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20"

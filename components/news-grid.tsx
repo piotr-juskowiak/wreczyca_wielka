@@ -44,7 +44,13 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
       aria-labelledby="latest-news"
       className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8"
+      >
         <div className="max-w-2xl">
           <span className="inline-block rounded-full bg-[#a3b18a]/20 text-[#3a5a40] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-[#a3b18a]/30">
             Aktualności
@@ -65,10 +71,16 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
             <ChevronDown className="h-4 w-4 -rotate-90" />
           </div>
         </a>
-      </div>
+      </motion.div>
 
       {/* Filter & Sort Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 pb-8 border-b border-[#dad7cd]/40">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+        className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 pb-8 border-b border-[#dad7cd]/40"
+      >
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
@@ -101,7 +113,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
             {filteredAndSortedArticles.length} wyników
           </span>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         layout

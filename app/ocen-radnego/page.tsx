@@ -1,3 +1,6 @@
+"use client"
+
+import { motion } from "framer-motion"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Shield, Star, Users, MessageSquare } from "lucide-react"

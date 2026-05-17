@@ -5,44 +5,6 @@ import { MapPin, Phone, Mail, Clock, Building2, AlertTriangle, Send } from "luci
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
-const departments = [
-  {
-    name: "Sekretariat Wójta",
-    phone: "+48 34 317 02 45",
-    email: "sekretariat@wreczyca-wielka.pl",
-    room: "Pokój 12, I piętro",
-  },
-  {
-    name: "Referat Finansowy",
-    phone: "+48 34 317 02 46",
-    email: "finanse@wreczyca-wielka.pl",
-    room: "Pokój 8, parter",
-  },
-  {
-    name: "Urząd Stanu Cywilnego",
-    phone: "+48 34 317 02 47",
-    email: "usc@wreczyca-wielka.pl",
-    room: "Pokój 4, parter",
-  },
-  {
-    name: "Referat Komunalny",
-    phone: "+48 34 317 02 48",
-    email: "komunalny@wreczyca-wielka.pl",
-    room: "Pokój 15, I piętro",
-  },
-  {
-    name: "Referat Inwestycji",
-    phone: "+48 34 317 02 49",
-    email: "inwestycje@wreczyca-wielka.pl",
-    room: "Pokój 18, I piętro",
-  },
-  {
-    name: "Referat Podatków",
-    phone: "+48 34 317 02 50",
-    email: "podatki@wreczyca-wielka.pl",
-    room: "Pokój 6, parter",
-  },
-]
 
 const item = {
   hidden: { opacity: 0, y: 16 },
@@ -94,13 +56,13 @@ export default function KontaktPage() {
               {
                 icon: Phone,
                 title: "Telefon",
-                lines: ["+48 34 317 02 45", "Fax: +48 34 317 02 70"],
+                lines: ["tel.: +48 343 170 245", "fax.: +48 343 170 215"],
                 color: "bg-emerald-100 text-emerald-700",
               },
               {
                 icon: Mail,
                 title: "E-mail",
-                lines: ["urzad@wreczyca-wielka.pl", "sekretariat@wreczyca-wielka.pl"],
+                lines: ["ug@wreczyca-wielka.pl"],
                 color: "bg-amber-100 text-amber-700",
               },
               {
@@ -222,53 +184,6 @@ export default function KontaktPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex items-end justify-between gap-4 mb-6">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Referaty i wydziały</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Bezpośredni kontakt do poszczególnych komórek Urzędu Gminy.
-              </p>
-            </div>
-          </div>
-
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            {departments.map((d) => (
-              <motion.div
-                key={d.name}
-                variants={item}
-                whileHover={{ y: -4 }}
-                className="rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Building2 className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-base font-semibold text-foreground">{d.name}</h3>
-                </div>
-                <div className="mt-4 space-y-2 text-sm">
-                  <a href={`tel:${d.phone}`} className="flex items-center gap-2 text-foreground/90 hover:text-primary">
-                    <Phone className="h-4 w-4 text-muted-foreground" />
-                    {d.phone}
-                  </a>
-                  <a href={`mailto:${d.email}`} className="flex items-center gap-2 text-foreground/90 hover:text-primary break-all">
-                    <Mail className="h-4 w-4 text-muted-foreground" />
-                    {d.email}
-                  </a>
-                  <p className="flex items-center gap-2 text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    {d.room}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
 
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
           <div className="rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md">

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Menu, Shield, Cloud, Sun, CloudRain } from "lucide-react"
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { SearchDialog } from "@/components/search-dialog"
 import { AnnouncementTicker } from "@/components/announcement-ticker"
 
@@ -30,6 +31,8 @@ const navLinks = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const pathname = usePathname()
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
 
   return (
     <>
@@ -90,7 +93,9 @@ export function SiteHeader() {
             >
               <WeatherWidget />
               <motion.a
-                href="#bip"
+                href="https://www.bip.wreczyca-wielka.akcessnet.net/index.php?idg=1&id=1&x=1"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 className="inline-flex items-center gap-2.5 rounded-xl bg-[#dc2626] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-red-600/20 transition-all hover:bg-red-700"
@@ -114,19 +119,47 @@ export function SiteHeader() {
 
           {/* Bottom Row: Navigation */}
           <div className="hidden lg:flex h-12 items-center border-t border-border/40">
-            <nav className="flex items-center gap-1 -ml-4">
-              {navLinks.map((link, idx) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + idx * 0.05 }}
-                  className="rounded-xl px-4 py-2 text-[13px] font-bold text-foreground/70 transition-all hover:text-[#3a5a40] hover:bg-emerald-50/50 whitespace-nowrap uppercase tracking-wider"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+            <nav className="flex items-center gap-1 -ml-4 relative">
+              {navLinks.map((link, idx) => {
+                const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + idx * 0.05 }}
+                    onHoverStart={() => setHoveredIdx(idx)}
+                    onHoverEnd={() => setHoveredIdx(null)}
+                    className={`relative rounded-xl px-5 py-2 text-[12px] font-black uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
+                      ${isActive 
+                        ? 'text-[#3a5a40]' 
+                        : 'text-foreground/75 hover:text-[#3a5a40]'
+                      }
+                    `}
+                  >
+                    {link.label}
+
+                    {/* Sliding Hover background pill */}
+                    {hoveredIdx === idx && (
+                      <motion.div
+                        layoutId="nav-hover-pill"
+                        className="absolute inset-0 bg-[#a3b18a]/20 rounded-xl -z-10"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+
+                    {/* Active tab bottom line indicator */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-active-line"
+                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-[#3a5a40] rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </motion.a>
+                )
+              })}
             </nav>
           </div>
 

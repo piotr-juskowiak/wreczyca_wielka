@@ -224,6 +224,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
                   {/* Elegant editorial overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c12] via-[#0d1c12]/60 to-[#0d1c12]/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-[#00933f] opacity-0 group-hover:opacity-30 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
                 </div>
 
                 {/* Left pane subtle ambient glow */}
@@ -291,6 +292,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
                   {/* Elegant editorial overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c12] via-[#0d1c12]/60 to-[#0d1c12]/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-[#00933f] opacity-0 group-hover:opacity-30 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
                 </div>
 
                 {/* Right pane subtle ambient glow */}

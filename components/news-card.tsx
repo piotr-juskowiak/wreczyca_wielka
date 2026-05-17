@@ -5,12 +5,15 @@ import { Calendar, Clock, ArrowUpRight } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 const categoryColors: Record<string, string> = {
-  Inwestycje: "bg-[#344e41]/10 text-[#344e41] border-[#344e41]/20",
-  Wydarzenia: "bg-[#588157]/10 text-[#588157] border-[#588157]/20",
+  Inwestycje: "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Biznes: "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  "E-Urząd": "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Wydarzenia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
   Ogłoszenia: "bg-[#a3b18a]/20 text-[#3a5a40] border-[#a3b18a]/30",
   Edukacja: "bg-[#dad7cd]/40 text-[#344e41] border-[#dad7cd]/50",
   Konsultacje: "bg-[#3a5a40]/10 text-[#3a5a40] border-[#3a5a40]/20",
-  Sport: "bg-[#588157]/20 text-[#344e41] border-[#588157]/30",
+  Sport: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
+  Ekologia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
   Kultura: "bg-[#a3b18a]/10 text-[#588157] border-[#a3b18a]/20",
 }
 

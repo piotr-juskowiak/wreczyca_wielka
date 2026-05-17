@@ -9,12 +9,12 @@ const categoryColors: Record<string, string> = {
   Biznes: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
   "E-Urząd": "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
   Wydarzenia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Ogłoszenia: "bg-toffee-brown-light text-toffee-brown border-toffee-brown/30 backdrop-blur-md shadow-sm hover:bg-toffee-brown hover:text-white transition-all",
+  Ogłoszenia: "bg-golden-lightest text-golden-dark border-golden-light/40 backdrop-blur-md shadow-sm hover:bg-golden hover:text-[#344e41] transition-all",
   Edukacja: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/25 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
   Konsultacje: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
   Sport: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
   Ekologia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Kultura: "bg-toffee-brown-light text-toffee-brown border-toffee-brown/30 backdrop-blur-md shadow-sm hover:bg-toffee-brown hover:text-white transition-all",
+  Kultura: "bg-golden-lightest text-golden-dark border-golden-light/40 backdrop-blur-md shadow-sm hover:bg-golden hover:text-[#344e41] transition-all",
   Sołectwa: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
 }
 
@@ -29,8 +29,8 @@ const cardTints: Record<string, string> = {
   Sport: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
   Ekologia: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
   Konsultacje: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
-  Ogłoszenia: "bg-gradient-to-br from-[#a3b18a]/[0.06] via-card to-card",
-  Kultura: "bg-gradient-to-br from-[#a3b18a]/[0.06] via-card to-card",
+  Ogłoszenia: "bg-gradient-to-br from-golden-lightest/40 via-card to-card",
+  Kultura: "bg-gradient-to-br from-golden-lightest/40 via-card to-card",
 }
 
 export function NewsCard({ article }: { article: NewsArticle }) {

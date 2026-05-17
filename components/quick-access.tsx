@@ -26,9 +26,9 @@ const services = [
   {
     label: "Kontakt",
     icon: Phone,
-    bg: "bg-toffee-brown-light/60",
-    fg: "text-toffee-brown",
-    accent: "text-toffee-brown/80",
+    bg: "bg-golden-lightest/80",
+    fg: "text-golden-dark",
+    accent: "text-golden-dark/80",
   },
   {
     label: "Wydarzenia",

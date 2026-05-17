@@ -123,7 +123,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-toffee-brown w-8 h-2"
+                    ? "bg-golden w-8 h-2"
                     : "bg-white/30 group-hover:bg-white/60 w-2 h-2"
                 }`}
               />
@@ -140,7 +140,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 7, ease: "linear" }}
-            className="h-full bg-toffee-brown"
+            className="h-full bg-golden"
           />
         </div>
       )}
@@ -148,7 +148,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
       {/* Counter w prawym górnym rogu */}
       {totalPages > 1 && (
         <div className="absolute top-6 right-6 z-30 hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-[#344e41]/60 border border-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-white/80">
-          <span className="text-toffee-brown">{String(currentIndex + 1).padStart(2, "0")}</span>
+          <span className="text-golden">{String(currentIndex + 1).padStart(2, "0")}</span>
           <span className="text-white/30">/</span>
           <span>{String(totalPages).padStart(2, "0")}</span>
         </div>
@@ -202,13 +202,13 @@ function HeroPanel({
       </div>
 
       <div className="relative z-20 max-w-xl">
-        <div className="inline-flex items-center gap-2 rounded-full bg-toffee-brown-light border border-toffee-brown/30 px-3 py-1 text-[9px] font-black uppercase tracking-[0.22em] text-toffee-brown mb-4 backdrop-blur-md">
-          {isFirst && <Sparkles className="h-3 w-3 text-toffee-brown" />}
+        <div className="inline-flex items-center gap-2 rounded-full bg-golden-glow border border-golden/30 px-3 py-1 text-[9px] font-black uppercase tracking-[0.22em] text-golden mb-4 backdrop-blur-md">
+          {isFirst && <Sparkles className="h-3 w-3 text-golden" />}
           <span>{article.category}</span>
         </div>
 
         <h2
-          className={`font-light text-white leading-[1.15] tracking-tight group-hover:text-toffee-brown transition-colors duration-300 line-clamp-3 text-balance ${
+          className={`font-light text-white leading-[1.15] tracking-tight group-hover:text-golden transition-colors duration-300 line-clamp-3 text-balance ${
             total === 3 ? "text-xl lg:text-2xl xl:text-[26px]" : total === 2 ? "text-2xl lg:text-3xl" : "text-3xl sm:text-4xl"
           }`}
         >

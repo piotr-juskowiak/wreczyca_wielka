@@ -107,15 +107,13 @@ export function NewsSidebar() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#a3b18a]/85 via-[#588157]/80 to-[#3a5a40]/75 backdrop-blur-2xl p-6 shadow-xl shadow-[#a3b18a]/10 border border-[#a3b18a]/30"
-      >
-        {/* Ambient pattern */}
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#a3b18a]/85 via-[#588157]/80 to-[#3a5a40]/75 backdrop-blur-2xl p-6        {/* Ambient pattern */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(white_1px,transparent_1px)] [background-size:18px_18px]" />
         <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-toffee-brown shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-golden text-[#344e41] shadow-lg">
               <Megaphone className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
@@ -135,14 +133,14 @@ export function NewsSidebar() {
                 className="group cursor-pointer rounded-2xl bg-white/90 hover:bg-white border border-white/30 hover:shadow-lg p-4 transition-all duration-300 backdrop-blur-md"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-white bg-toffee-brown px-2.5 py-0.5 rounded-full">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-[#344e41] bg-golden px-2.5 py-0.5 rounded-full">
                     {ann.category}
                   </span>
                   <span className="text-[9px] font-bold text-[#344e41]/60 flex items-center gap-1">
                     <Calendar className="h-3 w-3" /> {ann.date}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-[#344e41] group-hover:text-toffee-brown transition-colors duration-200 line-clamp-1 leading-snug">
+                <h4 className="text-sm font-semibold text-[#344e41] group-hover:text-golden-dark transition-colors duration-200 line-clamp-1 leading-snug">
                   {ann.title}
                 </h4>
                 <p className="mt-1 text-xs text-[#344e41]/80 font-medium line-clamp-2 leading-relaxed">
@@ -176,7 +174,7 @@ export function NewsSidebar() {
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-toffee-brown shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-golden text-[#344e41] shadow-lg">
               <MessageSquare className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
@@ -195,7 +193,7 @@ export function NewsSidebar() {
                 key={com.id}
                 className="relative rounded-2xl bg-white/90 hover:bg-white backdrop-blur-md p-4 border border-white/30 hover:shadow-lg transition-all duration-300"
               >
-                <Quote className="absolute top-3 right-3 h-5 w-5 text-toffee-brown/30" />
+                <Quote className="absolute top-3 right-3 h-5 w-5 text-golden/30" />
                 <div className="flex gap-3">
                   <div
                     className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-bold text-xs shadow-sm ${com.avatarBg}`}
@@ -214,7 +212,7 @@ export function NewsSidebar() {
                     <p className="text-[11px] text-[#344e41]/80 font-medium italic leading-relaxed line-clamp-3">
                       &quot;{com.comment}&quot;
                     </p>
-                    <div className="text-[9px] font-black uppercase tracking-wider text-toffee-brown pt-0.5 truncate">
+                    <div className="text-[9px] font-black uppercase tracking-wider text-golden-dark pt-0.5 truncate">
                       {com.source}
                     </div>
                   </div>

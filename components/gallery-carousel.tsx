@@ -98,24 +98,32 @@ export function GalleryCarousel() {
 
   return (
     <section
+      id="galeria"
       aria-labelledby="gallery-title"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="w-full bg-[#f1f3ef]/45 border-t border-b border-[#dad7cd]/40 py-24 select-none overflow-hidden"
+      className="relative overflow-hidden bg-gradient-to-br from-[#1a3520] via-[#244b30] to-[#122416] py-24 text-white border-y border-[#3a5a40]/30 select-none"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Decorative ambient elements */}
+      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-[#588157]/15 blur-3xl pointer-events-none" />
+      <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-[#a3b18a]/10 blur-3xl pointer-events-none" />
+      
+      {/* Background vector leaf ornament effect (created with CSS gradient) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.02] pointer-events-none select-none bg-[radial-gradient(#dad7cd_1px,transparent_1px)] [background-size:24px_24px]" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#a3b18a]/20 text-[#3a5a40] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-[#a3b18a]/30">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 text-[#a3b18a] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
               <ImageIcon className="h-3.5 w-3.5" />
               Galeria Zdjęć
             </span>
-            <h2 id="gallery-title" className="text-4xl md:text-5xl font-light text-[#344e41] text-balance leading-tight">
+            <h2 id="gallery-title" className="text-4xl md:text-5xl font-light text-white text-balance leading-tight tracking-tight">
               Życie w naszej gminie
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[#3a5a40]/60 font-medium">
+            <p className="mt-4 text-base sm:text-lg text-white/60 font-medium">
               Obrazy i chwile uchwycone w obiektywie. Zobacz jak piękna i aktywna jest Wręczyca Wielka.
             </p>
           </div>
@@ -124,14 +132,14 @@ export function GalleryCarousel() {
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={scrollPrev}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white border border-[#dad7cd]/50 shadow-sm text-[#3a5a40] hover:bg-[#3a5a40] hover:text-white transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 shadow-sm text-white hover:bg-[#a3b18a] hover:text-[#1a3520] hover:border-[#a3b18a] transition-all cursor-pointer group"
               aria-label="Poprzednie zdjęcie"
             >
               <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={scrollNext}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white border border-[#dad7cd]/50 shadow-sm text-[#3a5a40] hover:bg-[#3a5a40] hover:text-white transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 shadow-sm text-white hover:bg-[#a3b18a] hover:text-[#1a3520] hover:border-[#a3b18a] transition-all cursor-pointer group"
               aria-label="Następne zdjęcie"
             >
               <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -147,7 +155,7 @@ export function GalleryCarousel() {
                 key={item.id}
                 className="pl-6 min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 lg:basis-1/3"
               >
-                <div className="h-[380px] w-full relative rounded-3xl overflow-hidden group border border-[#dad7cd]/40 shadow-sm hover:shadow-xl hover:border-[#a3b18a]/30 transition-all duration-500 bg-[#0d1c12]">
+                <div className="h-[380px] w-full relative rounded-3xl overflow-hidden group border border-white/10 shadow-sm hover:shadow-xl hover:border-[#a3b18a]/50 transition-all duration-500 bg-[#0d1c12]">
                   
                   {/* Gallery Photo */}
                   <img
@@ -195,14 +203,14 @@ export function GalleryCarousel() {
             >
               <span className={`block w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                 index === currentIndex 
-                  ? "bg-[#3a5a40] scale-125" 
-                  : "bg-[#3a5a40]/25 group-hover:bg-[#3a5a40]/50"
+                  ? "bg-[#a3b18a] scale-125" 
+                  : "bg-white/20 group-hover:bg-white/40"
               }`} />
               
               {index === currentIndex && (
                 <motion.span
                   layoutId="activeGalleryDot"
-                  className="absolute inset-0 border border-[#3a5a40] rounded-full scale-125"
+                  className="absolute inset-0 border border-[#a3b18a] rounded-full scale-125"
                   transition={{ type: "spring", stiffness: 300, damping: 26 }}
                 />
               )}

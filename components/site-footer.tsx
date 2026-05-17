@@ -143,7 +143,7 @@ export function SiteFooter() {
               </div>
               <div className="leading-tight">
                 <p className="text-base font-bold text-foreground">Wręczyca Wielka</p>
-                <p className="text-xs text-muted-foreground">Serwis internetowy</p>
+                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Niezależny przegląd gminny</p>
               </div>
             </div>
             <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
@@ -214,7 +214,7 @@ export function SiteFooter() {
         <div className="mt-16 pt-8 border-t border-border/60">
           <div className="bg-slate-100/50 rounded-2xl p-6 md:p-8 mb-10">
             <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
-              <span className="font-bold text-foreground/80">Ważna informacja:</span> Serwis internetowy <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
+              <span className="font-bold text-foreground/80">Ważna informacja:</span> Portal <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
             </p>
             <div className="mt-4 text-center">
               <span className="text-[10px] text-muted-foreground/60">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: redakcja@wreczyca-wielka.pl</span>

@@ -60,8 +60,8 @@ export function SiteHeader() {
                 <span className="text-xl font-black text-foreground whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
-                <span className="text-xs font-bold text-[#3a5a40]/80 uppercase tracking-widest">
-                  Serwis internetowy
+                <span className="text-[10px] font-bold text-[#3a5a40]/80 uppercase tracking-wider">
+                  Niezależny przegląd gminny
                 </span>
               </div>
             </motion.a>

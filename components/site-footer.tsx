@@ -20,7 +20,6 @@ const columns = [
   {
     title: "Na skróty",
     links: [
-      { label: "Galeria zdjęć", href: "/galeria" },
       { label: "Sport lokalny", href: "/sport" },
       { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },
       { label: "Aktualności", href: "/aktualnosci" },
@@ -60,7 +59,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
       {/* Newsletter Section */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
         <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#344e41]/10 flex items-center bg-[#3a5a40]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
@@ -132,7 +131,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+      <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 pb-12 pt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           {/* Brand + info */}
           <div className="lg:col-span-4">

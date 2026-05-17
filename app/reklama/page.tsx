@@ -24,7 +24,7 @@ export default function ReklamaPage() {
   return (
     <main className="min-h-screen bg-background">
       <SiteHeader />
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[94rem] px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl">
             Reklama w serwisie

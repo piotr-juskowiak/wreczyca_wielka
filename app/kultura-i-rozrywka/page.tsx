@@ -12,7 +12,7 @@ export default function KulturaIRozrywkaPage() {
   return (
     <main className="min-h-screen bg-background">
       <SiteHeader />
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[94rem] px-4 py-12 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">Kultura i Rozrywka</h1>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">Odkryj bogactwo kulturalne naszej gminy. Od koncertów po warsztaty tradycyjnego rzemiosła.</p>

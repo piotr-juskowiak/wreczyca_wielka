@@ -52,7 +52,7 @@ export default function AktualnosciPage() {
 
       <main className="flex-1">
         <section className="bg-gradient-to-b from-white to-secondary/40">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="max-w-3xl">
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 Aktualności
@@ -101,7 +101,7 @@ export default function AktualnosciPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           {isLoading ? (
             <div className="flex items-center justify-center py-24 text-muted-foreground">
               <Loader2 className="h-6 w-6 animate-spin mr-3" />

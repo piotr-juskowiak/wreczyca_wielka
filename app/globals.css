@@ -39,9 +39,9 @@
   --primary-foreground: #dad7cd;
   --ring: #3a5a40;
 
-  /* AKCENT GŁÓWNY — toffee-brown (ciepły, czytelny) */
-  --accent: #a3b18a;
-  --accent-foreground: #dad7cd;
+  /* AKCENT GŁÓWNY — wyrazisty żółty */
+  --accent: #ffd230;
+  --accent-foreground: #344e41;
 
   --destructive: #8a2e1a;         /* przygaszony, ziemisty czerwony */
   --destructive-foreground: #dad7cd;

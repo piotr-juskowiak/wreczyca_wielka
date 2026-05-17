@@ -70,7 +70,6 @@ function WeatherWidget() {
 
 const navLinks = [
   { label: "Aktualności", href: "/aktualnosci" },
-  { label: "Galeria", href: "/galeria" },
   { label: "Sport", href: "/sport" },
   { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },
   { label: "Kontakt", href: "/kontakt" },

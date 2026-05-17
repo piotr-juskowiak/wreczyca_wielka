@@ -63,7 +63,7 @@ export function QuickAccess() {
         <Building2 className="h-96 w-96 -mr-48 -mt-48 rotate-12" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 relative z-20">
+      <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-8 relative z-20">
         <h2 id="quick-access" className="sr-only">
           Szybki dostęp
         </h2>

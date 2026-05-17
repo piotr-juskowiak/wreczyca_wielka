@@ -115,15 +115,19 @@ export function SearchDialog({
                     {results.map((a) => (
                       <li key={a.id}>
                         <a
-                          href={a.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href={`/aktualnosci/${a.slug}`}
                           onClick={onClose}
-                          className="group flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-secondary"
+                          className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-secondary"
                         >
-                          <span className="mt-0.5 inline-flex items-center rounded-full bg-[#a3b18a] px-2.5 py-1 text-[10px] font-bold text-[#3a5a40] shrink-0">
-                            {a.category}
-                          </span>
+                          {a.image && (
+                            <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-secondary">
+                              <img
+                                src={a.image}
+                                alt=""
+                                className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                              />
+                            </div>
+                          )}
                           <div className="min-w-0 flex-1">
                             <p className="text-sm font-semibold text-foreground line-clamp-1 group-hover:text-primary">
                               {a.title}
@@ -131,9 +135,14 @@ export function SearchDialog({
                             <p className="mt-0.5 text-xs text-muted-foreground line-clamp-1">
                               {a.excerpt}
                             </p>
-                            <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                              <Calendar className="h-3 w-3" />
-                              {a.date}
+                            <div className="mt-1 flex items-center gap-2 text-[11px] text-muted-foreground">
+                              <span className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-bold text-primary">
+                                {a.category}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                {a.date}
+                              </span>
                             </div>
                           </div>
                           <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 shrink-0" />

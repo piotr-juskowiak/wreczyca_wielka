@@ -44,7 +44,7 @@ const GUIDE_ITEMS = [
     description:
       "Leśny klejnot gminy! Rezerwat chroni naturalne lasy mieszane o charakterze pierwotnym, z pomnikowymi dębami i bukami. Idealne miejsce na wyciszenie i spacer na łonie natury.",
     actionText: "Zobacz mapę",
-    href: "/galeria",
+    href: "/aktualnosci",
     icon: Leaf,
     tips: [
       { icon: Route, label: "Długość trasy", value: "ok. 4,5 km" },
@@ -161,7 +161,7 @@ export function GalleryCarousel() {
       <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-toffee-brown/8 blur-3xl pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.018] pointer-events-none bg-[radial-gradient(#dad7cd_1px,transparent_1px)] [background-size:24px_24px]" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -256,11 +256,11 @@ export function GalleryCarousel() {
                     </span>
                   </a>
                   <a
-                    href="/galeria"
+                    href="/aktualnosci"
                     className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white/85 hover:bg-white/10 hover:border-white/30 backdrop-blur-md transition-all"
                   >
                     <MapPin className="h-3 w-3 text-toffee-brown" />
-                    <span>Galeria</span>
+                    <span>Aktualności</span>
                   </a>
                 </div>
               </div>

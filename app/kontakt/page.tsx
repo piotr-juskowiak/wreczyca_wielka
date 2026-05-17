@@ -23,7 +23,7 @@ export default function KontaktPage() {
 
       <main className="flex-1">
         <section className="bg-gradient-to-b from-white to-secondary/40">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="max-w-3xl">
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 Kontakt
@@ -39,7 +39,7 @@ export default function KontaktPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12">
           <motion.div
             variants={container}
             initial="hidden"
@@ -94,7 +94,7 @@ export default function KontaktPage() {
           </motion.div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             <div className="lg:col-span-3 overflow-hidden rounded-2xl bg-white shadow-sm">
               <div className="aspect-[16/10] w-full bg-secondary">
@@ -185,7 +185,7 @@ export default function KontaktPage() {
         </section>
 
 
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 pb-16">
           <div className="rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">

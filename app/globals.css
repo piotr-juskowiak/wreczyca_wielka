@@ -18,11 +18,11 @@
      ───────────────────────────────────────────────────────────── */
 
   /* CORE NEUTRALS — kremowe tła, głęboka oliwka jako foreground */
-  --background: #dad7cd;          /* ciepły kremowy off-white (khaki-beige bardzo rozjaśnione) */
+  --background: #ffffff;          /* biały */
   --foreground: #344e41;          /* charcoal-brown — głęboka, czytelna oliwka */
-  --card: #dad7cd;                /* lekko cieplejszy niż background dla kart */
+  --card: #ffffff;
   --card-foreground: #344e41;
-  --popover: #dad7cd;
+  --popover: #ffffff;
   --popover-foreground: #344e41;
 
   --secondary: #a3b18a;           /* dry-sage rozjaśnione — etykiety/sekcje */

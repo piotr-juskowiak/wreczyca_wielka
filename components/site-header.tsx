@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Menu, Shield, Cloud, Sun, CloudRain, CloudSun, ChevronDown } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { SearchDialog } from "@/components/search-dialog"
 import { AnnouncementTicker } from "@/components/announcement-ticker"
@@ -14,7 +14,7 @@ function WeatherWidget() {
     { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
     { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
     { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#a3b18a]" />, desc: "Zachmurzenie" },
-    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-sky-blue" />, desc: "Przelotny deszcz" }
+    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-blue-400" />, desc: "Przelotny deszcz" }
   ]
 
   return (
@@ -68,6 +68,131 @@ function WeatherWidget() {
   )
 }
 
+const languages = [
+  { 
+    code: "pl", 
+    label: "Polski", 
+    flag: (
+      <svg viewBox="0 0 512 512" className="w-4 h-4 rounded-full overflow-hidden shadow-sm border border-border/40 shrink-0">
+        <rect width="512" height="256" fill="#ffffff" />
+        <rect y="256" width="512" height="256" fill="#dc2626" />
+      </svg>
+    ) 
+  },
+  { 
+    code: "en", 
+    label: "English", 
+    flag: (
+      <svg viewBox="0 0 60 30" className="w-4 h-4 rounded-full overflow-hidden shadow-sm border border-border/40 shrink-0">
+        <rect width="60" height="30" fill="#012169"/>
+        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4"/>
+        <path d="M30,0 L30,30 M0,15 L60,15" stroke="#fff" strokeWidth="10"/>
+        <path d="M30,0 L30,30 M0,15 L60,15" stroke="#C8102E" strokeWidth="6"/>
+      </svg>
+    ) 
+  },
+  { 
+    code: "de", 
+    label: "Deutsch", 
+    flag: (
+      <svg viewBox="0 0 512 512" className="w-4 h-4 rounded-full overflow-hidden shadow-sm border border-border/40 shrink-0">
+        <rect width="512" height="170.7" fill="#000000" />
+        <rect y="170.7" width="512" height="170.7" fill="#dd0000" />
+        <rect y="341.3" width="512" height="170.7" fill="#ffce00" />
+      </svg>
+    ) 
+  },
+  { 
+    code: "ua", 
+    label: "Українська", 
+    flag: (
+      <svg viewBox="0 0 512 512" className="w-4 h-4 rounded-full overflow-hidden shadow-sm border border-border/40 shrink-0">
+        <rect width="512" height="256" fill="#0057b7" />
+        <rect y="256" width="512" height="256" fill="#ffd700" />
+      </svg>
+    ) 
+  }
+]
+
+interface LanguageSelectorProps {
+  currentLang: string
+  setCurrentLang: (code: string) => void
+}
+
+function LanguageSelector({ currentLang, setCurrentLang }: LanguageSelectorProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const selectedLanguage = languages.find(l => l.code === currentLang) || languages[0]
+
+  const handleSelect = (code: string) => {
+    setCurrentLang(code)
+    localStorage.setItem("selected-language", code)
+    setIsOpen(false)
+    window.dispatchEvent(new Event("languagechange"))
+  }
+
+  return (
+    <div ref={dropdownRef} className="relative z-[60]">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80 hover:bg-secondary/60 hover:border-[#3a5a40]/30 transition-all active:scale-95 cursor-pointer h-[34px] justify-center"
+      >
+        {selectedLanguage.flag}
+        <span className="uppercase font-black tracking-wider text-[11px] text-[#3a5a40]">{selectedLanguage.code}</span>
+        <ChevronDown className={`h-3 w-3 text-muted-foreground/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute right-0 mt-2 w-44 rounded-2xl border border-border/50 bg-white/95 backdrop-blur-md p-1.5 shadow-xl z-50 pointer-events-auto"
+          >
+            <div className="space-y-0.5">
+              {languages.map((lang) => {
+                const isSelected = lang.code === currentLang
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleSelect(lang.code)}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-left text-xs font-bold transition-all duration-200 cursor-pointer
+                      ${isSelected 
+                        ? 'bg-[#3a5a40]/10 text-[#3a5a40]' 
+                        : 'text-foreground/75 hover:bg-secondary/60 hover:text-[#3a5a40]'
+                      }
+                    `}
+                  >
+                    {lang.flag}
+                    <span>{lang.label}</span>
+                    {isSelected && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#3a5a40]" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 const navLinks = [
   { label: "Aktualności", href: "/aktualnosci" },
   { label: "Galeria", href: "/galeria" },
@@ -81,6 +206,14 @@ export function SiteHeader() {
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
+  const [currentLang, setCurrentLang] = useState("pl")
+
+  useEffect(() => {
+    const saved = localStorage.getItem("selected-language")
+    if (saved) {
+      setCurrentLang(saved)
+    }
+  }, [])
 
   return (
     <>
@@ -105,7 +238,7 @@ export function SiteHeader() {
                 <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-10 w-10 object-contain" />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-xl font-black text-foreground whitespace-nowrap tracking-tight">
+                <span className="text-xl font-medium text-foreground whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
                 <span className="text-[10px] font-bold text-[#3a5a40]/80 uppercase tracking-wider">
@@ -140,6 +273,7 @@ export function SiteHeader() {
               className="flex items-center gap-3"
             >
               <WeatherWidget />
+              <LanguageSelector currentLang={currentLang} setCurrentLang={setCurrentLang} />
               <motion.a
                 href="https://www.bip.wreczyca-wielka.akcessnet.net/index.php?idg=1&id=1&x=1"
                 target="_blank"
@@ -228,6 +362,36 @@ export function SiteHeader() {
                     {link.label}
                   </a>
                 ))}
+                <div className="border-t border-border/40 my-2 pt-2" />
+                <div className="px-4 py-2 flex flex-col gap-2">
+                  <span className="text-[10px] font-black text-[#3a5a40] uppercase tracking-widest">
+                    Wybierz język / Select language
+                  </span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {languages.map((lang) => {
+                      const isSelected = lang.code === currentLang
+                      return (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setCurrentLang(lang.code)
+                            localStorage.setItem("selected-language", lang.code)
+                            window.dispatchEvent(new Event("languagechange"))
+                          }}
+                          className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 border cursor-pointer
+                            ${isSelected 
+                              ? 'bg-[#3a5a40]/10 border-[#3a5a40]/30 text-[#3a5a40]' 
+                              : 'bg-secondary/40 border-border/40 text-foreground/75 hover:bg-secondary'
+                            }
+                          `}
+                        >
+                          {lang.flag}
+                          <span>{lang.label}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
               </motion.nav>
             )}
           </AnimatePresence>

@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pl" className={`${figtree.variable} bg-background`}>
+    <html lang="pl" className={`${figtree.variable} bg-background`} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <PagePreloader />
         {children}

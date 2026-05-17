@@ -2,68 +2,65 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, User, Clock } from "lucide-react"
+import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock, Quote } from "lucide-react"
 
-// Mock Data for Ogłoszenia UG
 const ANNOUNCEMENTS = [
   {
     id: "ann-1",
     title: "Nowy harmonogram odbioru odpadów",
     excerpt: "Sprawdź zaktualizowany harmonogram odbioru odpadów komunalnych na nadchodzący kwartał dla wszystkich sołectw gminy.",
     date: "17 maja 2026",
-    category: "Ogólne"
+    category: "Ogólne",
   },
   {
     id: "ann-2",
     title: "Prace konserwacyjne sieci wodociągowej",
     excerpt: "W dniach 20-22 maja w godzinach 8:00 - 14:00 nastąpią planowane przerwy w dostawie wody w sołectwach Wręczyca Wielka i Grodzisko.",
     date: "15 maja 2026",
-    category: "Techniczne"
+    category: "Techniczne",
   },
   {
     id: "ann-3",
     title: "Budżet Obywatelski 2027 — zgłoś projekt",
     excerpt: "Rozpoczął się nabór wniosków do nowej edycji budżetu obywatelskiego. Zgłoś swój pomysł na rozwój naszej wspólnej przestrzeni.",
     date: "12 maja 2026",
-    category: "Inicjatywy"
-  }
+    category: "Inicjatywy",
+  },
 ]
 
-// Mock Data for Najnowsze Komentarze (Default Seed)
 const DEFAULT_COMMENTS = [
   {
     id: "com-1",
     author: "Marta K.",
-    avatarBg: "bg-digital-blue-light text-digital-blue",
+    avatarBg: "bg-white text-digital-blue",
     initials: "MK",
     comment: "Bardzo się cieszę z planów modernizacji boiska szkolnego! Nasze dzieci w końcu będą miały świetne warunki do gry w piłkę.",
     source: "Wypowiedź pod: Inwestycje w oświatę",
     time: "2 godz. temu",
-    timestamp: Date.now() - 7200000
+    timestamp: Date.now() - 7200000,
   },
   {
     id: "com-2",
     author: "Tomasz W.",
-    avatarBg: "bg-municipal-gold-light text-municipal-gold",
+    avatarBg: "bg-white text-municipal-gold",
     initials: "TW",
     comment: "Czy są już znane szczegóły na temat dofinansowania wymiany starych pieców na ten rok? Chętnie skorzystam z programu.",
     source: "Wypowiedź pod: Czyste powietrze",
     time: "5 godz. temu",
-    timestamp: Date.now() - 18000000
+    timestamp: Date.now() - 18000000,
   },
   {
     id: "com-3",
     author: "Ewa i Piotr",
-    avatarBg: "bg-vibrant-emerald-light text-vibrant-emerald-solid",
+    avatarBg: "bg-white text-vibrant-emerald-solid",
     initials: "EP",
     comment: "Koncert orkiestry dętej na rynku był po prostu wspaniały! Oby więcej takich kulturalnych wydarzeń plenerowych w te wakacje.",
     source: "Wypowiedź pod: Majowy festiwal",
     time: "1 dzień temu",
-    timestamp: Date.now() - 86400000
-  }
+    timestamp: Date.now() - 86400000,
+  },
 ]
 
-// Mock Data for Weather Forecast
 const WEATHER_FORECAST = [
   { day: "Poniedziałek", tempDay: 19, tempNight: 10, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
   { day: "Wtorek", tempDay: 21, tempNight: 12, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
@@ -71,7 +68,7 @@ const WEATHER_FORECAST = [
   { day: "Czwartek", tempDay: 17, tempNight: 11, icon: CloudRain, desc: "Przelotny deszcz", color: "text-blue-400" },
   { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-slate-400" },
   { day: "Sobota", tempDay: 18, tempNight: 10, icon: CloudSun, desc: "Częściowe zachmurzenie", color: "text-sky-500" },
-  { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-amber-500" }
+  { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
 ]
 
 export function NewsSidebar() {
@@ -81,17 +78,13 @@ export function NewsSidebar() {
     try {
       const stored = localStorage.getItem("wreczyca_comments")
       let allComments = []
-
       if (stored) {
         allComments = JSON.parse(stored)
       } else {
         localStorage.setItem("wreczyca_comments", JSON.stringify(DEFAULT_COMMENTS))
         allComments = DEFAULT_COMMENTS
       }
-
-      const sorted = allComments
-        .sort((a: any, b: any) => b.timestamp - a.timestamp)
-        .slice(0, 3)
+      const sorted = allComments.sort((a: any, b: any) => b.timestamp - a.timestamp).slice(0, 3)
       setComments(sorted)
     } catch (e) {
       console.error("Failed to load latest comments in sidebar:", e)
@@ -107,109 +100,140 @@ export function NewsSidebar() {
 
   return (
     <aside className="w-full lg:w-[380px] shrink-0 space-y-8 select-none">
-      
-      {/* 1. MUNICIPAL ANNOUNCEMENTS WIDGET */}
+
+      {/* 1. MUNICIPAL ANNOUNCEMENTS — DARK NAVY (mocne tło) */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="rounded-3xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f1c2e] via-[#162539] to-[#0f1c2e] p-6 shadow-xl shadow-[#0f1c2e]/20 border border-[#0f1c2e]"
       >
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
-            <Megaphone className="h-4 w-4" />
-          </div>
-          <div>
-            <h3 className="text-xs font-black uppercase tracking-widest text-foreground">
-              Ogłoszenia Urzędu Gminy
-            </h3>
-            <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">Biuletyn Informacyjny</span>
-          </div>
-        </div>
+        {/* Ambient glow */}
+        <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-digital-blue/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-municipal-gold/10 blur-3xl pointer-events-none" />
 
-        <div className="space-y-5">
-          {ANNOUNCEMENTS.map((ann) => (
-            <div
-              key={ann.id}
-              className="group cursor-pointer border-b border-border pb-4 last:border-0 last:pb-0"
-            >
-              <div className="flex items-center justify-between gap-2 mb-1.5">
-                <span className="text-[9px] font-black uppercase tracking-wider text-municipal-gold bg-municipal-gold-light px-2.5 py-0.5 rounded-full border border-municipal-gold/30">
-                  {ann.category}
-                </span>
-                <span className="text-[9px] font-bold text-muted-foreground flex items-center gap-1">
-                  <Calendar className="h-3 w-3" /> {ann.date}
-                </span>
-              </div>
-              <h4 className="text-sm font-semibold text-foreground group-hover:text-digital-blue transition-colors duration-200 line-clamp-1 leading-snug">
-                {ann.title}
-              </h4>
-              <p className="mt-1 text-xs text-muted-foreground font-medium line-clamp-2 leading-relaxed">
-                {ann.excerpt}
-              </p>
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#0f1c2e] shadow-lg shadow-municipal-gold/20">
+              <Megaphone className="h-5 w-5" strokeWidth={2.2} />
             </div>
-          ))}
-        </div>
+            <div>
+              <h3 className="text-xs font-black uppercase tracking-widest text-white">
+                Ogłoszenia Urzędu Gminy
+              </h3>
+              <span className="text-[10px] text-municipal-gold font-bold uppercase tracking-wider">
+                Biuletyn informacyjny
+              </span>
+            </div>
+          </div>
 
-        <a
-          href="/ogloszenia"
-          className="group mt-6 flex items-center justify-center gap-2 rounded-2xl border border-border bg-secondary py-3 text-[10px] font-black uppercase tracking-wider text-foreground hover:bg-digital-blue hover:text-white hover:border-digital-blue transition-all duration-300"
-        >
-          <span>Wszystkie ogłoszenia</span>
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </a>
+          <div className="space-y-4">
+            {ANNOUNCEMENTS.map((ann) => (
+              <div
+                key={ann.id}
+                className="group cursor-pointer rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-municipal-gold/30 p-4 transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-[#0f1c2e] bg-municipal-gold px-2.5 py-0.5 rounded-full">
+                    {ann.category}
+                  </span>
+                  <span className="text-[9px] font-bold text-white/50 flex items-center gap-1">
+                    <Calendar className="h-3 w-3" /> {ann.date}
+                  </span>
+                </div>
+                <h4 className="text-sm font-semibold text-white group-hover:text-municipal-gold transition-colors duration-200 line-clamp-1 leading-snug">
+                  {ann.title}
+                </h4>
+                <p className="mt-1 text-xs text-white/60 font-medium line-clamp-2 leading-relaxed">
+                  {ann.excerpt}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="/ogloszenia"
+            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-municipal-gold py-3 text-[10px] font-black uppercase tracking-wider text-[#0f1c2e] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
+          >
+            <span>Wszystkie ogłoszenia</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
       </motion.div>
 
-      {/* 2. LATEST COMMENTS WIDGET */}
+      {/* 2. LATEST COMMENTS — GOLD GRADIENT (mocne tło) */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="rounded-3xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-municipal-gold via-[#a8771a] to-[#7a5611] p-6 shadow-xl shadow-municipal-gold/25 border border-municipal-gold"
       >
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
-            <MessageSquare className="h-4 w-4" />
-          </div>
-          <div>
-            <h3 className="text-xs font-black uppercase tracking-widest text-foreground">
-              Głos Mieszkańców
-            </h3>
-            <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">Najnowsze opinie</span>
-          </div>
-        </div>
+        {/* Ambient pattern */}
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none bg-[radial-gradient(white_1px,transparent_1px)] [background-size:18px_18px]" />
+        <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
 
-        <div className="space-y-4">
-          {comments.map((com) => (
-            <div
-              key={com.id}
-              className="flex gap-3 bg-secondary/40 hover:bg-secondary/70 p-3.5 rounded-2xl border border-border transition-all duration-200"
-            >
-              <div className={`h-8 w-8 rounded-full shrink-0 flex items-center justify-center font-bold text-xs ${com.avatarBg}`}>
-                {com.initials}
-              </div>
-              <div className="flex-1 space-y-1">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold text-foreground">{com.author}</span>
-                  <span className="text-[9px] font-bold text-muted-foreground flex items-center gap-0.5">
-                    <Clock className="h-2.5 w-2.5" /> {com.time}
-                  </span>
-                </div>
-                <p className="text-[11px] text-muted-foreground font-medium italic leading-relaxed line-clamp-3">
-                  &quot;{com.comment}&quot;
-                </p>
-                <div className="text-[9px] font-black uppercase tracking-wider text-municipal-gold pt-0.5 truncate max-w-[240px]">
-                  {com.source}
-                </div>
-              </div>
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-municipal-gold shadow-lg">
+              <MessageSquare className="h-5 w-5" strokeWidth={2.2} />
             </div>
-          ))}
+            <div>
+              <h3 className="text-xs font-black uppercase tracking-widest text-white">
+                Głos Mieszkańców
+              </h3>
+              <span className="text-[10px] text-white/85 font-bold uppercase tracking-wider">
+                Najnowsze opinie
+              </span>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {comments.map((com) => (
+              <div
+                key={com.id}
+                className="relative rounded-2xl bg-white/95 hover:bg-white backdrop-blur-sm p-4 border border-white/40 hover:shadow-lg transition-all duration-300"
+              >
+                <Quote className="absolute top-3 right-3 h-5 w-5 text-municipal-gold/25" />
+                <div className="flex gap-3">
+                  <div
+                    className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-bold text-xs shadow-sm ${com.avatarBg}`}
+                  >
+                    {com.initials}
+                  </div>
+                  <div className="flex-1 space-y-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-bold text-foreground truncate">
+                        {com.author}
+                      </span>
+                      <span className="text-[9px] font-bold text-muted-foreground flex items-center gap-0.5 shrink-0">
+                        <Clock className="h-2.5 w-2.5" /> {com.time}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-foreground/80 font-medium italic leading-relaxed line-clamp-3">
+                      &quot;{com.comment}&quot;
+                    </p>
+                    <div className="text-[9px] font-black uppercase tracking-wider text-municipal-gold pt-0.5 truncate">
+                      {com.source}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="/glos-mieszkancow"
+            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#0f1c2e] py-3 text-[10px] font-black uppercase tracking-wider text-white hover:bg-foreground transition-all duration-300 shadow-lg"
+          >
+            <span>Dołącz do dyskusji</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
         </div>
       </motion.div>
 
-      {/* 3. WEATHER FORECAST WIDGET */}
+      {/* 3. WEATHER FORECAST */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -225,11 +249,12 @@ export function NewsSidebar() {
             <h3 className="text-xs font-black uppercase tracking-widest text-foreground">
               Pogoda Wręczyca Wielka
             </h3>
-            <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">Prognoza 7-dniowa</span>
+            <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
+              Prognoza 7-dniowa
+            </span>
           </div>
         </div>
 
-        {/* Current weather summary */}
         <div className="flex items-center justify-between bg-gradient-to-br from-[#1d6fb8] to-[#155a96] text-white p-5 rounded-2xl mb-6 shadow-md shadow-digital-blue/20">
           <div className="space-y-1">
             <span className="text-[9px] font-black uppercase tracking-widest text-municipal-gold animate-pulse">Aktualnie</span>
@@ -243,7 +268,6 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        {/* 7-day detailed rows */}
         <div className="space-y-3.5">
           {WEATHER_FORECAST.map((w, idx) => {
             const Icon = w.icon

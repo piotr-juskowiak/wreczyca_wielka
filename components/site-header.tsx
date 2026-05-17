@@ -14,7 +14,7 @@ function WeatherWidget() {
     { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
     { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
     { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#a3b18a]" />, desc: "Zachmurzenie" },
-    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-blue-400" />, desc: "Przelotny deszcz" }
+    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-sky-blue" />, desc: "Przelotny deszcz" }
   ]
 
   return (

@@ -108,7 +108,7 @@ export function SiteHeader() {
                 <span className="text-xl font-medium text-foreground whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
-                <span className="text-[10px] font-bold text-digital-blue uppercase tracking-wider">
+                <span className="text-[10px] font-bold text-dusty-olive uppercase tracking-wider">
                   Niezależny przegląd gminny
                 </span>
               </div>
@@ -181,8 +181,8 @@ export function SiteHeader() {
                     onHoverEnd={() => setHoveredIdx(null)}
                     className={`relative rounded-xl px-5 py-2 text-[12px] font-black uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
                       ${isActive
-                        ? 'text-digital-blue'
-                        : 'text-foreground/75 hover:text-digital-blue'
+                        ? 'text-dusty-olive'
+                        : 'text-foreground/75 hover:text-dusty-olive'
                       }
                     `}
                   >
@@ -192,7 +192,7 @@ export function SiteHeader() {
                     {hoveredIdx === idx && (
                       <motion.div
                         layoutId="nav-hover-pill"
-                        className="absolute inset-0 bg-digital-blue-light/50 rounded-xl -z-10"
+                        className="absolute inset-0 bg-dusty-olive-light/50 rounded-xl -z-10"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -201,7 +201,7 @@ export function SiteHeader() {
                     {isActive && (
                       <motion.div
                         layoutId="nav-active-line"
-                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-digital-blue rounded-full"
+                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-dusty-olive rounded-full"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}

@@ -54,19 +54,19 @@
      ───────────────────────────────────────────────────────────── */
 
   /* "Digital Blue" → dusty-olive (drugi odcień zieleni — linki, akcenty informacyjne) */
-  --digital-blue: #588157;
-  --digital-blue-hover: #3a5a40;
-  --digital-blue-light: rgba(101, 109, 74, 0.10);
+  --dusty-olive: #588157;
+  --dusty-olive-hover: #3a5a40;
+  --dusty-olive-light: rgba(101, 109, 74, 0.10);
 
   /* "Vibrant Emerald" → charcoal-brown (najgłębsza zieleń — sport, sukces) */
-  --vibrant-emerald: rgba(51, 61, 41, 0.88);
-  --vibrant-emerald-solid: #344e41;
-  --vibrant-emerald-light: rgba(51, 61, 41, 0.08);
+  --charcoal-brown: rgba(51, 61, 41, 0.88);
+  --charcoal-brown-solid: #344e41;
+  --charcoal-brown-light: rgba(51, 61, 41, 0.08);
 
   /* "Municipal Gold" → toffee-brown (ciepły akcent — ogłoszenia, kultura) */
-  --municipal-gold: #a3b18a;
-  --municipal-gold-hover: #588157;
-  --municipal-gold-light: rgba(147, 102, 57, 0.12);
+  --toffee-brown: #a3b18a;
+  --toffee-brown-hover: #588157;
+  --toffee-brown-light: rgba(147, 102, 57, 0.12);
 
   /* Dark surface — ebony/charcoal dla sekcji hero, galerii itp. */
   --surface-dark: #344e41;
@@ -105,15 +105,15 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-digital-blue: var(--digital-blue);
-  --color-digital-blue-hover: var(--digital-blue-hover);
-  --color-digital-blue-light: var(--digital-blue-light);
-  --color-vibrant-emerald: var(--vibrant-emerald);
-  --color-vibrant-emerald-solid: var(--vibrant-emerald-solid);
-  --color-vibrant-emerald-light: var(--vibrant-emerald-light);
-  --color-municipal-gold: var(--municipal-gold);
-  --color-municipal-gold-hover: var(--municipal-gold-hover);
-  --color-municipal-gold-light: var(--municipal-gold-light);
+  --color-dusty-olive: var(--dusty-olive);
+  --color-dusty-olive-hover: var(--dusty-olive-hover);
+  --color-dusty-olive-light: var(--dusty-olive-light);
+  --color-charcoal-brown: var(--charcoal-brown);
+  --color-charcoal-brown-solid: var(--charcoal-brown-solid);
+  --color-charcoal-brown-light: var(--charcoal-brown-light);
+  --color-toffee-brown: var(--toffee-brown);
+  --color-toffee-brown-hover: var(--toffee-brown-hover);
+  --color-toffee-brown-light: var(--toffee-brown-light);
   --color-surface-dark: var(--surface-dark);
   --color-surface-dark-2: var(--surface-dark-2);
 
@@ -155,7 +155,7 @@
   }
 
   .article-content a {
-    color: var(--municipal-gold);
+    color: var(--toffee-brown);
     text-decoration: underline;
     text-decoration-color: rgba(147, 102, 57, 0.35);
     text-underline-offset: 4px;
@@ -164,8 +164,8 @@
   }
 
   .article-content a:hover {
-    color: var(--municipal-gold-hover);
-    text-decoration-color: var(--municipal-gold-hover);
+    color: var(--toffee-brown-hover);
+    text-decoration-color: var(--toffee-brown-hover);
   }
 
   h1,

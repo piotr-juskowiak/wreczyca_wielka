@@ -5,17 +5,17 @@ import { Calendar, Clock, ArrowUpRight } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 const categoryColors: Record<string, string> = {
-  Inwestycje: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Biznes: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  "E-Urząd": "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Wydarzenia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
-  Ogłoszenia: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30 backdrop-blur-md shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
-  Edukacja: "bg-digital-blue-light text-digital-blue border-digital-blue/25 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Konsultacje: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
-  Sport: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
-  Ekologia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
-  Kultura: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30 backdrop-blur-md shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
-  Sołectwa: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Inwestycje: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
+  Biznes: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
+  "E-Urząd": "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
+  Wydarzenia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
+  Ogłoszenia: "bg-toffee-brown-light text-toffee-brown border-toffee-brown/30 backdrop-blur-md shadow-sm hover:bg-toffee-brown hover:text-white transition-all",
+  Edukacja: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/25 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
+  Konsultacje: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
+  Sport: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
+  Ekologia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
+  Kultura: "bg-toffee-brown-light text-toffee-brown border-toffee-brown/30 backdrop-blur-md shadow-sm hover:bg-toffee-brown hover:text-white transition-all",
+  Sołectwa: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
 }
 
 // Light gradient backgrounds tinted by category
@@ -74,7 +74,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
             </span>
           </div>
 
-          <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-digital-blue transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-dusty-olive transition-colors line-clamp-2">
             {article.title}
           </h3>
 
@@ -83,10 +83,10 @@ export function NewsCard({ article }: { article: NewsArticle }) {
           </p>
 
           <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between">
-            <span className="text-xs font-bold text-digital-blue opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+            <span className="text-xs font-bold text-dusty-olive opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
               Czytaj więcej
             </span>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-digital-blue group-hover:text-white group-hover:rotate-12 shadow-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-dusty-olive group-hover:text-white group-hover:rotate-12 shadow-sm">
               <ArrowUpRight className="h-5 w-5" />
             </span>
           </div>

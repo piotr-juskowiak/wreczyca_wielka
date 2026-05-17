@@ -121,13 +121,13 @@ const GUIDE_ITEMS = [
 const getCategoryStyle = (category: string) => {
   switch (category) {
     case "Ciekawostka":
-      return "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30"
+      return "bg-toffee-brown-light text-toffee-brown border-toffee-brown/30"
     case "Zabytki":
-      return "bg-vibrant-emerald-light text-white border-vibrant-emerald-solid/40"
+      return "bg-charcoal-brown-light text-white border-charcoal-brown-solid/40"
     case "Przewodnik":
     case "Poradnik":
     default:
-      return "bg-digital-blue-light text-digital-blue border-digital-blue/25"
+      return "bg-dusty-olive-light text-dusty-olive border-dusty-olive/25"
   }
 }
 
@@ -157,8 +157,8 @@ export function GalleryCarousel() {
       className="relative overflow-hidden bg-gradient-to-br from-[#344e41] via-[#3a5a40] to-[#2a3322] py-20 lg:py-24 text-white border-y border-stone-800/40 select-none"
     >
       {/* Ambient glows */}
-      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-digital-blue/15 blur-3xl pointer-events-none" />
-      <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-municipal-gold/8 blur-3xl pointer-events-none" />
+      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-dusty-olive/15 blur-3xl pointer-events-none" />
+      <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-toffee-brown/8 blur-3xl pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.018] pointer-events-none bg-[radial-gradient(#dad7cd_1px,transparent_1px)] [background-size:24px_24px]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -166,8 +166,8 @@ export function GalleryCarousel() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 text-municipal-gold px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
-              <Compass className="h-3.5 w-3.5 text-municipal-gold" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 text-toffee-brown px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
+              <Compass className="h-3.5 w-3.5 text-toffee-brown" />
               Odkryj naszą gminę
             </span>
             <h2 id="guide-title" className="text-4xl md:text-5xl font-light text-white text-balance leading-tight tracking-tight">
@@ -180,20 +180,20 @@ export function GalleryCarousel() {
 
           <div className="flex items-center gap-3 shrink-0">
             <span className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-white/80">
-              <span className="text-municipal-gold">{String(currentIndex + 1).padStart(2, "0")}</span>
+              <span className="text-toffee-brown">{String(currentIndex + 1).padStart(2, "0")}</span>
               <span className="text-white/30">/</span>
               <span>{String(total).padStart(2, "0")}</span>
             </span>
             <button
               onClick={prev}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#344e41] hover:border-municipal-gold transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-toffee-brown hover:text-[#344e41] hover:border-toffee-brown transition-all cursor-pointer group"
               aria-label="Poprzedni przewodnik"
             >
               <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={next}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-municipal-gold hover:text-[#344e41] hover:border-municipal-gold transition-all cursor-pointer group"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-toffee-brown hover:text-[#344e41] hover:border-toffee-brown transition-all cursor-pointer group"
               aria-label="Następny przewodnik"
             >
               <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -232,7 +232,7 @@ export function GalleryCarousel() {
                   <span>{active.category}</span>
                 </div>
                 <div className="h-9 w-9 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-white flex items-center justify-center">
-                  <Sparkles className="h-3.5 w-3.5 text-municipal-gold" />
+                  <Sparkles className="h-3.5 w-3.5 text-toffee-brown" />
                 </div>
               </div>
 
@@ -248,7 +248,7 @@ export function GalleryCarousel() {
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <a
                     href={active.href}
-                    className="group/btn inline-flex items-center gap-3 rounded-full bg-municipal-gold pl-5 pr-1.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#344e41] hover:bg-white transition-all duration-300 shadow-lg shadow-municipal-gold/20"
+                    className="group/btn inline-flex items-center gap-3 rounded-full bg-toffee-brown pl-5 pr-1.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#344e41] hover:bg-white transition-all duration-300 shadow-lg shadow-toffee-brown/20"
                   >
                     <span>{active.actionText}</span>
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#344e41]/10 group-hover/btn:bg-[#344e41]/20 transition-all">
@@ -259,7 +259,7 @@ export function GalleryCarousel() {
                     href="/galeria"
                     className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white/85 hover:bg-white/10 hover:border-white/30 backdrop-blur-md transition-all"
                   >
-                    <MapPin className="h-3 w-3 text-municipal-gold" />
+                    <MapPin className="h-3 w-3 text-toffee-brown" />
                     <span>Galeria</span>
                   </a>
                 </div>
@@ -272,11 +272,11 @@ export function GalleryCarousel() {
               {/* Quick facts / tips card */}
               <div className="rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 p-6 lg:p-7 shadow-lg">
                 <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/10">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-municipal-gold text-[#344e41] shadow-md shadow-municipal-gold/20">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-toffee-brown text-[#344e41] shadow-md shadow-toffee-brown/20">
                     <Lightbulb className="h-4.5 w-4.5" strokeWidth={2.2} />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-municipal-gold">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-toffee-brown">
                       W skrócie
                     </div>
                     <div className="text-xs font-bold text-white/70 uppercase tracking-wider">
@@ -294,9 +294,9 @@ export function GalleryCarousel() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.15 + i * 0.08, duration: 0.4 }}
-                        className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-municipal-gold/25 transition-all duration-300"
+                        className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-toffee-brown/25 transition-all duration-300"
                       >
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-digital-blue/15 text-digital-blue border border-digital-blue/20">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-dusty-olive/15 text-dusty-olive border border-dusty-olive/20">
                           <TipIcon className="h-4 w-4" strokeWidth={2.2} />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -333,14 +333,14 @@ export function GalleryCarousel() {
                         onClick={() => setCurrentIndex(idx)}
                         className={`group flex items-center gap-3 px-3.5 py-2.5 rounded-xl border text-left transition-all duration-300 ${
                           isActive
-                            ? "bg-municipal-gold/15 border-municipal-gold/40 shadow-sm"
+                            ? "bg-toffee-brown/15 border-toffee-brown/40 shadow-sm"
                             : "bg-transparent border-white/[0.06] hover:bg-white/[0.05] hover:border-white/15"
                         }`}
                       >
                         <span
                           className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
                             isActive
-                              ? "bg-municipal-gold text-[#344e41]"
+                              ? "bg-toffee-brown text-[#344e41]"
                               : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
                           }`}
                         >
@@ -355,7 +355,7 @@ export function GalleryCarousel() {
                         </span>
                         <span
                           className={`text-[9px] font-black uppercase tracking-wider shrink-0 ${
-                            isActive ? "text-municipal-gold" : "text-white/30"
+                            isActive ? "text-toffee-brown" : "text-white/30"
                           }`}
                         >
                           {String(idx + 1).padStart(2, "0")}
@@ -383,7 +383,7 @@ export function GalleryCarousel() {
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-municipal-gold w-8 h-1.5"
+                    ? "bg-toffee-brown w-8 h-1.5"
                     : "bg-white/20 group-hover:bg-white/40 w-1.5 h-1.5"
                 }`}
               />

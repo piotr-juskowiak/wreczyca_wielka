@@ -32,7 +32,7 @@ const DEFAULT_COMMENTS = [
   {
     id: "com-1",
     author: "Marta K.",
-    avatarBg: "bg-white text-digital-blue",
+    avatarBg: "bg-white text-dusty-olive",
     initials: "MK",
     comment: "Bardzo się cieszę z planów modernizacji boiska szkolnego! Nasze dzieci w końcu będą miały świetne warunki do gry w piłkę.",
     source: "Wypowiedź pod: Inwestycje w oświatę",
@@ -42,7 +42,7 @@ const DEFAULT_COMMENTS = [
   {
     id: "com-2",
     author: "Tomasz W.",
-    avatarBg: "bg-white text-municipal-gold",
+    avatarBg: "bg-white text-toffee-brown",
     initials: "TW",
     comment: "Czy są już znane szczegóły na temat dofinansowania wymiany starych pieców na ten rok? Chętnie skorzystam z programu.",
     source: "Wypowiedź pod: Czyste powietrze",
@@ -52,7 +52,7 @@ const DEFAULT_COMMENTS = [
   {
     id: "com-3",
     author: "Ewa i Piotr",
-    avatarBg: "bg-white text-vibrant-emerald-solid",
+    avatarBg: "bg-white text-charcoal-brown-solid",
     initials: "EP",
     comment: "Koncert orkiestry dętej na rynku był po prostu wspaniały! Oby więcej takich kulturalnych wydarzeń plenerowych w te wakacje.",
     source: "Wypowiedź pod: Majowy festiwal",
@@ -115,7 +115,7 @@ export function NewsSidebar() {
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-municipal-gold shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-toffee-brown shadow-lg">
               <Megaphone className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
@@ -135,14 +135,14 @@ export function NewsSidebar() {
                 className="group cursor-pointer rounded-2xl bg-white/90 hover:bg-white border border-white/30 hover:shadow-lg p-4 transition-all duration-300 backdrop-blur-md"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-white bg-municipal-gold px-2.5 py-0.5 rounded-full">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-white bg-toffee-brown px-2.5 py-0.5 rounded-full">
                     {ann.category}
                   </span>
                   <span className="text-[9px] font-bold text-[#344e41]/60 flex items-center gap-1">
                     <Calendar className="h-3 w-3" /> {ann.date}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-[#344e41] group-hover:text-municipal-gold transition-colors duration-200 line-clamp-1 leading-snug">
+                <h4 className="text-sm font-semibold text-[#344e41] group-hover:text-toffee-brown transition-colors duration-200 line-clamp-1 leading-snug">
                   {ann.title}
                 </h4>
                 <p className="mt-1 text-xs text-[#344e41]/80 font-medium line-clamp-2 leading-relaxed">
@@ -176,7 +176,7 @@ export function NewsSidebar() {
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-municipal-gold shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-toffee-brown shadow-lg">
               <MessageSquare className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
@@ -195,7 +195,7 @@ export function NewsSidebar() {
                 key={com.id}
                 className="relative rounded-2xl bg-white/90 hover:bg-white backdrop-blur-md p-4 border border-white/30 hover:shadow-lg transition-all duration-300"
               >
-                <Quote className="absolute top-3 right-3 h-5 w-5 text-municipal-gold/30" />
+                <Quote className="absolute top-3 right-3 h-5 w-5 text-toffee-brown/30" />
                 <div className="flex gap-3">
                   <div
                     className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-bold text-xs shadow-sm ${com.avatarBg}`}
@@ -214,7 +214,7 @@ export function NewsSidebar() {
                     <p className="text-[11px] text-[#344e41]/80 font-medium italic leading-relaxed line-clamp-3">
                       &quot;{com.comment}&quot;
                     </p>
-                    <div className="text-[9px] font-black uppercase tracking-wider text-municipal-gold pt-0.5 truncate">
+                    <div className="text-[9px] font-black uppercase tracking-wider text-toffee-brown pt-0.5 truncate">
                       {com.source}
                     </div>
                   </div>
@@ -242,7 +242,7 @@ export function NewsSidebar() {
         className="rounded-3xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300"
       >
         <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-digital-blue-light text-digital-blue">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-dusty-olive-light text-dusty-olive">
             <CloudSun className="h-4 w-4" />
           </div>
           <div>
@@ -255,9 +255,9 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between bg-gradient-to-br from-[#588157] to-[#3a5a40] text-white p-5 rounded-2xl mb-6 shadow-md shadow-digital-blue/20">
+        <div className="flex items-center justify-between bg-gradient-to-br from-[#588157] to-[#3a5a40] text-white p-5 rounded-2xl mb-6 shadow-md shadow-dusty-olive/20">
           <div className="space-y-1">
-            <span className="text-[9px] font-black uppercase tracking-widest text-municipal-gold animate-pulse">Aktualnie</span>
+            <span className="text-[9px] font-black uppercase tracking-widest text-toffee-brown animate-pulse">Aktualnie</span>
             <div className="text-4xl font-extralight tracking-tighter">18°C</div>
             <div className="text-[10px] font-bold text-white/80">Słonecznie i ciepło</div>
           </div>

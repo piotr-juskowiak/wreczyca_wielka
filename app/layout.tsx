@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Figtree } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { PagePreloader } from '@/components/page-preloader'
 import './globals.css'
 
 const figtree = Figtree({
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className={`${figtree.variable} bg-background`}>
       <body className="font-sans antialiased">
+        <PagePreloader />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

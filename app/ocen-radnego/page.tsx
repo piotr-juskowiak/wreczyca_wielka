@@ -60,7 +60,7 @@ export default function OcenRadnegoPage() {
           </span>
           <h1 className="text-4xl md:text-6xl font-light text-white tracking-tight leading-tight">
             Oceń swojego <br />
-            <span className="font-black text-[#a3b18a]">Radnego Gminy</span>
+            <span className="font-light text-[#a3b18a]">Radnego Gminy</span>
           </h1>
           <p className="mt-8 text-lg text-emerald-50/70 max-w-2xl mx-auto font-medium">
             Twoja opinia pomaga nam budować lepszą przyszłość dla Wręczycy Wielkiej. Oceń pracę radnych i wpływaj na lokalne decyzje.

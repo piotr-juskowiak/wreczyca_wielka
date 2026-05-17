@@ -7,14 +7,13 @@ import { fetchNews } from "@/lib/news-service"
 
 export default async function HomePage() {
   const articles = await fetchNews()
-  const featuredArticles = articles.slice(0, 4)
-  const rest = articles.slice(4)
+  const featuredArticles = articles.slice(0, 9)
 
   return (
     <main className="min-h-screen bg-background">
       <SiteHeader />
       {featuredArticles.length > 0 && <HeroNews articles={featuredArticles} />}
-      {rest.length > 0 && <NewsGrid articles={rest} />}
+      {articles.length > 0 && <NewsGrid articles={articles} />}
       <GalleryCarousel />
       <SiteFooter />
     </main>

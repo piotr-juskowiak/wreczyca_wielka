@@ -2,54 +2,89 @@
 @import 'tw-animate-css';
 
 :root {
-  --background: #f8fafc; /* Crisp slate-50 background for a premium modern feel */
-  --foreground: #0f172a; /* Sleek charcoal Slate-900 for high-contrast typography */
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  
-  /* Primary color is a sophisticated, soft forest green that is highly readable and calming (#2c5e3b) */
-  --primary: #2c5e3b;
-  --primary-foreground: #ffffff; /* pure white for perfect AA contrast */
-  
-  /* Secondary color is a clean slate/mint mix */
-  --secondary: #e2e8f0;
-  --secondary-foreground: #0f172a;
-  
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  
-  --accent: #2e854b;
-  --accent-foreground: #ffffff;
-  
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #2c5e3b;
-  --radius: 1.25rem; /* modern premium curved corners */
+  /* ─────────────────────────────────────────────────────────────
+     PALETA ZIEMI — głęboka zieleń + ciepłe brązy/kremy
+     Źródłowe kolory:
+       --dark-walnut:     #3a5a40
+       --saddle-brown:    #588157
+       --toffee-brown:    #a3b18a
+       --camel:           #a3b18a
+       --khaki-beige:     #dad7cd
+       --dry-sage:        #a3b18a
+       --dry-sage-2:      #a3b18a
+       --dusty-olive:     #588157
+       --ebony:           #3a5a40
+       --charcoal-brown:  #344e41
+     ───────────────────────────────────────────────────────────── */
 
-  /* Custom Digital Blue theme colors (exact logo blue: #0073bc) */
-  --digital-blue: #0073bc;
-  --digital-blue-hover: #005a9c;
-  --digital-blue-light: rgba(0, 115, 188, 0.08);
+  /* CORE NEUTRALS — kremowe tła, głęboka oliwka jako foreground */
+  --background: #dad7cd;          /* ciepły kremowy off-white (khaki-beige bardzo rozjaśnione) */
+  --foreground: #344e41;          /* charcoal-brown — głęboka, czytelna oliwka */
+  --card: #dad7cd;                /* lekko cieplejszy niż background dla kart */
+  --card-foreground: #344e41;
+  --popover: #dad7cd;
+  --popover-foreground: #344e41;
 
-  /* Custom Vibrant Emerald theme colors (softened to be elegant and calming) */
-  --vibrant-emerald: rgba(46, 133, 75, 0.85);
-  --vibrant-emerald-solid: #2e854b;
-  --vibrant-emerald-light: rgba(46, 133, 75, 0.08);
+  --secondary: #a3b18a;           /* dry-sage rozjaśnione — etykiety/sekcje */
+  --secondary-foreground: #344e41;
 
-  /* Custom Municipal Gold theme colors (exact logo gold: #fcd116, slightly darkened for accessibility) */
-  --municipal-gold: #d1ab02;
-  --municipal-gold-hover: #b29102;
-  --municipal-gold-light: rgba(209, 171, 2, 0.08);
+  --muted: #dad7cd;
+  --muted-foreground: #588157;    /* dusty-olive — pomocniczy tekst */
+
+  --border: #dad7cd;              /* khaki-beige stonowane */
+  --input: #dad7cd;
+
+  /* BRAND — ebony jako wiodący kolor */
+  --primary: #3a5a40;             /* ebony */
+  --primary-foreground: #dad7cd;
+  --ring: #3a5a40;
+
+  /* AKCENT GŁÓWNY — toffee-brown (ciepły, czytelny) */
+  --accent: #a3b18a;
+  --accent-foreground: #dad7cd;
+
+  --destructive: #8a2e1a;         /* przygaszony, ziemisty czerwony */
+  --destructive-foreground: #dad7cd;
+
+  --radius: 1.25rem;
+
+  /* ─────────────────────────────────────────────────────────────
+     SEMANTIC TOKENS — wartości przemapowane na paletę ziemi
+     (nazwy zostają, by nie łamać istniejących klas w komponentach)
+     ───────────────────────────────────────────────────────────── */
+
+  /* "Digital Blue" → dusty-olive (drugi odcień zieleni — linki, akcenty informacyjne) */
+  --digital-blue: #588157;
+  --digital-blue-hover: #3a5a40;
+  --digital-blue-light: rgba(101, 109, 74, 0.10);
+
+  /* "Vibrant Emerald" → charcoal-brown (najgłębsza zieleń — sport, sukces) */
+  --vibrant-emerald: rgba(51, 61, 41, 0.88);
+  --vibrant-emerald-solid: #344e41;
+  --vibrant-emerald-light: rgba(51, 61, 41, 0.08);
+
+  /* "Municipal Gold" → toffee-brown (ciepły akcent — ogłoszenia, kultura) */
+  --municipal-gold: #a3b18a;
+  --municipal-gold-hover: #588157;
+  --municipal-gold-light: rgba(147, 102, 57, 0.12);
+
+  /* Dark surface — ebony/charcoal dla sekcji hero, galerii itp. */
+  --surface-dark: #344e41;
+  --surface-dark-2: #3a5a40;
+
+  /* Pomocnicze brązy/kremy (dostępne jako CSS vars dla custom użycia) */
+  --color-camel: #a3b18a;
+  --color-khaki: #dad7cd;
+  --color-sage: #a3b18a;
+  --color-sage-2: #a3b18a;
+  --color-walnut: #3a5a40;
+  --color-saddle: #588157;
 }
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -70,7 +105,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Map custom digital blue, vibrant emerald & municipal gold theme colors */
   --color-digital-blue: var(--digital-blue);
   --color-digital-blue-hover: var(--digital-blue-hover);
   --color-digital-blue-light: var(--digital-blue-light);
@@ -80,6 +114,16 @@
   --color-municipal-gold: var(--municipal-gold);
   --color-municipal-gold-hover: var(--municipal-gold-hover);
   --color-municipal-gold-light: var(--municipal-gold-light);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-2: var(--surface-dark-2);
+
+  /* Nowe tokeny ziemi — dostępne jako klasy: bg-camel, text-khaki, bg-sage itd. */
+  --color-camel: #a3b18a;
+  --color-khaki: #dad7cd;
+  --color-sage: #a3b18a;
+  --color-sage-2: #a3b18a;
+  --color-walnut: #3a5a40;
+  --color-saddle: #588157;
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
@@ -97,20 +141,31 @@
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .article-content {
+    color: #3a4232;
+  }
+
+  .article-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
   }
 
   .article-content a {
-    color: var(--digital-blue);
+    color: var(--municipal-gold);
     text-decoration: underline;
-    text-decoration-color: rgba(32, 143, 207, 0.3);
+    text-decoration-color: rgba(147, 102, 57, 0.35);
     text-underline-offset: 4px;
     font-weight: 600;
     transition: color 0.2s, text-decoration-color 0.2s;
   }
 
   .article-content a:hover {
-    color: var(--digital-blue-hover);
-    text-decoration-color: var(--digital-blue-hover);
+    color: var(--municipal-gold-hover);
+    text-decoration-color: var(--municipal-gold-hover);
   }
 
   h1,
@@ -119,6 +174,23 @@
   h4 {
     line-height: 1.2;
     letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+
+  /* Scrollbar w odcieniach ziemi */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dad7cd;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a3b18a;
   }
 }
 

@@ -46,7 +46,7 @@ export default function ReklamaPage() {
           ))}
         </div>
 
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary to-[#1d4ed8] p-10 md:p-16 text-white text-center">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary to-[#3a5a40] p-10 md:p-16 text-white text-center">
           <div className="relative z-10">
             <Megaphone className="h-16 w-16 mx-auto mb-8 opacity-90" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Zainteresowany współpracą?</h2>

@@ -35,7 +35,7 @@ export function AnnouncementTicker() {
 
   return (
     <div className="relative w-full overflow-hidden border-b border-border bg-foreground text-background">
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2">
+      <div className="mx-auto flex max-w-[94rem] items-center gap-3 px-4 py-2">
         <div className="flex shrink-0 items-center gap-2 rounded-full bg-destructive px-3 py-1 text-xs font-bold uppercase tracking-wider text-destructive-foreground">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background opacity-75" />

@@ -11,9 +11,9 @@ function WeatherWidget() {
   const [isOpen, setIsOpen] = useState(false)
 
   const forecast = [
-    { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
-    { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
-    { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#5cb87e]" />, desc: "Zachmurzenie" },
+    { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-[#a3b18a]" />, desc: "Słonecznie" },
+    { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-[#a3b18a]" />, desc: "Słonecznie" },
+    { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#a3b18a]" />, desc: "Zachmurzenie" },
     { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-blue-400" />, desc: "Przelotny deszcz" }
   ]
 
@@ -25,9 +25,9 @@ function WeatherWidget() {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80 hover:bg-secondary/60 hover:border-[#2c5e3b]/30 transition-all active:scale-95 cursor-pointer"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80 hover:bg-secondary/60 hover:border-[#3a5a40]/30 transition-all active:scale-95 cursor-pointer"
       >
-        <Sun className="h-4 w-4 text-amber-500 animate-spin-slow" />
+        <Sun className="h-4 w-4 text-[#a3b18a] animate-spin-slow" />
         <span>18°C</span>
         <span className="text-muted-foreground/60 font-normal">Wręczyca</span>
         <ChevronDown className={`h-3 w-3 text-muted-foreground/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -43,7 +43,7 @@ function WeatherWidget() {
             className="absolute right-0 mt-2 w-64 rounded-2xl border border-border/50 bg-white/95 backdrop-blur-md p-4 shadow-xl z-50 pointer-events-auto"
           >
             <div className="border-b border-border/40 pb-2.5 mb-2.5 text-left">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-[#2c5e3b]">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-[#3a5a40]">
                 Pogoda Wręczyca Wielka
               </h4>
               <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Prognoza 4-dniowa</p>
@@ -57,7 +57,7 @@ function WeatherWidget() {
                     {w.icon}
                     <span className="text-[10px] font-medium text-muted-foreground truncate max-w-[90px]">{w.desc}</span>
                   </div>
-                  <span className="text-xs font-black text-[#2c5e3b]">{w.temp}</span>
+                  <span className="text-xs font-black text-[#3a5a40]">{w.temp}</span>
                 </div>
               ))}
             </div>
@@ -89,9 +89,9 @@ export function SiteHeader() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/60"
+        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200/60"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
           {/* Top Row: Brand + Search + Actions */}
           <div className="flex h-20 items-center justify-between gap-8">
             <motion.a
@@ -123,7 +123,7 @@ export function SiteHeader() {
               <button
                 aria-label="Szukaj"
                 onClick={() => setSearchOpen(true)}
-                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-[#2c5e3b]/30"
+                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-[#3a5a40]/30"
               >
                 <Search className="h-4 w-4" />
                 <span className="flex-1 text-left">Szukaj informacji w serwisie...</span>

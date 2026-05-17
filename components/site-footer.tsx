@@ -58,10 +58,10 @@ export function SiteFooter() {
   const [subscribed, setSubscribed] = useState(false)
 
   return (
-    <footer className="mt-20 border-t border-border/40 bg-slate-50/50">
+    <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#0f172a]/10 flex items-center bg-[#2c5e3b]">
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#344e41]/10 flex items-center bg-[#3a5a40]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
             <img 
@@ -69,7 +69,7 @@ export function SiteFooter() {
               alt="Wręczyca Wielka" 
               className="h-full w-full object-cover mix-blend-overlay grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2c5e3b] via-[#2c5e3b]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#3a5a40] via-[#3a5a40]/80 to-transparent" />
           </div>
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
@@ -77,7 +77,7 @@ export function SiteFooter() {
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
                 Zapisz się do <span className="text-municipal-gold font-extrabold">newslettera</span>
               </h3>
-              <p className="text-sm text-[#cbd5e1]/80 max-w-md mx-auto lg:mx-0">
+              <p className="text-sm text-[#dad7cd]/80 max-w-md mx-auto lg:mx-0">
                 Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
               </p>
             </div>
@@ -95,7 +95,7 @@ export function SiteFooter() {
                     type="email"
                     required
                     placeholder="Twój adres e-mail"
-                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#0f172a] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
+                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#344e41] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -117,13 +117,13 @@ export function SiteFooter() {
                   </div>
                   <div className="text-left">
                     <h4 className="text-sm font-bold text-white uppercase tracking-wider">Dziękujemy!</h4>
-                    <p className="text-xs text-[#cbd5e1]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
+                    <p className="text-xs text-[#dad7cd]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
                   </div>
                 </motion.div>
               )}
               <div className="mt-3 flex items-center gap-2 px-2">
                 <CheckCircle2 className="h-3 w-3 text-municipal-gold/80" />
-                <p className="text-[10px] text-[#cbd5e1]/50 uppercase tracking-widest font-bold">
+                <p className="text-[10px] text-[#dad7cd]/50 uppercase tracking-widest font-bold">
                   Akceptujesz politykę prywatności i RODO.
                 </p>
               </div>
@@ -211,7 +211,7 @@ export function SiteFooter() {
 
         {/* Disclaimer Area */}
         <div className="mt-16 pt-8 border-t border-border/60">
-          <div className="bg-slate-100/50 rounded-2xl p-6 md:p-8 mb-10">
+          <div className="bg-stone-100/50 rounded-2xl p-6 md:p-8 mb-10">
             <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
               <span className="font-bold text-foreground/80">Ważna informacja:</span> Portal <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
             </p>

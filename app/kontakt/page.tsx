@@ -51,7 +51,7 @@ export default function KontaktPage() {
                 icon: MapPin,
                 title: "Adres",
                 lines: ["ul. Sienkiewicza 1", "42-130 Wręczyca Wielka"],
-                color: "bg-blue-100 text-blue-700",
+                color: "bg-[#a3b18a] text-[#3a5a40]",
               },
               {
                 icon: Phone,
@@ -63,7 +63,7 @@ export default function KontaktPage() {
                 icon: Mail,
                 title: "E-mail",
                 lines: ["ug@wreczyca-wielka.pl"],
-                color: "bg-amber-100 text-amber-700",
+                color: "bg-[#dad7cd] text-[#588157]",
               },
               {
                 icon: Clock,

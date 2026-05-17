@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Figtree } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { PagePreloader } from '@/components/page-preloader'
-import { FloatingActionButton } from '@/components/floating-action-button'
+
 import './globals.css'
 
 const figtree = Figtree({
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <PagePreloader />
         {children}
-        <FloatingActionButton />
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

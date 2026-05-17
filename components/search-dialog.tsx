@@ -121,7 +121,7 @@ export function SearchDialog({
                           onClick={onClose}
                           className="group flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-secondary"
                         >
-                          <span className="mt-0.5 inline-flex items-center rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-bold text-blue-700 shrink-0">
+                          <span className="mt-0.5 inline-flex items-center rounded-full bg-[#a3b18a] px-2.5 py-1 text-[10px] font-bold text-[#3a5a40] shrink-0">
                             {a.category}
                           </span>
                           <div className="min-w-0 flex-1">

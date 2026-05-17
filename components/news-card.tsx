@@ -5,26 +5,43 @@ import { Calendar, Clock, ArrowUpRight } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 const categoryColors: Record<string, string> = {
-  Inwestycje: "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Biznes: "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  "E-Urząd": "bg-digital-blue-light text-digital-blue border-digital-blue/20 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Wydarzenia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Ogłoszenia: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/20 bg-white/40 shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
-  Edukacja: "bg-digital-blue-light text-digital-blue border-digital-blue/25 bg-white/40 shadow-sm hover:bg-digital-blue hover:text-white transition-all",
-  Konsultacje: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/15 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Sport: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Ekologia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/10 bg-white/40 shadow-sm hover:bg-vibrant-emerald hover:text-white transition-all",
-  Kultura: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/20 bg-white/40 shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
+  Inwestycje: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Biznes: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  "E-Urząd": "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Wydarzenia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
+  Ogłoszenia: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30 backdrop-blur-md shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
+  Edukacja: "bg-digital-blue-light text-digital-blue border-digital-blue/25 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+  Konsultacje: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
+  Sport: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
+  Ekologia: "bg-vibrant-emerald-light text-vibrant-emerald-solid border-vibrant-emerald-solid/20 backdrop-blur-md shadow-sm hover:bg-vibrant-emerald-solid hover:text-white transition-all",
+  Kultura: "bg-municipal-gold-light text-municipal-gold border-municipal-gold/30 backdrop-blur-md shadow-sm hover:bg-municipal-gold hover:text-white transition-all",
+  Sołectwa: "bg-digital-blue-light text-digital-blue border-digital-blue/20 backdrop-blur-md shadow-sm hover:bg-digital-blue hover:text-white transition-all",
+}
+
+// Light gradient backgrounds tinted by category
+const cardTints: Record<string, string> = {
+  Inwestycje: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
+  Biznes: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
+  "E-Urząd": "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
+  Edukacja: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
+  Sołectwa: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
+  Wydarzenia: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
+  Sport: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
+  Ekologia: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
+  Konsultacje: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
+  Ogłoszenia: "bg-gradient-to-br from-[#a3b18a]/[0.06] via-card to-card",
+  Kultura: "bg-gradient-to-br from-[#a3b18a]/[0.06] via-card to-card",
 }
 
 export function NewsCard({ article }: { article: NewsArticle }) {
   const badgeClass = categoryColors[article.category] ?? "bg-secondary text-foreground border-border"
+  const tintClass = cardTints[article.category] ?? "bg-gradient-to-br from-secondary/40 via-card to-card"
 
   return (
     <motion.article
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-card border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20"
+      className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-border/60 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 ${tintClass}`}
     >
       <a href={`/aktualnosci/${article.slug}`} className="flex flex-col h-full">
         <div className="relative aspect-[16/10] overflow-hidden m-2 rounded-[1.5rem]">
@@ -38,7 +55,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           <span
-            className={`absolute top-4 left-4 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest border backdrop-blur-md ${badgeClass}`}
+            className={`absolute top-4 left-4 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest border ${badgeClass}`}
           >
             {article.category}
           </span>
@@ -60,7 +77,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
           <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-digital-blue transition-colors line-clamp-2">
             {article.title}
           </h3>
-          
+
           <p className="mt-4 text-sm text-muted-foreground line-clamp-3 leading-relaxed flex-1">
             {article.excerpt}
           </p>

@@ -267,7 +267,7 @@ export function CalendarSection() {
           <span className="inline-block rounded-full bg-white/10 text-[#a3b18a] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-white/10 backdrop-blur-md">
             Wydarzenia
           </span>
-          <h2 id="events-calendar" className="text-4xl md:text-5xl font-black text-white text-balance leading-tight tracking-tight">
+          <h2 id="events-calendar" className="text-4xl md:text-5xl font-light text-white text-balance leading-tight tracking-tight">
             Kalendarium wydarzeń
           </h2>
           <p className="mt-4 text-lg text-white/60 font-medium">

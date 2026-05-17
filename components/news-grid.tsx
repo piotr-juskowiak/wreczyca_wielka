@@ -55,7 +55,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           <span className="inline-block rounded-full bg-[#a3b18a]/20 text-[#3a5a40] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-[#a3b18a]/30">
             Aktualności
           </span>
-          <h2 id="latest-news" className="text-4xl md:text-5xl font-black text-[#344e41] text-balance leading-tight">
+          <h2 id="latest-news" className="text-4xl md:text-5xl font-light text-[#344e41] text-balance leading-tight">
             Co słychać w gminie?
           </h2>
           <p className="mt-4 text-lg text-[#3a5a40]/60 font-medium">

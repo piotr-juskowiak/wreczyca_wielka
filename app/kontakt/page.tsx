@@ -28,7 +28,7 @@ export default function KontaktPage() {
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 Kontakt
               </span>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-foreground text-balance leading-tight">
+              <h1 className="mt-4 text-4xl sm:text-5xl font-light text-foreground text-balance leading-tight">
                 Skontaktuj się z Urzędem Gminy
               </h1>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed text-pretty">

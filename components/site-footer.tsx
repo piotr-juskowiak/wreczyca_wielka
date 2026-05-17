@@ -23,6 +23,7 @@ const columns = [
       { label: "Sport lokalny", href: "/sport" },
       { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },
       { label: "Aktualności", href: "/aktualnosci" },
+      { label: "Sołectwa", href: "/solectwa" },
     ],
   },
   {

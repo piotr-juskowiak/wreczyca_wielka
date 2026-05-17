@@ -20,7 +20,6 @@ const columns = [
   {
     title: "Na skróty",
     links: [
-      { label: "Oceń radnego", href: "/ocen-radnego" },
       { label: "Galeria zdjęć", href: "/galeria" },
       { label: "Sport lokalny", href: "/sport" },
       { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },

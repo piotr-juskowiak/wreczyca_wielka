@@ -1,27 +1,75 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Search, Menu, Shield, Cloud, Sun, CloudRain } from "lucide-react"
+import { Search, Menu, Shield, Cloud, Sun, CloudRain, CloudSun, ChevronDown } from "lucide-react"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { SearchDialog } from "@/components/search-dialog"
 import { AnnouncementTicker } from "@/components/announcement-ticker"
 
 function WeatherWidget() {
-  const [weather, setWeather] = useState({ temp: 18, icon: <Sun className="h-4 w-4 text-amber-500" /> })
+  const [isOpen, setIsOpen] = useState(false)
+
+  const forecast = [
+    { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
+    { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-amber-500" />, desc: "Słonecznie" },
+    { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#a3b18a]" />, desc: "Zachmurzenie" },
+    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-blue-400" />, desc: "Przelotny deszcz" }
+  ]
 
   return (
-    <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80">
-      {weather.icon}
-      <span>{weather.temp}°C</span>
-      <span className="text-muted-foreground/60 font-normal">Wręczyca</span>
+    <div 
+      className="relative hidden md:block"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80 hover:bg-secondary/60 hover:border-[#3a5a40]/30 transition-all active:scale-95 cursor-pointer"
+      >
+        <Sun className="h-4 w-4 text-amber-500 animate-spin-slow" />
+        <span>18°C</span>
+        <span className="text-muted-foreground/60 font-normal">Wręczyca</span>
+        <ChevronDown className={`h-3 w-3 text-muted-foreground/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute right-0 mt-2 w-64 rounded-2xl border border-border/50 bg-white/95 backdrop-blur-md p-4 shadow-xl z-50 pointer-events-auto"
+          >
+            <div className="border-b border-border/40 pb-2.5 mb-2.5 text-left">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-[#3a5a40]">
+                Pogoda Wręczyca Wielka
+              </h4>
+              <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Prognoza 4-dniowa</p>
+            </div>
+
+            <div className="space-y-2">
+              {forecast.map((w, idx) => (
+                <div key={idx} className="flex items-center justify-between py-1 border-b border-secondary/40 last:border-0 last:pb-0 text-left">
+                  <span className="text-xs font-bold text-foreground/80 w-16">{w.day}</span>
+                  <div className="flex items-center gap-2 flex-1 justify-start">
+                    {w.icon}
+                    <span className="text-[10px] font-medium text-muted-foreground truncate max-w-[90px]">{w.desc}</span>
+                  </div>
+                  <span className="text-xs font-black text-[#3a5a40]">{w.temp}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
 const navLinks = [
   { label: "Aktualności", href: "/aktualnosci" },
-  { label: "Oceń radnego", href: "/ocen-radnego" },
   { label: "Galeria", href: "/galeria" },
   { label: "Sport", href: "/sport" },
   { label: "Kultura i rozrywka", href: "/kultura-i-rozrywka" },

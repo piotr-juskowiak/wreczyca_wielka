@@ -69,7 +69,9 @@ const WEATHER_FORECAST = [
   { day: "Wtorek", tempDay: 21, tempNight: 12, icon: Sun, desc: "Słonecznie", color: "text-amber-500" },
   { day: "Środa", tempDay: 22, tempNight: 13, icon: CloudSun, desc: "Umiarkowane zachmurzenie", color: "text-[#a3b18a]" },
   { day: "Czwartek", tempDay: 17, tempNight: 11, icon: CloudRain, desc: "Przelotny deszcz", color: "text-blue-400" },
-  { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-[#a3b18a]" }
+  { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-[#a3b18a]" },
+  { day: "Sobota", tempDay: 18, tempNight: 10, icon: CloudSun, desc: "Częściowe zachmurzenie", color: "text-[#a3b18a]" },
+  { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-amber-500" }
 ]
 
 export function NewsSidebar() {
@@ -227,7 +229,7 @@ export function NewsSidebar() {
             <h3 className="text-xs font-black uppercase tracking-widest text-[#344e41]">
               Pogoda Wręczyca Wielka
             </h3>
-            <span className="text-[10px] text-[#a3b18a] font-bold uppercase tracking-wider">Prognoza 5-dniowa</span>
+            <span className="text-[10px] text-[#a3b18a] font-bold uppercase tracking-wider">Prognoza 7-dniowa</span>
           </div>
         </div>
 

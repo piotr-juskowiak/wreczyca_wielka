@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { Calendar, Clock, User, ArrowLeft, Share2 } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ArticleComments } from "@/components/article-comments"
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -86,6 +87,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             className="article-content leading-relaxed text-foreground/90 space-y-6"
           />
         </div>
+        
+        {/* Interactive comments section */}
+        <ArticleComments articleId={article.id} articleTitle={article.title} />
         
         <footer className="mt-16 pt-8 border-t border-border">
           <div className="bg-secondary/30 rounded-3xl p-8 text-center">

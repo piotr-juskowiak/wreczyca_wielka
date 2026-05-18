@@ -105,29 +105,29 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
       aria-labelledby="latest-news"
       className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-20 select-none"
     >
-      {/* Editorial Header Card Wrapper with Lupine Meadow Backdrop */}
+      {/* Editorial Welcome Greeting Banner — Light Neutral Glassmorphic Card */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[2.25rem] border border-stone-200/80 bg-stone-50/20 p-8 sm:p-10 lg:p-12 mb-16 shadow-md flex flex-col xl:flex-row xl:items-center justify-between gap-8 sm:gap-10"
+        className="relative overflow-hidden rounded-[2.5rem] border border-stone-200/60 bg-white p-8 sm:p-10 lg:p-12 mb-16 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-8 sm:gap-10 min-h-[180px]"
       >
-        {/* Lupine Meadow Backdrop Image under soft light overlay */}
-        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none select-none">
+        {/* Lupine Meadow Backdrop Image under a premium, slightly dark green overlay */}
+        <div className="absolute inset-0 z-0 opacity-35 pointer-events-none select-none">
           <img 
             src="https://st4.depositphotos.com/36035726/37940/i/450/depositphotos_379400648-stock-photo-beautiful-meadow-blooming-lupines-green.jpg" 
             alt="Łąka kwiatów" 
             className="h-full w-full object-cover object-center scale-102"
           />
-          {/* Soft warm/light fade overlay to guarantee perfect readability of dark text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/70" />
+          {/* Slightly dark green overlay gradient: solid white on left for text, transitioning to elegant deep green on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-[#0c2415]/55" />
         </div>
 
         {/* Ambient Glows Inside the Card */}
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00933f]/10 blur-3xl pointer-events-none" />
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00933f]/5 blur-3xl pointer-events-none" />
 
-        {/* LEFT COLUMN: Greeting Text (60% width on desktop) */}
+        {/* LEFT COLUMN: Greeting Text (65% width on desktop) */}
         <div className="flex-1 max-w-2xl border-l-2 border-[#00933f] pl-6 md:pl-8 relative z-10 space-y-4">
           {/* Minimalist Sub-indicator */}
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#00933f]">
@@ -135,62 +135,29 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
             Oficjalny Serwis Gminy
           </div>
           
-          <h2 id="latest-news" className="text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight leading-[1.1] mb-4">
+          <h2 id="latest-news" className="text-3xl sm:text-4xl md:text-5xl font-light text-slate-800 tracking-tight leading-[1.2] mb-4">
             Życie i Wydarzenia we <br className="hidden sm:inline" />
-            <span className="font-extrabold text-slate-950">
+            <span className="font-light text-slate-900">
               Wręczycy Wielkiej
             </span>
           </h2>
-          <p className="text-sm md:text-[15px] text-slate-500/90 font-normal leading-relaxed max-w-xl tracking-wide">
+          <p className="text-sm md:text-[14.5px] text-slate-500 font-normal leading-relaxed max-w-xl tracking-wide">
             Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
           </p>
         </div>
 
-        {/* RIGHT COLUMN: Interactive Municipal Stats & Link (40% width on desktop) */}
-        <div className="flex flex-col sm:flex-row xl:flex-col justify-between items-start sm:items-center xl:items-end gap-6 relative z-10 shrink-0 w-full xl:w-auto">
-          
-          {/* Quick Stats Grid */}
-          <div className="grid grid-cols-3 gap-3 w-full sm:w-auto xl:w-[320px]">
-            {/* Stat 1 */}
-            <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/70 backdrop-blur-sm border border-stone-200/50 shadow-sm text-center">
-              <span className="text-lg font-black text-slate-900 tracking-tight leading-none mb-1">
-                28
-              </span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-                Sołectw
-              </span>
-            </div>
-            {/* Stat 2 */}
-            <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/70 backdrop-blur-sm border border-stone-200/50 shadow-sm text-center">
-              <span className="text-lg font-black text-slate-900 tracking-tight leading-none mb-1">
-                ~17k
-              </span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-                Mieszkańców
-              </span>
-            </div>
-            {/* Stat 3 */}
-            <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/70 backdrop-blur-sm border border-stone-200/50 shadow-sm text-center">
-              <span className="text-lg font-black text-slate-900 tracking-tight leading-none mb-1">
-                101
-              </span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-                km² pow.
-              </span>
-            </div>
-          </div>
-
+        {/* RIGHT COLUMN: Action Button (35% width on desktop) */}
+        <div className="relative z-10 shrink-0 self-start sm:self-auto">
           {/* Zobacz aktualności Pill Button */}
           <a
             href="/aktualnosci"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-[#00933f] border border-stone-250 hover:border-[#00933f] pl-4.5 pr-2 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-800 hover:text-white shadow-sm hover:shadow-md transition-all duration-300 shrink-0 self-start sm:self-auto xl:self-end"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-[#00933f] border border-stone-250 hover:border-[#00933f] pl-5 pr-2.5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-slate-700 hover:text-white shadow-sm hover:shadow-md transition-all duration-300 shrink-0 cursor-pointer"
           >
             <span>Zobacz aktualności</span>
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 group-hover:bg-white/10 text-slate-400 group-hover:text-white transition-all duration-300">
               <ChevronDown className="h-4 w-4 -rotate-90 transition-transform group-hover:translate-x-0.5" />
             </div>
           </a>
-
         </div>
       </motion.div>
 
@@ -202,7 +169,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 0: WIADOMOŚCI (LATEST NEWS - MATCHING SECTION STYLE) */}
           <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#00933f] border border-[#00933f]/20 rounded-2xl gap-4 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gradient-to-r from-[#00933f] via-[#008237] to-[#006e2e] border border-[#00933f]/30 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/12 text-white border border-white/15 shadow-sm shrink-0">
                   <Newspaper className="h-4.5 w-4.5" />
@@ -241,7 +208,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           </div>
 
           <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#208fcf] border border-[#208fcf]/20 rounded-2xl gap-4 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gradient-to-r from-[#208fcf] via-[#1c81bc] to-[#115682] border border-[#208fcf]/30 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/12 text-white border border-white/15 shadow-sm shrink-0">
                   <Trophy className="h-4.5 w-4.5" />
@@ -322,7 +289,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 2: KULTURA I ROZRYWKA */}
           <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#c49200] border border-[#c49200]/20 rounded-2xl gap-4 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gradient-to-r from-[#e0a800] via-[#c49200] to-[#a37900] border border-[#c49200]/30 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/12 text-white border border-white/15 shadow-sm shrink-0">
                   <Music className="h-4.5 w-4.5" />
@@ -403,7 +370,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 3: SOŁECTWA */}
           <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#af6215] border border-[#af6215]/20 rounded-2xl gap-4 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gradient-to-r from-[#d97706] via-[#af6215] to-[#8d4e0e] border border-[#af6215]/30 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/12 text-white border border-white/15 shadow-sm shrink-0">
                   <MapPin className="h-4.5 w-4.5" />

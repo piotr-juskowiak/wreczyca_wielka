@@ -16,7 +16,7 @@ export function GalleryCarousel() {
     <section
       id="przewodnik"
       aria-labelledby="guide-title"
-      className="relative overflow-hidden bg-gradient-to-br from-[#8c6d53] via-[#5c4b3d] to-[#2c241e] py-20 lg:py-24 text-white border-y border-stone-800/40 select-none"
+      className="relative overflow-hidden bg-gradient-to-br from-[#365239] via-[#2a402c] to-[#142116] py-20 lg:py-24 text-white border-y border-stone-850/40 select-none"
     >
       {/* Background Image under Dark Overlay */}
       <div className="absolute inset-0 z-0 opacity-25 pointer-events-none select-none">
@@ -25,14 +25,14 @@ export function GalleryCarousel() {
           alt="Gmina Wręczyca Wielka" 
           className="h-full w-full object-cover object-center grayscale contrast-125"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#8c6d53]/90 via-[#5c4b3d]/80 to-[#2c241e]/95 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#365239]/90 via-[#2a402c]/80 to-[#142116]/95 mix-blend-multiply" />
       </div>
 
       {/* Bottom gradient fade & soft blur transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#2c241e] via-[#2c241e]/45 to-transparent backdrop-blur-[3px] pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#142116] via-[#142116]/45 to-transparent backdrop-blur-[3px] pointer-events-none z-10" />
 
       {/* Ambient glows */}
-      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-amber-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute -left-64 -top-64 h-96 w-96 rounded-full bg-dusty-olive/15 blur-3xl pointer-events-none" />
       <div className="absolute -right-64 -bottom-64 h-96 w-96 rounded-full bg-golden/5 blur-3xl pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.018] pointer-events-none bg-[radial-gradient(#dad7cd_1px,transparent_1px)] [background-size:24px_24px]" />
 
@@ -47,7 +47,7 @@ export function GalleryCarousel() {
           <h2 id="guide-title" className="text-4xl md:text-5xl font-light text-white text-balance leading-tight tracking-tight">
             Sołectwa Gminy Wręczyca Wielka
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-white/65 font-medium leading-relaxed max-w-2xl">
+          <p className="mt-4 text-base sm:text-lg text-white/65 font-medium leading-relaxed max-w-xl">
             Poznaj 28 wyjątkowych miejscowości tworzących naszą gminę. Wybierz sołectwo, aby zobaczyć dedykowane wiadomości, alerty oraz lokalne inicjatywy mieszkańców.
           </p>
         </div>
@@ -60,15 +60,15 @@ export function GalleryCarousel() {
               href={`/solectwa?wybrane=${encodeURIComponent(sol)}`}
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group flex items-center justify-between p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-golden hover:border-golden text-white hover:text-[#2c241e] transition-all duration-300 shadow-sm hover:shadow-lg cursor-pointer"
+              className="group flex items-center justify-between p-3.5 rounded-2xl bg-white border border-white/20 hover:bg-[#365239] hover:border-[#365239] text-slate-800 hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 group-hover:bg-[#2c241e]/10 text-white/80 group-hover:text-[#2c241e] transition-colors">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#365239]/8 group-hover:bg-white/20 text-[#365239] group-hover:text-white transition-colors">
                   <MapPin className="h-3.5 w-3.5" />
                 </div>
-                <span className="text-xs font-semibold truncate leading-none">{sol}</span>
+                <span className="text-xs font-bold truncate leading-none">{sol}</span>
               </div>
-              <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5" />
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5" />
             </motion.a>
           ))}
         </div>

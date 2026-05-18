@@ -159,7 +159,7 @@ export function SiteHeader() {
                     onHoverEnd={() => setHoveredIdx(null)}
                     className={`relative rounded-xl px-5 py-2 text-[12px] font-black uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
                       ${isActive
-                        ? 'text-[rgb(32,143,207)]'
+                        ? 'text-white'
                         : 'text-slate-600 hover:text-[rgb(32,143,207)]'
                       }
                     `}
@@ -167,7 +167,7 @@ export function SiteHeader() {
                     {link.label}
 
                     {/* Sliding Hover background pill */}
-                    {hoveredIdx === idx && (
+                    {hoveredIdx === idx && !isActive && (
                       <motion.div
                         layoutId="nav-hover-pill"
                         className="absolute inset-0 bg-white border border-[#208fcf]/10 shadow-sm rounded-xl -z-10"
@@ -175,11 +175,11 @@ export function SiteHeader() {
                       />
                     )}
 
-                    {/* Active tab bottom line indicator */}
+                    {/* Active tab solid sky blue pill indicator */}
                     {isActive && (
                       <motion.div
-                        layoutId="nav-active-line"
-                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-[rgb(32,143,207)] rounded-full"
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 bg-[rgb(32,143,207)] rounded-xl -z-10 shadow-sm shadow-[rgba(32,143,207,0.2)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -205,7 +205,7 @@ export function SiteHeader() {
                       href={link.href}
                       className={`rounded-xl px-4 py-3 text-sm font-bold transition-colors
                         ${isActive
-                          ? 'text-[rgb(32,143,207)] bg-[rgba(32,143,207,0.06)]'
+                          ? 'text-white bg-[rgb(32,143,207)] shadow-sm shadow-[rgba(32,143,207,0.15)]'
                           : 'text-slate-600 hover:text-[rgb(32,143,207)] hover:bg-[rgba(32,143,207,0.04)]'
                         }
                       `}

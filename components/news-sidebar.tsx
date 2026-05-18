@@ -130,7 +130,7 @@ export function NewsSidebar() {
             Miejsce na Twoją reklamę
           </h3>
 
-          <p className="text-[11px] text-stone-400 font-medium max-w-[240px] leading-normal mb-3.5">
+          <p className="text-[11px] text-stone-400 font-normal max-w-[240px] leading-normal mb-3.5">
             Dotrzyj do tysięcy mieszkańców gminy Wręczyca Wielka każdego dnia.
           </p>
 
@@ -142,7 +142,7 @@ export function NewsSidebar() {
                 icon: <Megaphone className="h-4 w-4 text-golden-dark" />
               })
             }}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-white hover:bg-slate-900 border border-stone-200 hover:border-slate-900 text-stone-600 hover:text-white px-3.5 py-2 text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-white hover:bg-slate-900 border border-stone-200 hover:border-slate-900 text-stone-600 hover:text-white px-3.5 py-2 text-[9px] font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer"
           >
             <span>Skontaktuj się</span>
             <ArrowRight className="h-3 w-3" />
@@ -150,123 +150,165 @@ export function NewsSidebar() {
         </div>
       </motion.div>
 
-      {/* 1. MUNICIPAL ANNOUNCEMENTS — SAGE GREEN TINTED BACKDROP */}
+      {/* 1. MUNICIPAL ANNOUNCEMENTS — PREMIUM NATURAL CARD */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="rounded-[2rem] border border-[#00933f]/10 bg-[#00933f]/5 p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        className="relative overflow-hidden rounded-[2.25rem] border border-stone-200 bg-white/70 backdrop-blur-md p-6 shadow-sm hover:shadow-[0_12px_30px_rgba(58,90,64,0.06)] transition-all duration-500 text-stone-855"
       >
+        {/* Top accent bar */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-primary" />
+        
+        {/* Subtle background decorative circle */}
+        <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-primary/[0.02] pointer-events-none" />
+
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-[#00933f]/25 text-[#00933f] shadow-sm">
-              <Megaphone className="h-4 w-4" strokeWidth={2.2} />
+          <div className="flex items-center gap-3.5 mb-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/10 text-primary shadow-[0_2px_10px_rgba(58,90,64,0.05)]">
+              <Megaphone className="h-4.5 w-4.5" strokeWidth={2} />
             </div>
             <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">
+              <h3 className="text-[13px] font-bold uppercase tracking-widest text-stone-800 leading-tight">
                 Ogłoszenia Urzędu Gminy
               </h3>
-              <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">
-                Biuletyn informacyjny
+              <span className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block mt-0.5">
+                Oficjalny Biuletyn Informacyjny
               </span>
             </div>
           </div>
 
           <div className="space-y-4">
-            {ANNOUNCEMENTS.map((ann) => (
-              <div
-                key={ann.id}
-                className="group cursor-pointer border-b border-[#00933f]/10 last:border-0 pb-4 last:pb-0"
-              >
-                <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-[9px] font-bold text-[#00933f] bg-[#00933f]/8 border border-[#00933f]/15 px-2 py-0.5 rounded-md">
-                    {ann.category}
-                  </span>
-                  <span className="text-[9px] font-medium text-stone-400 flex items-center gap-1">
-                    <Calendar className="h-3 w-3 text-stone-400/80" /> {ann.date}
-                  </span>
+            {ANNOUNCEMENTS.map((ann) => {
+              // Custom left accent color or tag styling based on category
+              let accentColor = "border-l-primary"
+              let tagStyle = "text-primary bg-primary/5 border border-primary/10"
+              
+              if (ann.category === "Techniczne") {
+                accentColor = "border-l-amber-500"
+                tagStyle = "text-amber-800 bg-amber-50 border border-amber-200/50"
+              } else if (ann.category === "Inicjatywy") {
+                accentColor = "border-l-toffee-brown"
+                tagStyle = "text-[#65764d] bg-toffee-brown/10 border border-toffee-brown/20"
+              }
+
+              return (
+                <div
+                  key={ann.id}
+                  className={`group cursor-pointer bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-4.5 border border-stone-200/50 border-l-[3.5px] ${accentColor} shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className={`text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${tagStyle}`}>
+                      {ann.category}
+                    </span>
+                    <span className="text-[10.5px] font-normal text-stone-400 flex items-center gap-1.5">
+                      <Calendar className="h-3.5 w-3.5 text-stone-300" /> {ann.date}
+                    </span>
+                  </div>
+                  <h4 className="text-[13px] font-bold text-[#2e3f35] group-hover:text-primary transition-colors duration-200 line-clamp-1 leading-snug">
+                    {ann.title}
+                  </h4>
+                  <p className="mt-1.5 text-[11.5px] text-stone-500 font-normal line-clamp-2 leading-relaxed">
+                    {ann.excerpt}
+                  </p>
                 </div>
-                <h4 className="text-[13px] font-bold text-slate-800 group-hover:text-[#00933f] transition-colors duration-200 line-clamp-1 leading-snug">
-                  {ann.title}
-                </h4>
-                <p className="mt-1 text-[11px] text-slate-500 font-normal line-clamp-2 leading-relaxed">
-                  {ann.excerpt}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <a
             href="/ogloszenia"
-            className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-[#00933f] border border-stone-200/80 hover:border-[#00933f] py-2.5 text-[9px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-all duration-300 shadow-sm"
+            className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-transparent hover:bg-primary border border-primary/20 hover:border-primary py-3 text-[10px] font-semibold uppercase tracking-widest text-primary hover:text-white transition-all duration-300 shadow-[0_2px_6px_rgba(0,0,0,0.01)] cursor-pointer"
           >
             <span>Wszystkie ogłoszenia</span>
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
       </motion.div>
 
-      {/* 2. LATEST COMMENTS — WARM GOLD TINTED BACKDROP */}
+      {/* 2. LATEST COMMENTS — PREMIUM NATURAL CARD */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="rounded-[2rem] border border-[#c49200]/10 bg-[#c49200]/5 p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        className="relative overflow-hidden rounded-[2.25rem] border border-stone-200 bg-white/70 backdrop-blur-md p-6 shadow-sm hover:shadow-[0_12px_30px_rgba(58,90,64,0.06)] transition-all duration-500 text-stone-855"
       >
+        {/* Top accent bar */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-toffee-brown" />
+
+        {/* Subtle background decorative circle */}
+        <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-toffee-brown/[0.03] pointer-events-none" />
+
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-[#c49200]/25 text-[#c49200] shadow-sm">
-              <MessageSquare className="h-4 w-4" strokeWidth={2.2} />
+          <div className="flex items-center gap-3.5 mb-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-toffee-brown/10 border border-toffee-brown/10 text-primary shadow-[0_2px_10px_rgba(163,177,138,0.05)]">
+              <MessageSquare className="h-4.5 w-4.5" strokeWidth={2} />
             </div>
             <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">
+              <h3 className="text-[13px] font-bold uppercase tracking-widest text-stone-800 leading-tight">
                 Głos Mieszkańców
               </h3>
-              <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">
-                Najnowsze opinie i pomysły
+              <span className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block mt-0.5">
+                Najnowsze opinie i dyskusje
               </span>
             </div>
           </div>
 
           <div className="space-y-4">
-            {comments.map((com) => (
-              <div
-                key={com.id}
-                className="group/item flex gap-3 border-b border-[#c49200]/10 last:border-0 pb-4 last:pb-0"
-              >
+            {comments.map((com, idx) => {
+              // Create dynamic pastel/earthy background gradients for avatars
+              const avatarGradients = [
+                "from-primary/10 to-primary/5 text-primary border-primary/20",
+                "from-toffee-brown/20 to-toffee-brown/5 text-[#588157] border-toffee-brown/30",
+                "from-amber-100 to-amber-50 text-amber-800 border-amber-200"
+              ]
+              const avatarClass = avatarGradients[idx % avatarGradients.length]
+
+              return (
                 <div
-                  className="h-7.5 w-7.5 rounded-lg shrink-0 flex items-center justify-center font-black text-[9px] shadow-sm bg-white border border-[#c49200]/25 text-[#c49200]"
+                  key={com.id}
+                  className="group/item relative overflow-hidden bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-4.5 border border-stone-200/50 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left"
                 >
-                  {com.initials}
-                </div>
-                <div className="flex-1 space-y-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-bold text-slate-700">
-                      {com.author}
-                    </span>
-                    <span className="text-[9px] font-medium text-stone-400 flex items-center gap-0.5 shrink-0">
-                      <Clock className="h-2.5 w-2.5 text-stone-400" /> {com.time}
-                    </span>
+                  {/* Decorative background watermark quote */}
+                  <Quote className="absolute -right-2 -bottom-2 h-12 w-12 text-stone-200/10 stroke-[1] pointer-events-none group-hover/item:text-toffee-brown/[0.05] group-hover/item:scale-110 transition-all duration-300" />
+
+                  <div className="relative z-10 flex gap-3.5">
+                    <div
+                      className={`h-9 w-9 rounded-xl shrink-0 flex items-center justify-center font-semibold text-[11px] shadow-sm bg-gradient-to-br border ${avatarClass}`}
+                    >
+                      {com.initials}
+                    </div>
+                    <div className="flex-1 space-y-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[12.5px] font-bold text-stone-850 leading-none">
+                          {com.author}
+                        </span>
+                        <span className="text-[10px] font-normal text-stone-400 flex items-center gap-1 shrink-0 leading-none">
+                          <Clock className="h-3 w-3 text-stone-300" /> {com.time}
+                        </span>
+                      </div>
+                      <p className="text-[11.5px] text-stone-600 font-normal leading-relaxed italic pr-2">
+                        &ldquo;{com.comment}&rdquo;
+                      </p>
+                      <div className="inline-flex items-center gap-1 mt-2.5 text-[9.5px] font-medium uppercase tracking-wider text-primary/75 hover:text-primary transition-colors cursor-pointer bg-primary/[0.04] hover:bg-primary/[0.08] px-2.5 py-0.5 rounded-lg max-w-full">
+                        <span className="h-1 w-1 rounded-full bg-primary/40 shrink-0" />
+                        <span className="truncate">{com.source}</span>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-[11px] text-slate-600 font-normal leading-relaxed italic">
-                    &quot;{com.comment}&quot;
-                  </p>
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-[#c49200]/80 group-hover/item:text-[#c49200] transition-colors cursor-pointer pt-0.5 truncate">
-                    {com.source}
-                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <a
             href="/glos-mieszkancow"
-            className="group/btn mt-5 flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-[#c49200] border border-stone-200/80 hover:border-[#c49200] py-2.5 text-[9px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-all duration-300 shadow-sm"
+            className="group/btn mt-5 flex items-center justify-center gap-2 rounded-xl bg-transparent hover:bg-toffee-brown border border-toffee-brown/20 hover:border-toffee-brown py-3 text-[10px] font-semibold uppercase tracking-widest text-primary hover:text-white transition-all duration-300 shadow-[0_2px_6px_rgba(0,0,0,0.01)] cursor-pointer"
           >
             <span>Dołącz do dyskusji</span>
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
           </a>
         </div>
       </motion.div>
@@ -284,25 +326,32 @@ export function NewsSidebar() {
             <CloudSun className="h-4 w-4" />
           </div>
           <div>
-            <h3 className="text-xs font-black uppercase tracking-widest text-foreground">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-foreground">
               Pogoda Wręczyca Wielka
             </h3>
-            <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
               Prognoza 14-dniowa
             </span>
           </div>
         </div>
 
-        <div className="flex items-center justify-between bg-gradient-to-br from-[#588157] to-[#3a5a40] text-white p-5 rounded-2xl mb-6 shadow-md shadow-dusty-olive/20">
-          <div className="space-y-1">
-            <span className="text-[9px] font-black uppercase tracking-widest text-toffee-brown animate-pulse">Aktualnie</span>
+        <div className="relative overflow-hidden flex items-center justify-between text-white p-5 rounded-2xl mb-6 shadow-md border border-slate-200/10 group/weather">
+          {/* Weather photo background with a subtle dark overlay for maximum text legibility */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/weather:scale-105 pointer-events-none" 
+            style={{ backgroundImage: "url('/weather-sunny.png')" }} 
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-slate-800/40 to-slate-950/60 pointer-events-none" />
+
+          <div className="relative z-10 space-y-1">
+            <span className="text-[9px] font-semibold uppercase tracking-widest text-amber-300 animate-pulse">Aktualnie</span>
             <div className="text-4xl font-extralight tracking-tighter">18°C</div>
-            <div className="text-[10px] font-bold text-white/80">Słonecznie i ciepło</div>
+            <div className="text-[10px] font-normal text-white/95">Słonecznie i ciepło</div>
           </div>
-          <div className="text-right space-y-1 text-white/80">
-            <Sun className="h-10 w-10 text-amber-300 stroke-[1.5] filter drop-shadow-[0_2px_8px_rgba(251,191,36,0.4)] inline-block" />
-            <div className="text-[9px] font-bold uppercase tracking-widest block">Wilgotność: 62%</div>
-            <div className="text-[9px] font-bold uppercase tracking-widest block">Wiatr: 12 km/h</div>
+          <div className="relative z-10 text-right space-y-1 text-white/90">
+            <Sun className="h-10 w-10 text-amber-300 stroke-[1.5] filter drop-shadow-[0_2px_12px_rgba(251,191,36,0.6)] inline-block" />
+            <div className="text-[9px] font-normal uppercase tracking-widest block">Wilgotność: 62%</div>
+            <div className="text-[9px] font-normal uppercase tracking-widest block">Wiatr: 12 km/h</div>
           </div>
         </div>
 
@@ -314,7 +363,7 @@ export function NewsSidebar() {
                 key={idx}
                 className="flex items-center justify-between border-b border-border pb-3 last:border-0 last:pb-0"
               >
-                <span className="text-xs font-bold text-foreground w-28 text-left">
+                <span className="text-xs font-normal text-foreground w-28 text-left">
                   {w.day}
                 </span>
 
@@ -326,8 +375,8 @@ export function NewsSidebar() {
                 </div>
 
                 <div className="flex items-center gap-3 text-right">
-                  <span className="text-xs font-bold text-foreground">{w.tempDay}°</span>
-                  <span className="text-xs text-muted-foreground font-medium">{w.tempNight}°</span>
+                  <span className="text-xs font-semibold text-foreground">{w.tempDay}°</span>
+                  <span className="text-xs text-muted-foreground font-normal">{w.tempNight}°</span>
                 </div>
               </div>
             )

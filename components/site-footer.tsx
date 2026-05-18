@@ -61,7 +61,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#c49200]/15 flex items-center bg-[#c49200]">
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#365239]/15 flex items-center bg-[#365239]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
             <img 
@@ -69,13 +69,13 @@ export function SiteFooter() {
               alt="Wręczyca Wielka" 
               className="h-full w-full object-cover mix-blend-overlay grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#c49200] via-[#c49200]/85 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#365239] via-[#365239]/85 to-transparent" />
           </div>
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
             <div className="lg:w-1/2 text-center lg:text-left">
               <h3 className="text-2xl md:text-3xl font-normal tracking-tight text-white mb-2">
-                Zapisz się do <span className="text-[#fefce8] font-normal">newslettera</span>
+                Zapisz się do <span className="text-[#dcfce7] font-normal">newslettera</span>
               </h3>
               <p className="text-sm text-white/90 max-w-md mx-auto lg:mx-0">
                 Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
@@ -101,7 +101,7 @@ export function SiteFooter() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="h-12 px-6 rounded-xl bg-white text-[#c49200] font-normal text-xs uppercase tracking-widest shadow-md hover:bg-[#fdfaec] transition-all duration-300 whitespace-nowrap cursor-pointer"
+                    className="h-12 px-6 rounded-xl bg-white text-[#365239] font-normal text-xs uppercase tracking-widest shadow-md hover:bg-[#f4f7f5] transition-all duration-300 whitespace-nowrap cursor-pointer"
                   >
                     Zapisz się
                   </motion.button>
@@ -112,7 +112,7 @@ export function SiteFooter() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"
                 >
-                  <div className="h-10 w-10 rounded-full bg-white text-[#c49200] flex items-center justify-center shrink-0">
+                  <div className="h-10 w-10 rounded-full bg-white text-[#365239] flex items-center justify-center shrink-0">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div className="text-left">

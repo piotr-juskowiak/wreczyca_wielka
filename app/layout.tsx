@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Figtree } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { PagePreloader } from '@/components/page-preloader'
+import { ScrollToTop } from '@/components/scroll-to-top'
+import { CookieBanner } from '@/components/cookie-banner'
 
 import './globals.css'
 
@@ -28,6 +30,8 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <PagePreloader />
         {children}
+        <ScrollToTop />
+        <CookieBanner />
 
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -4,88 +4,58 @@ import { motion } from "framer-motion"
 import { Calendar, Clock, ArrowUpRight } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
-const categoryColors: Record<string, string> = {
-  Inwestycje: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
-  Biznes: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
-  "E-Urząd": "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
-  Wydarzenia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Ogłoszenia: "bg-golden-lightest text-golden-dark border-golden-light/40 backdrop-blur-md shadow-sm hover:bg-golden hover:text-[#344e41] transition-all",
-  Edukacja: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/25 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
-  Konsultacje: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Sport: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Ekologia: "bg-charcoal-brown-light text-charcoal-brown-solid border-charcoal-brown-solid/20 backdrop-blur-md shadow-sm hover:bg-charcoal-brown-solid hover:text-white transition-all",
-  Kultura: "bg-golden-lightest text-golden-dark border-golden-light/40 backdrop-blur-md shadow-sm hover:bg-golden hover:text-[#344e41] transition-all",
-  Sołectwa: "bg-dusty-olive-light text-dusty-olive border-dusty-olive/20 backdrop-blur-md shadow-sm hover:bg-dusty-olive hover:text-white transition-all",
-}
-
-// Light gradient backgrounds tinted by category
-const cardTints: Record<string, string> = {
-  Inwestycje: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
-  Biznes: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
-  "E-Urząd": "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
-  Edukacja: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
-  Sołectwa: "bg-gradient-to-br from-[#588157]/[0.04] via-card to-card",
-  Wydarzenia: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
-  Sport: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
-  Ekologia: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
-  Konsultacje: "bg-gradient-to-br from-[#3a5a40]/[0.05] via-card to-card",
-  Ogłoszenia: "bg-gradient-to-br from-golden-lightest/40 via-card to-card",
-  Kultura: "bg-gradient-to-br from-golden-lightest/40 via-card to-card",
-}
-
 export function NewsCard({ article }: { article: NewsArticle }) {
-  const badgeClass = categoryColors[article.category] ?? "bg-secondary text-foreground border-border"
-  const tintClass = cardTints[article.category] ?? "bg-gradient-to-br from-secondary/40 via-card to-card"
-
   return (
     <motion.article
-      whileHover={{ y: -8 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-border/60 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-golden-glow hover:border-golden/40 ${tintClass}`}
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 260, damping: 25 }}
+      className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-stone-200/60 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-stone-200/30 hover:border-stone-300 h-full"
     >
       <a href={`/aktualnosci/${article.slug}`} className="flex flex-col h-full">
-        <div className="relative aspect-[16/10] overflow-hidden m-2 rounded-[1.5rem]">
+        {/* Sleek, wide aspect ratio image container */}
+        <div className="relative aspect-[2/1] overflow-hidden m-2 rounded-[1rem]">
           <motion.img
             src={article.image}
             alt={article.title}
             className="h-full w-full object-cover"
             initial={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           />
         </div>
 
-        <div className="flex flex-1 flex-col px-6 pb-6 pt-4">
-          <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70 mb-4">
+        <div className="flex flex-1 flex-col px-5 pb-5 pt-3">
+          {/* Metadata Section */}
+          <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-stone-400/80 mb-2.5">
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-3 w-3" />
+              <Calendar className="h-3.5 w-3.5 text-stone-400/70" />
               {article.date}
             </span>
-            <span className="h-1 w-1 rounded-full bg-border" />
+            <span className="h-1 w-1 rounded-full bg-stone-200" />
             <span className="flex items-center gap-1.5">
-              <Clock className="h-3 w-3" />
+              <Clock className="h-3.5 w-3.5 text-stone-400/70" />
               {article.readTime}
             </span>
           </div>
 
-          <h3 className="text-xl font-bold text-foreground text-balance leading-tight group-hover:text-dusty-olive transition-colors line-clamp-2">
+          {/* Title */}
+          <h3 className="text-base font-bold text-slate-800 text-balance leading-snug group-hover:text-golden-dark transition-colors duration-200 line-clamp-2">
             {article.title}
           </h3>
 
-          <p className="mt-4 text-sm text-muted-foreground line-clamp-3 leading-relaxed flex-1">
+          {/* Excerpt */}
+          <p className="mt-2 text-[11.5px] text-stone-500 font-medium line-clamp-2 leading-relaxed flex-1">
             {article.excerpt}
           </p>
 
-          <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between">
-            <span className="text-xs font-bold text-golden-dark opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              Czytaj więcej
-            </span>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-golden group-hover:text-[#344e41] group-hover:rotate-12 shadow-sm border group-hover:border-golden">
-              <ArrowUpRight className="h-5 w-5" />
-            </span>
+          {/* Compact Inline Bottom Action */}
+          <div className="mt-3.5 flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-slate-700 group-hover:text-golden-dark transition-all duration-300">
+            <span>Czytaj więcej</span>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
         </div>
       </a>
     </motion.article>
   )
 }
+

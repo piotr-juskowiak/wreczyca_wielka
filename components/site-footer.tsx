@@ -61,7 +61,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#344e41]/10 flex items-center bg-[#3a5a40]">
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#c49200]/15 flex items-center bg-[#c49200]">
           {/* Subtle Background Texture */}
           <div className="absolute inset-0 z-0 opacity-20">
             <img 
@@ -69,15 +69,15 @@ export function SiteFooter() {
               alt="Wręczyca Wielka" 
               className="h-full w-full object-cover mix-blend-overlay grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3a5a40] via-[#3a5a40]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#c49200] via-[#c49200]/85 to-transparent" />
           </div>
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
             <div className="lg:w-1/2 text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
-                Zapisz się do <span className="text-toffee-brown font-extrabold">newslettera</span>
+              <h3 className="text-2xl md:text-3xl font-normal tracking-tight text-white mb-2">
+                Zapisz się do <span className="text-[#fefce8] font-normal">newslettera</span>
               </h3>
-              <p className="text-sm text-[#dad7cd]/80 max-w-md mx-auto lg:mx-0">
+              <p className="text-sm text-white/90 max-w-md mx-auto lg:mx-0">
                 Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
               </p>
             </div>
@@ -95,13 +95,13 @@ export function SiteFooter() {
                     type="email"
                     required
                     placeholder="Twój adres e-mail"
-                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-[#344e41] placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
+                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-slate-800 placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="h-12 px-6 rounded-xl bg-toffee-brown text-white font-bold text-xs uppercase tracking-widest shadow-lg hover:bg-dusty-olive hover:text-white transition-all whitespace-nowrap"
+                    className="h-12 px-6 rounded-xl bg-white text-[#c49200] font-normal text-xs uppercase tracking-widest shadow-md hover:bg-[#fdfaec] transition-all duration-300 whitespace-nowrap cursor-pointer"
                   >
                     Zapisz się
                   </motion.button>
@@ -112,18 +112,18 @@ export function SiteFooter() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"
                 >
-                  <div className="h-10 w-10 rounded-full bg-toffee-brown text-white flex items-center justify-center shrink-0">
+                  <div className="h-10 w-10 rounded-full bg-white text-[#c49200] flex items-center justify-center shrink-0">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div className="text-left">
-                    <h4 className="text-sm font-bold text-white uppercase tracking-wider">Dziękujemy!</h4>
-                    <p className="text-xs text-[#dad7cd]/70">Potwierdź subskrypcję na swoim e-mailu.</p>
+                    <h4 className="text-sm font-normal text-white uppercase tracking-wider">Dziękujemy!</h4>
+                    <p className="text-xs text-white/80">Potwierdź subskrypcję na swoim e-mailu.</p>
                   </div>
                 </motion.div>
               )}
               <div className="mt-3 flex items-center gap-2 px-2">
-                <CheckCircle2 className="h-3 w-3 text-toffee-brown/80" />
-                <p className="text-[10px] text-[#dad7cd]/50 uppercase tracking-widest font-bold">
+                <CheckCircle2 className="h-3 w-3 text-white/80" />
+                <p className="text-[10px] text-white/70 uppercase tracking-widest font-normal">
                   Akceptujesz politykę prywatności i RODO.
                 </p>
               </div>

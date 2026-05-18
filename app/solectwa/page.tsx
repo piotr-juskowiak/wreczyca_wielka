@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import useSWR from "swr"
 import { motion, AnimatePresence } from "framer-motion"
 import { SiteHeader } from "@/components/site-header"
@@ -27,6 +27,17 @@ export default function SolectwaPage() {
 
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedSolectwo, setSelectedSolectwo] = useState<string | null>(null)
+
+  // Pre-select sołectwo from URL query parameter ?wybrane=...
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      const wybrane = params.get("wybrane")
+      if (wybrane && SOLECTWA.includes(wybrane)) {
+        setSelectedSolectwo(wybrane)
+      }
+    }
+  }, [])
 
   // Filter sołectwa by search query
   const filteredSolectwa = useMemo(() => {

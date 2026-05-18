@@ -109,106 +109,65 @@ export function NewsSidebar() {
   return (
     <aside className="w-full lg:w-[380px] shrink-0 space-y-8 select-none">
 
-      {/* 0. PREMIUM ADVERTISING BANNER — INVEST IN WRĘCZYCA */}
+      {/* 0. PROFESSIONAL ADVERTISING PLACEHOLDER */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="relative overflow-hidden rounded-[2.2rem] h-[395px] text-white shadow-xl shadow-[#208fcf]/5 border border-stone-200/20 group"
+        className="relative overflow-hidden rounded-[2rem] bg-stone-50/50 border border-dashed border-stone-300/80 p-6 flex flex-col items-center justify-center text-center group h-[220px] shadow-sm hover:bg-stone-50 hover:border-stone-400/80 transition-all duration-300"
       >
-        {/* Background Image */}
-        <motion.img
-          src="/wreczyca_invest_zone.png"
-          alt="Tereny Inwestycyjne Wręczyca Wielka"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
-        
-        {/* Technical Grid Overlay for Architecture/Investment Blueprint vibe */}
-        <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(white_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-        
-        {/* Deep, highly legible corporate gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-950/30 pointer-events-none" />
+        {/* Subtle decorative grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col justify-between h-full p-6">
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-1.5 rounded-full bg-slate-950/50 backdrop-blur-md px-2.5 py-1 text-[8px] font-black uppercase tracking-widest border border-white/10 shadow-sm text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Sponsorowane
-              </div>
-              <span className="text-[8px] font-black uppercase tracking-widest text-[#ffd230] bg-[#ffd230]/10 backdrop-blur-md border border-[#ffd230]/25 rounded-full px-2.5 py-1 shadow-sm">
-                Partner Gminy
-              </span>
-            </div>
-            
-            <h3 className="text-lg font-black uppercase tracking-wide leading-tight text-white mb-2">
-              Wręczyca Wielka <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffd230] to-[#ffe885] font-black uppercase">
-                Strefa Biznesu
-              </span>
-            </h3>
-            
-            <p className="text-[11px] text-white/80 font-medium leading-relaxed">
-              Atrakcyjne tereny przemysłowe, ulgi podatkowe w Katowickiej SSE oraz kompleksowe wsparcie inwestorów komercyjnych.
-            </p>
-
-            {/* Investment Parameters */}
-            <div className="grid grid-cols-3 gap-2 mt-4.5">
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner">
-                <span className="block text-[11px] font-black text-[#ffd230] uppercase">KSSE</span>
-                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Wsparcie</span>
-              </div>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner flex flex-col justify-center items-center">
-                <span className="block text-[11px] font-black text-white uppercase">8 km</span>
-                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Do Autostrady</span>
-              </div>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner">
-                <span className="block text-[11px] font-black text-emerald-400 uppercase">0%</span>
-                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Podatku</span>
-              </div>
-            </div>
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Elegant Gray Icon */}
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-stone-200 shadow-sm text-stone-400 mb-3 group-hover:scale-105 transition-transform duration-300">
+            <Megaphone className="h-5 w-5 text-stone-400/80" strokeWidth={1.8} />
           </div>
+
+          <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+            Miejsce na Twoją reklamę
+          </h3>
+
+          <p className="text-[11px] text-stone-400 font-medium max-w-[240px] leading-normal mb-3.5">
+            Dotrzyj do tysięcy mieszkańców gminy Wręczyca Wielka każdego dnia.
+          </p>
 
           <button
             onClick={() => {
-              toast.success("Przekierowanie do portalu inwestora...", {
-                description: "Pobieranie aktualnej oferty działek komercyjnych Gminy Wręczyca Wielka.",
-                duration: 3500,
-                icon: <Building2 className="h-4 w-4 text-[#ffd230]" />
+              toast.info("Biuro Ogłoszeń i Reklam", {
+                description: "Napisz na e-mail: ug@wreczyca-wielka.pl lub zadzwoń pod nr tel. (34) 317 01 10 w celu ustalenia szczegółów.",
+                duration: 6000,
+                icon: <Megaphone className="h-4 w-4 text-golden-dark" />
               })
             }}
-            className="group/btn w-full flex items-center justify-center gap-2 rounded-2xl bg-white text-slate-900 hover:bg-[#ffd230] hover:shadow-lg hover:shadow-[#ffd230]/20 border border-white/15 py-3.5 text-[10px] font-black uppercase tracking-widest shadow-xl transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-white hover:bg-slate-900 border border-stone-200 hover:border-slate-900 text-stone-600 hover:text-white px-3.5 py-2 text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer"
           >
-            <Building2 className="h-3.5 w-3.5" />
-            <span>Sprawdź tereny</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+            <span>Skontaktuj się</span>
+            <ArrowRight className="h-3 w-3" />
           </button>
         </div>
       </motion.div>
 
-      {/* 1. MUNICIPAL ANNOUNCEMENTS — DELICATE GOLD */}
+      {/* 1. MUNICIPAL ANNOUNCEMENTS — SAGE GREEN TINTED BACKDROP */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#a3b18a]/85 via-[#588157]/80 to-[#3a5a40]/75 backdrop-blur-2xl p-6"
+        className="rounded-[2rem] border border-[#00933f]/10 bg-[#00933f]/5 p-6 shadow-sm hover:shadow-md transition-all duration-300"
       >
-        {/* Ambient pattern */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(white_1px,transparent_1px)] [background-size:18px_18px]" />
-        <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-golden text-[#344e41] shadow-lg">
-              <Megaphone className="h-5 w-5" strokeWidth={2.2} />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-[#00933f]/25 text-[#00933f] shadow-sm">
+              <Megaphone className="h-4 w-4" strokeWidth={2.2} />
             </div>
             <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-white">
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">
                 Ogłoszenia Urzędu Gminy
               </h3>
-              <span className="text-[10px] text-white/85 font-bold uppercase tracking-wider">
+              <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">
                 Biuletyn informacyjny
               </span>
             </div>
@@ -218,20 +177,20 @@ export function NewsSidebar() {
             {ANNOUNCEMENTS.map((ann) => (
               <div
                 key={ann.id}
-                className="group cursor-pointer rounded-2xl bg-white/90 hover:bg-white border border-white/30 hover:shadow-lg p-4 transition-all duration-300 backdrop-blur-md"
+                className="group cursor-pointer border-b border-[#00933f]/10 last:border-0 pb-4 last:pb-0"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-[#344e41] bg-golden px-2.5 py-0.5 rounded-full">
+                  <span className="text-[9px] font-bold text-[#00933f] bg-[#00933f]/8 border border-[#00933f]/15 px-2 py-0.5 rounded-md">
                     {ann.category}
                   </span>
-                  <span className="text-[9px] font-bold text-[#344e41]/60 flex items-center gap-1">
-                    <Calendar className="h-3 w-3" /> {ann.date}
+                  <span className="text-[9px] font-medium text-stone-400 flex items-center gap-1">
+                    <Calendar className="h-3 w-3 text-stone-400/80" /> {ann.date}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-[#344e41] group-hover:text-golden-dark transition-colors duration-200 line-clamp-1 leading-snug">
+                <h4 className="text-[13px] font-bold text-slate-800 group-hover:text-[#00933f] transition-colors duration-200 line-clamp-1 leading-snug">
                   {ann.title}
                 </h4>
-                <p className="mt-1 text-xs text-[#344e41]/80 font-medium line-clamp-2 leading-relaxed">
+                <p className="mt-1 text-[11px] text-slate-500 font-normal line-clamp-2 leading-relaxed">
                   {ann.excerpt}
                 </p>
               </div>
@@ -240,86 +199,74 @@ export function NewsSidebar() {
 
           <a
             href="/ogloszenia"
-            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#344e41]/90 backdrop-blur-sm py-3 text-[10px] font-black uppercase tracking-wider text-white hover:bg-[#344e41] transition-all duration-300 shadow-lg"
+            className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-[#00933f] border border-stone-200/80 hover:border-[#00933f] py-2.5 text-[9px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-all duration-300 shadow-sm"
           >
             <span>Wszystkie ogłoszenia</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
       </motion.div>
 
-      {/* 2. LATEST COMMENTS — LIGHT LUXURY FEED LIST */}
+      {/* 2. LATEST COMMENTS — WARM GOLD TINTED BACKDROP */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="relative overflow-hidden rounded-3xl bg-white/80 border border-stone-200/60 shadow-xl shadow-stone-100/40 p-6"
+        className="rounded-[2rem] border border-[#c49200]/10 bg-[#c49200]/5 p-6 shadow-sm hover:shadow-md transition-all duration-300"
       >
-        {/* Subtle decorative grid */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#208fcf_1px,transparent_1px)] [background-size:16px_16px]" />
-        
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20 shadow-sm">
-              <MessageSquare className="h-5 w-5" strokeWidth={2.2} />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-[#c49200]/25 text-[#c49200] shadow-sm">
+              <MessageSquare className="h-4 w-4" strokeWidth={2.2} />
             </div>
             <div>
               <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">
                 Głos Mieszkańców
               </h3>
-              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+              <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">
                 Najnowsze opinie i pomysły
               </span>
             </div>
           </div>
 
-          <div className="space-y-1">
-            {comments.map((com) => {
-              const avatarStyles: Record<string, string> = {
-                "MK": "bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20",
-                "TW": "bg-[#d97706]/10 text-[#d97706] border border-[#d97706]/20",
-                "EP": "bg-[#00933f]/10 text-[#00933f] border border-[#00933f]/20",
-              }
-              const avatarStyle = avatarStyles[com.initials] ?? "bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20"
-              
-              return (
+          <div className="space-y-4">
+            {comments.map((com) => (
+              <div
+                key={com.id}
+                className="group/item flex gap-3 border-b border-[#c49200]/10 last:border-0 pb-4 last:pb-0"
+              >
                 <div
-                  key={com.id}
-                  className="group/item flex gap-3.5 py-4 first:pt-0 last:pb-0 border-b border-stone-100 last:border-b-0 hover:bg-[#208fcf]/[0.02] rounded-2xl px-2.5 -mx-2.5 transition-all duration-300"
+                  className="h-7.5 w-7.5 rounded-lg shrink-0 flex items-center justify-center font-black text-[9px] shadow-sm bg-white border border-[#c49200]/25 text-[#c49200]"
                 >
-                  <div
-                    className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-black text-xs shadow-sm ${avatarStyle}`}
-                  >
-                    {com.initials}
+                  {com.initials}
+                </div>
+                <div className="flex-1 space-y-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-bold text-slate-700">
+                      {com.author}
+                    </span>
+                    <span className="text-[9px] font-medium text-stone-400 flex items-center gap-0.5 shrink-0">
+                      <Clock className="h-2.5 w-2.5 text-stone-400" /> {com.time}
+                    </span>
                   </div>
-                  <div className="flex-1 space-y-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-black text-slate-700">
-                        {com.author}
-                      </span>
-                      <span className="text-[9px] font-bold text-slate-400 flex items-center gap-0.5 shrink-0">
-                        <Clock className="h-2.5 w-2.5" /> {com.time}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-600 font-medium leading-relaxed italic">
-                      &quot;{com.comment}&quot;
-                    </p>
-                    <div className="text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:underline cursor-pointer pt-0.5 truncate">
-                      {com.source}
-                    </div>
+                  <p className="text-[11px] text-slate-600 font-normal leading-relaxed italic">
+                    &quot;{com.comment}&quot;
+                  </p>
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-[#c49200]/80 group-hover/item:text-[#c49200] transition-colors cursor-pointer pt-0.5 truncate">
+                    {com.source}
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
 
           <a
             href="/glos-mieszkancow"
-            className="group/btn mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#208fcf] py-3.5 text-[10px] font-black uppercase tracking-widest text-white hover:bg-[#1a7bb3] transition-all duration-300 shadow-md shadow-[#208fcf]/10 hover:shadow-lg hover:shadow-[#208fcf]/20"
+            className="group/btn mt-5 flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-[#c49200] border border-stone-200/80 hover:border-[#c49200] py-2.5 text-[9px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-all duration-300 shadow-sm"
           >
             <span>Dołącz do dyskusji</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
       </motion.div>

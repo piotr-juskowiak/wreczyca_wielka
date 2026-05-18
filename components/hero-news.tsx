@@ -168,19 +168,13 @@ function HeroPanel({
 }) {
   const showBorder = index < total - 1
 
-  const formatTitle = (title: string) => {
-    const words = title.split(" ")
-    const limitedTitle = words.slice(0, 10).join(" ") + (words.length > 10 ? "..." : "")
-    const lowercased = limitedTitle.toLowerCase()
-    return lowercased.charAt(0).toUpperCase() + lowercased.slice(1)
-  }
-
   return (
-    <motion.div
+    <motion.a
+      href={`/aktualnosci/${article.slug}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative h-full flex flex-col justify-end overflow-hidden group ${
+      className={`relative h-full flex flex-col justify-end overflow-hidden group select-none cursor-pointer focus:outline-none ${
         showBorder ? "border-r border-white/10" : ""
       }`}
     >
@@ -195,27 +189,35 @@ function HeroPanel({
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         />
-        {/* Subtle overall dark tint to harmonize background colors */}
-        <div className="absolute inset-0 bg-slate-950/20 pointer-events-none z-10" />
+        {/* Cinematic dark bottom-to-top gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/15 pointer-events-none z-10 transition-opacity duration-300 group-hover:from-slate-950/95" />
       </div>
 
       {/* Floating Glassmorphic Card Container for 100% legible text */}
-      <div className="relative z-20 mt-auto m-4 lg:m-6 p-6 rounded-[2rem] bg-zinc-950/50 backdrop-blur-[6px] border border-white/10 shadow-2xl flex flex-col justify-between">
+      <div className={`relative z-20 mt-auto mx-4 mb-6 lg:mx-6 lg:mb-8 p-4.5 lg:p-5 rounded-[1.75rem] bg-slate-950/40 backdrop-blur-md border border-white/10 shadow-2xl flex flex-col justify-between transition-all duration-500 group-hover:border-white/20 group-hover:bg-slate-950/50 ${
+        total === 3 
+          ? "h-[235px] sm:h-[245px] lg:h-[255px] xl:h-[265px]" 
+          : total === 2 
+            ? "h-[255px] sm:h-[265px] lg:h-[275px]" 
+            : "h-auto min-h-[225px]"
+      }`}>
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white/80 mb-3.5">
+          {/* Gold Category Badge */}
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ffd230]/10 border border-[#ffd230]/25 px-2.5 py-0.5 text-[8px] font-black uppercase tracking-widest text-[#ffd230] mb-2.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#ffd230] animate-pulse" />
             <span>{article.category.toLowerCase() === "aktualności" ? "Wiadomość dnia" : article.category}</span>
           </div>
 
+          {/* Title */}
           <h2
-            className={`font-semibold text-white leading-snug tracking-tight transition-colors duration-300 line-clamp-2 text-balance ${
-              total === 3 ? "text-base lg:text-[17px] xl:text-[18px]" : total === 2 ? "text-lg lg:text-xl" : "text-xl sm:text-2xl"
-            }`}
+            className="font-normal text-white leading-snug tracking-tight transition-colors duration-300 group-hover:text-[#ffd230] line-clamp-2 text-balance text-[21px] md:text-[25px]"
           >
-            {formatTitle(article.title)}
+            {article.title}
           </h2>
 
+          {/* Excerpt */}
           <p
-            className={`mt-2 text-white/60 leading-relaxed font-medium ${
+            className={`mt-1.5 text-white/60 leading-relaxed font-medium ${
               total === 3 ? "text-[11px] lg:text-xs line-clamp-2" : "text-xs line-clamp-3"
             }`}
           >
@@ -223,18 +225,14 @@ function HeroPanel({
           </p>
         </div>
 
-        <div className="mt-5.5 pt-4 border-t border-white/5 flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
-          <motion.a
-            href={`/aktualnosci/${article.slug}`}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="group/btn relative inline-flex items-center justify-between gap-3.5 rounded-full bg-gradient-to-r from-[#208fcf] to-[#54b4eb] pl-4 pr-1.5 py-1.5 text-[9px] font-black uppercase tracking-widest text-white shadow-lg shadow-[#208fcf]/10 hover:shadow-[#208fcf]/20 hover:from-[#1d82bd] hover:to-[#4ea8de] transition-all cursor-pointer duration-300 w-fit"
-          >
-            <span>Czytaj</span>
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white group-hover/btn:bg-white/35 transition-all duration-300">
-              <ArrowRight className="h-3 w-3" />
+        {/* Bottom Actions */}
+        <div className="mt-4 pt-3.5 border-t border-white/5 flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
+          <div className="group/btn relative inline-flex items-center justify-between gap-3 rounded-full bg-white/10 border border-white/20 pl-4 pr-1.5 py-1.5 text-[9px] font-black uppercase tracking-widest text-white transition-all duration-300 w-fit group-hover:bg-[#ffd230] group-hover:text-slate-950 group-hover:border-[#ffd230] group-hover:scale-[1.03]">
+            <span>Czytaj więcej</span>
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-slate-200 group-hover:bg-slate-950/15 group-hover:text-slate-950 transition-all duration-300">
+              <ArrowRight className="h-3.5 w-3.5" />
             </div>
-          </motion.a>
+          </div>
 
           <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-white/40">
             <span className="flex items-center gap-1.5">
@@ -244,6 +242,6 @@ function HeroPanel({
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   )
 }

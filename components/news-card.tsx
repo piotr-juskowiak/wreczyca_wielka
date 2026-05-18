@@ -53,12 +53,6 @@ export function NewsCard({ article }: { article: NewsArticle }) {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <span
-            className={`absolute top-4 left-4 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest border ${badgeClass}`}
-          >
-            {article.category}
-          </span>
         </div>
 
         <div className="flex flex-1 flex-col px-6 pb-6 pt-4">

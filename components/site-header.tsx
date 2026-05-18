@@ -11,10 +11,10 @@ function WeatherWidget() {
   const [isOpen, setIsOpen] = useState(false)
 
   const forecast = [
-    { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-[#a3b18a]" />, desc: "Słonecznie" },
-    { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-[#a3b18a]" />, desc: "Słonecznie" },
-    { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#a3b18a]" />, desc: "Zachmurzenie" },
-    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-blue-400" />, desc: "Przelotny deszcz" }
+    { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-[#208fcf]" />, desc: "Słonecznie" },
+    { day: "Jutro", temp: "21°C", icon: <Sun className="h-4 w-4 text-[#208fcf]" />, desc: "Słonecznie" },
+    { day: "Środa", temp: "22°C", icon: <CloudSun className="h-4 w-4 text-[#208fcf]" />, desc: "Zachmurzenie" },
+    { day: "Czwartek", temp: "17°C", icon: <CloudRain className="h-4 w-4 text-[#208fcf]" />, desc: "Przelotny deszcz" }
   ]
 
   return (
@@ -25,12 +25,12 @@ function WeatherWidget() {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-secondary/40 border border-border/40 text-xs font-semibold text-foreground/80 hover:bg-secondary/60 hover:border-[#3a5a40]/30 transition-all active:scale-95 cursor-pointer"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[rgba(32,143,207,0.04)] border border-[#208fcf]/20 text-xs font-semibold text-slate-700 hover:bg-[rgba(32,143,207,0.08)] hover:border-[#208fcf]/40 transition-all active:scale-95 cursor-pointer"
       >
-        <Sun className="h-4 w-4 text-[#a3b18a] animate-spin-slow" />
+        <Sun className="h-4 w-4 text-[#208fcf] animate-spin-slow" />
         <span>18°C</span>
-        <span className="text-muted-foreground/60 font-normal">Wręczyca</span>
-        <ChevronDown className={`h-3 w-3 text-muted-foreground/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <span className="text-slate-400 font-normal">Wręczyca</span>
+        <ChevronDown className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       <AnimatePresence>
@@ -40,24 +40,24 @@ function WeatherWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute right-0 mt-2 w-64 rounded-2xl border border-border/50 bg-white/95 backdrop-blur-md p-4 shadow-xl z-50 pointer-events-auto"
+            className="absolute right-0 mt-2 w-64 rounded-2xl border border-slate-100 bg-white/95 backdrop-blur-md p-4 shadow-xl z-50 pointer-events-auto"
           >
-            <div className="border-b border-border/40 pb-2.5 mb-2.5 text-left">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-[#3a5a40]">
+            <div className="border-b border-slate-100 pb-2.5 mb-2.5 text-left">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-[#208fcf]">
                 Pogoda Wręczyca Wielka
               </h4>
-              <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Prognoza 4-dniowa</p>
+              <p className="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Prognoza 4-dniowa</p>
             </div>
 
             <div className="space-y-2">
               {forecast.map((w, idx) => (
-                <div key={idx} className="flex items-center justify-between py-1 border-b border-secondary/40 last:border-0 last:pb-0 text-left">
-                  <span className="text-xs font-bold text-foreground/80 w-16">{w.day}</span>
+                <div key={idx} className="flex items-center justify-between py-1 border-b border-slate-100 last:border-0 last:pb-0 text-left">
+                  <span className="text-xs font-bold text-slate-700 w-16">{w.day}</span>
                   <div className="flex items-center gap-2 flex-1 justify-start">
                     {w.icon}
-                    <span className="text-[10px] font-medium text-muted-foreground truncate max-w-[90px]">{w.desc}</span>
+                    <span className="text-[10px] font-medium text-slate-400 truncate max-w-[90px]">{w.desc}</span>
                   </div>
-                  <span className="text-xs font-black text-[#3a5a40]">{w.temp}</span>
+                  <span className="text-xs font-black text-[#208fcf]">{w.temp}</span>
                 </div>
               ))}
             </div>
@@ -84,12 +84,11 @@ export function SiteHeader() {
 
   return (
     <>
-      <AnnouncementTicker />
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200/60"
+        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100"
       >
         <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
           {/* Top Row: Brand + Search + Actions */}
@@ -101,37 +100,18 @@ export function SiteHeader() {
               transition={{ delay: 0.2 }}
               className="flex items-center gap-4 group shrink-0"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-border/50 transition-transform group-hover:scale-105 overflow-hidden ring-4 ring-emerald-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-[#208fcf]/20 transition-transform group-hover:scale-105 overflow-hidden ring-4 ring-blue-50/50">
                 <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-10 w-10 object-contain" />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-xl font-medium text-foreground whitespace-nowrap tracking-tight">
+                <span className="text-xl font-medium text-slate-800 whitespace-nowrap tracking-tight">
                   Wręczyca Wielka
                 </span>
-                <span className="text-[10px] font-bold text-dusty-olive uppercase tracking-wider">
+                <span className="text-[10px] font-bold text-[#208fcf] uppercase tracking-wider">
                   Niezależny przegląd gminny
                 </span>
               </div>
             </motion.a>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex-1 max-w-xl hidden md:block"
-            >
-              <button
-                aria-label="Szukaj"
-                onClick={() => setSearchOpen(true)}
-                className="w-full flex h-12 items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 px-5 text-sm text-muted-foreground transition-all hover:bg-secondary/60 hover:border-[#3a5a40]/30"
-              >
-                <Search className="h-4 w-4" />
-                <span className="flex-1 text-left">Szukaj informacji w serwisie...</span>
-                <kbd className="hidden lg:inline-flex items-center rounded-lg bg-white px-2 py-1 text-[10px] font-bold text-muted-foreground shadow-sm border border-border/50">
-                  CTRL + K
-                </kbd>
-              </button>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -139,26 +119,24 @@ export function SiteHeader() {
               transition={{ delay: 0.2 }}
               className="flex items-center gap-3"
             >
-              <WeatherWidget />
-              <motion.a
-                href="https://www.bip.wreczyca-wielka.akcessnet.net/index.php?idg=1&id=1&x=1"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="inline-flex items-center gap-2.5 rounded-xl bg-[#dc2626] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-red-600/20 transition-all hover:bg-red-700"
+              <button
+                aria-label="Szukaj"
+                onClick={() => setSearchOpen(true)}
+                className="flex items-center gap-2 px-2.5 py-1.5 md:px-3 rounded-xl bg-[rgba(32,143,207,0.04)] border border-[#208fcf]/20 text-xs font-semibold text-slate-700 hover:bg-[rgba(32,143,207,0.08)] hover:border-[#208fcf]/40 transition-all active:scale-95 cursor-pointer"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                </span>
-                BIP
-              </motion.a>
+                <Search className="h-3.5 w-3.5 text-[#208fcf]" />
+                <span className="hidden md:inline font-semibold text-slate-700">Szukaj...</span>
+                <kbd className="hidden lg:inline-flex items-center rounded-lg bg-white px-1.5 py-0.5 text-[9px] font-bold text-slate-400 shadow-sm border border-slate-200 ml-1">
+                  ⌘K
+                </kbd>
+              </button>
+
+              <WeatherWidget />
 
               <button
                 aria-label="Menu"
                 onClick={() => setOpen((v) => !v)}
-                className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-foreground/70 hover:bg-secondary transition-colors"
+                className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-slate-600 hover:bg-[rgba(32,143,207,0.06)] hover:text-[rgb(32,143,207)] transition-all cursor-pointer"
               >
                 <Menu className="h-6 w-6" />
               </button>
@@ -166,8 +144,8 @@ export function SiteHeader() {
           </div>
 
           {/* Bottom Row: Navigation */}
-          <div className="hidden lg:flex h-12 items-center border-t border-border/40">
-            <nav className="flex items-center gap-1 -ml-4 relative">
+          <div className="hidden lg:flex h-12 items-center justify-center border-t border-b border-[#208fcf]/10 bg-[rgba(32,143,207,0.045)] -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <nav className="flex items-center gap-1 relative">
               {navLinks.map((link, idx) => {
                 const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))
                 return (
@@ -181,8 +159,8 @@ export function SiteHeader() {
                     onHoverEnd={() => setHoveredIdx(null)}
                     className={`relative rounded-xl px-5 py-2 text-[12px] font-black uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
                       ${isActive
-                        ? 'text-dusty-olive'
-                        : 'text-foreground/75 hover:text-dusty-olive'
+                        ? 'text-[rgb(32,143,207)]'
+                        : 'text-slate-600 hover:text-[rgb(32,143,207)]'
                       }
                     `}
                   >
@@ -192,7 +170,7 @@ export function SiteHeader() {
                     {hoveredIdx === idx && (
                       <motion.div
                         layoutId="nav-hover-pill"
-                        className="absolute inset-0 bg-dusty-olive-light/50 rounded-xl -z-10"
+                        className="absolute inset-0 bg-white border border-[#208fcf]/10 shadow-sm rounded-xl -z-10"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -201,7 +179,7 @@ export function SiteHeader() {
                     {isActive && (
                       <motion.div
                         layoutId="nav-active-line"
-                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-dusty-olive rounded-full"
+                        className="absolute bottom-0 left-5 right-5 h-[3px] bg-[rgb(32,143,207)] rounded-full"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -219,15 +197,23 @@ export function SiteHeader() {
                 exit={{ opacity: 0, height: 0 }}
                 className="lg:hidden pb-4 flex flex-col gap-1 overflow-hidden"
               >
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-secondary"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className={`rounded-xl px-4 py-3 text-sm font-bold transition-colors
+                        ${isActive
+                          ? 'text-[rgb(32,143,207)] bg-[rgba(32,143,207,0.06)]'
+                          : 'text-slate-600 hover:text-[rgb(32,143,207)] hover:bg-[rgba(32,143,207,0.04)]'
+                        }
+                      `}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                })}
               </motion.nav>
             )}
           </AnimatePresence>

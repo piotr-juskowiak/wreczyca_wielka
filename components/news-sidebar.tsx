@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock, Quote } from "lucide-react"
+import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock, Quote, Sparkles, Building2 } from "lucide-react"
+import { toast } from "sonner"
 
 const ANNOUNCEMENTS = [
   {
@@ -69,6 +70,13 @@ const WEATHER_FORECAST = [
   { day: "Piątek", tempDay: 16, tempNight: 9, icon: Cloud, desc: "Zachmurzenie całkowite", color: "text-stone-400" },
   { day: "Sobota", tempDay: 18, tempNight: 10, icon: CloudSun, desc: "Częściowe zachmurzenie", color: "text-sky-500" },
   { day: "Niedziela", tempDay: 20, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-[#a3b18a]" },
+  { day: "Poniedziałek (25.05)", tempDay: 22, tempNight: 12, icon: Sun, desc: "Ciepło i słonecznie", color: "text-[#a3b18a]" },
+  { day: "Wtorek (26.05)", tempDay: 23, tempNight: 13, icon: Sun, desc: "Bezchmurnie", color: "text-[#a3b18a]" },
+  { day: "Środa (27.05)", tempDay: 20, tempNight: 11, icon: CloudSun, desc: "Lekkie zachmurzenie", color: "text-sky-500" },
+  { day: "Czwartek (28.05)", tempDay: 18, tempNight: 10, icon: CloudRain, desc: "Możliwe opady", color: "text-blue-400" },
+  { day: "Piątek (29.05)", tempDay: 16, tempNight: 8, icon: Cloud, desc: "Pochmurno", color: "text-stone-400" },
+  { day: "Sobota (30.05)", tempDay: 19, tempNight: 9, icon: CloudSun, desc: "Przejaśnienia", color: "text-sky-500" },
+  { day: "Niedziela (31.05)", tempDay: 21, tempNight: 11, icon: Sun, desc: "Słonecznie", color: "text-[#a3b18a]" },
 ]
 
 export function NewsSidebar() {
@@ -100,6 +108,84 @@ export function NewsSidebar() {
 
   return (
     <aside className="w-full lg:w-[380px] shrink-0 space-y-8 select-none">
+
+      {/* 0. PREMIUM ADVERTISING BANNER — INVEST IN WRĘCZYCA */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="relative overflow-hidden rounded-[2.2rem] h-[395px] text-white shadow-xl shadow-[#208fcf]/5 border border-stone-200/20 group"
+      >
+        {/* Background Image */}
+        <motion.img
+          src="/wreczyca_invest_zone.png"
+          alt="Tereny Inwestycyjne Wręczyca Wielka"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        
+        {/* Technical Grid Overlay for Architecture/Investment Blueprint vibe */}
+        <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(white_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+        
+        {/* Deep, highly legible corporate gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-950/30 pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col justify-between h-full p-6">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-1.5 rounded-full bg-slate-950/50 backdrop-blur-md px-2.5 py-1 text-[8px] font-black uppercase tracking-widest border border-white/10 shadow-sm text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Sponsorowane
+              </div>
+              <span className="text-[8px] font-black uppercase tracking-widest text-[#ffd230] bg-[#ffd230]/10 backdrop-blur-md border border-[#ffd230]/25 rounded-full px-2.5 py-1 shadow-sm">
+                Partner Gminy
+              </span>
+            </div>
+            
+            <h3 className="text-lg font-black uppercase tracking-wide leading-tight text-white mb-2">
+              Wręczyca Wielka <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffd230] to-[#ffe885] font-black uppercase">
+                Strefa Biznesu
+              </span>
+            </h3>
+            
+            <p className="text-[11px] text-white/80 font-medium leading-relaxed">
+              Atrakcyjne tereny przemysłowe, ulgi podatkowe w Katowickiej SSE oraz kompleksowe wsparcie inwestorów komercyjnych.
+            </p>
+
+            {/* Investment Parameters */}
+            <div className="grid grid-cols-3 gap-2 mt-4.5">
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner">
+                <span className="block text-[11px] font-black text-[#ffd230] uppercase">KSSE</span>
+                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Wsparcie</span>
+              </div>
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner flex flex-col justify-center items-center">
+                <span className="block text-[11px] font-black text-white uppercase">8 km</span>
+                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Do Autostrady</span>
+              </div>
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2.5 text-center shadow-inner">
+                <span className="block text-[11px] font-black text-emerald-400 uppercase">0%</span>
+                <span className="block text-[7px] text-white/50 font-bold uppercase tracking-wider mt-0.5">Podatku</span>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => {
+              toast.success("Przekierowanie do portalu inwestora...", {
+                description: "Pobieranie aktualnej oferty działek komercyjnych Gminy Wręczyca Wielka.",
+                duration: 3500,
+                icon: <Building2 className="h-4 w-4 text-[#ffd230]" />
+              })
+            }}
+            className="group/btn w-full flex items-center justify-center gap-2 rounded-2xl bg-white text-slate-900 hover:bg-[#ffd230] hover:shadow-lg hover:shadow-[#ffd230]/20 border border-white/15 py-3.5 text-[10px] font-black uppercase tracking-widest shadow-xl transition-all duration-300 cursor-pointer"
+          >
+            <Building2 className="h-3.5 w-3.5" />
+            <span>Sprawdź tereny</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+          </button>
+        </div>
+      </motion.div>
 
       {/* 1. MUNICIPAL ANNOUNCEMENTS — DELICATE GOLD */}
       <motion.div
@@ -162,70 +248,75 @@ export function NewsSidebar() {
         </div>
       </motion.div>
 
-      {/* 2. LATEST COMMENTS — DELICATE GOLD */}
+      {/* 2. LATEST COMMENTS — LIGHT LUXURY FEED LIST */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#a3b18a]/85 via-[#588157]/80 to-[#3a5a40]/75 backdrop-blur-2xl p-6 shadow-xl shadow-[#a3b18a]/10 border border-[#a3b18a]/30"
+        className="relative overflow-hidden rounded-3xl bg-white/80 border border-stone-200/60 shadow-xl shadow-stone-100/40 p-6"
       >
-        {/* Ambient pattern */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(white_1px,transparent_1px)] [background-size:18px_18px]" />
-        <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-
+        {/* Subtle decorative grid */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#208fcf_1px,transparent_1px)] [background-size:16px_16px]" />
+        
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-golden text-[#344e41] shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20 shadow-sm">
               <MessageSquare className="h-5 w-5" strokeWidth={2.2} />
             </div>
             <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-white">
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">
                 Głos Mieszkańców
               </h3>
-              <span className="text-[10px] text-white/85 font-bold uppercase tracking-wider">
-                Najnowsze opinie
+              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+                Najnowsze opinie i pomysły
               </span>
             </div>
           </div>
 
-          <div className="space-y-4">
-            {comments.map((com) => (
-              <div
-                key={com.id}
-                className="relative rounded-2xl bg-white/90 hover:bg-white backdrop-blur-md p-4 border border-white/30 hover:shadow-lg transition-all duration-300"
-              >
-                <Quote className="absolute top-3 right-3 h-5 w-5 text-golden/30" />
-                <div className="flex gap-3">
+          <div className="space-y-1">
+            {comments.map((com) => {
+              const avatarStyles: Record<string, string> = {
+                "MK": "bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20",
+                "TW": "bg-[#d97706]/10 text-[#d97706] border border-[#d97706]/20",
+                "EP": "bg-[#00933f]/10 text-[#00933f] border border-[#00933f]/20",
+              }
+              const avatarStyle = avatarStyles[com.initials] ?? "bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20"
+              
+              return (
+                <div
+                  key={com.id}
+                  className="group/item flex gap-3.5 py-4 first:pt-0 last:pb-0 border-b border-stone-100 last:border-b-0 hover:bg-[#208fcf]/[0.02] rounded-2xl px-2.5 -mx-2.5 transition-all duration-300"
+                >
                   <div
-                    className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-bold text-xs shadow-sm ${com.avatarBg}`}
+                    className={`h-9 w-9 rounded-full shrink-0 flex items-center justify-center font-black text-xs shadow-sm ${avatarStyle}`}
                   >
                     {com.initials}
                   </div>
                   <div className="flex-1 space-y-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-[#344e41] truncate">
+                      <span className="text-xs font-black text-slate-700">
                         {com.author}
                       </span>
-                      <span className="text-[9px] font-bold text-[#344e41]/60 flex items-center gap-0.5 shrink-0">
+                      <span className="text-[9px] font-bold text-slate-400 flex items-center gap-0.5 shrink-0">
                         <Clock className="h-2.5 w-2.5" /> {com.time}
                       </span>
                     </div>
-                    <p className="text-[11px] text-[#344e41]/80 font-medium italic leading-relaxed line-clamp-3">
+                    <p className="text-[11px] text-slate-600 font-medium leading-relaxed italic">
                       &quot;{com.comment}&quot;
                     </p>
-                    <div className="text-[9px] font-black uppercase tracking-wider text-golden-dark pt-0.5 truncate">
+                    <div className="text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:underline cursor-pointer pt-0.5 truncate">
                       {com.source}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <a
             href="/glos-mieszkancow"
-            className="group mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#344e41]/90 backdrop-blur-sm py-3 text-[10px] font-black uppercase tracking-wider text-white hover:bg-[#344e41] transition-all duration-300 shadow-lg"
+            className="group/btn mt-6 flex items-center justify-center gap-2 rounded-2xl bg-[#208fcf] py-3.5 text-[10px] font-black uppercase tracking-widest text-white hover:bg-[#1a7bb3] transition-all duration-300 shadow-md shadow-[#208fcf]/10 hover:shadow-lg hover:shadow-[#208fcf]/20"
           >
             <span>Dołącz do dyskusji</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -250,7 +341,7 @@ export function NewsSidebar() {
               Pogoda Wręczyca Wielka
             </h3>
             <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
-              Prognoza 7-dniowa
+              Prognoza 14-dniowa
             </span>
           </div>
         </div>
@@ -268,7 +359,7 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-3.5 max-h-[320px] overflow-y-auto pr-1.5 scrollbar-thin">
           {WEATHER_FORECAST.map((w, idx) => {
             const Icon = w.icon
             return (

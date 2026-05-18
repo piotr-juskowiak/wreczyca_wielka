@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Calendar, Clock, ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 export function HeroNews({ articles }: { articles: NewsArticle[] }) {
@@ -10,7 +10,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
   const [isHovered, setIsHovered] = useState(false)
   const [viewport, setViewport] = useState<"mobile" | "tablet" | "desktop">("desktop")
 
-  // Use up to 9 articles → 3 strony po 3 (desktop), 3 po 2 (tablet) lub 9 po 1 (mobile)
+  // Use up to 9 articles → 3 pages of 3 (desktop), 3 pages of 2 (tablet) or 9 pages of 1 (mobile)
   const featuredArticles = articles.slice(0, 9)
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
       aria-label="Wyróżnione artykuły"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full overflow-hidden border-b border-stone-200 bg-[#344e41] select-none"
+      className="relative w-full overflow-hidden border-b border-stone-200/60 bg-slate-950 select-none"
     >
       <div className="relative w-full min-h-[600px] lg:h-[640px]">
         <AnimatePresence mode="wait" initial={false}>
@@ -95,14 +95,14 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
         <>
           <button
             onClick={handlePrev}
-            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#344e41]/50 text-white/70 hover:text-white hover:bg-[#344e41]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/10 bg-slate-950/40 text-white/80 hover:text-white hover:bg-slate-950/70 hover:border-white/20 hover:scale-105 transition-all duration-300 backdrop-blur-[6px] cursor-pointer group"
             aria-label="Poprzedni slajd"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/15 bg-[#344e41]/50 text-white/70 hover:text-white hover:bg-[#344e41]/85 hover:border-white/35 hover:scale-105 transition-all duration-300 backdrop-blur-md cursor-pointer group"
+            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/10 bg-slate-950/40 text-white/80 hover:text-white hover:bg-slate-950/70 hover:border-white/20 hover:scale-105 transition-all duration-300 backdrop-blur-[6px] cursor-pointer group"
             aria-label="Następny slajd"
           >
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -110,7 +110,7 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
         </>
       )}
 
-      {/* Pagination dots — pokazuje wszystkie strony (np. 9 dla mobile) */}
+      {/* Pagination dots */}
       {totalPages > 1 && (
         <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30 flex-wrap justify-center max-w-[80%]">
           {Array.from({ length: totalPages }).map((_, index) => (
@@ -123,8 +123,8 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-golden w-8 h-2"
-                    : "bg-white/30 group-hover:bg-white/60 w-2 h-2"
+                    ? "bg-white w-8 h-1.5"
+                    : "bg-white/20 group-hover:bg-white/40 w-1.5 h-1.5"
                 }`}
               />
             </button>
@@ -140,16 +140,16 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 7, ease: "linear" }}
-            className="h-full bg-golden"
+            className="h-full bg-white/25"
           />
         </div>
       )}
 
-      {/* Counter w prawym górnym rogu */}
+      {/* Counter in top right corner */}
       {totalPages > 1 && (
-        <div className="absolute top-6 right-6 z-30 hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-[#344e41]/60 border border-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-white/80">
-          <span className="text-golden">{String(currentIndex + 1).padStart(2, "0")}</span>
-          <span className="text-white/30">/</span>
+        <div className="absolute top-6 right-6 z-30 hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/50 border border-white/10 backdrop-blur-[6px] text-[10px] font-black uppercase tracking-widest text-white/80">
+          <span className="text-white">{String(currentIndex + 1).padStart(2, "0")}</span>
+          <span className="text-white/20">/</span>
           <span>{String(totalPages).padStart(2, "0")}</span>
         </div>
       )}
@@ -166,7 +166,6 @@ function HeroPanel({
   index: number
   total: number
 }) {
-  const isFirst = index === 0
   const showBorder = index < total - 1
 
   const formatTitle = (title: string) => {
@@ -181,7 +180,7 @@ function HeroPanel({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative h-full flex flex-col justify-end p-6 sm:p-8 lg:p-10 overflow-hidden group ${
+      className={`relative h-full flex flex-col justify-end overflow-hidden group ${
         showBorder ? "border-r border-white/10" : ""
       }`}
     >
@@ -190,66 +189,58 @@ function HeroPanel({
         <motion.img
           src={article.image}
           alt=""
-          className="w-full h-full object-cover absolute inset-0 filter blur-[3px]"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1.05 }}
-          whileHover={{ scale: 1.1 }}
+          className="w-full h-full object-cover absolute inset-0"
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.05 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#344e41] via-[#344e41]/75 to-[#344e41]/15 z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-black/15 z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-dusty-olive opacity-0 group-hover:opacity-15 transition-opacity duration-500 z-10 pointer-events-none mix-blend-overlay" />
+        {/* Subtle overall dark tint to harmonize background colors */}
+        <div className="absolute inset-0 bg-slate-950/20 pointer-events-none z-10" />
       </div>
 
-      <div className="relative z-20 max-w-xl">
-        <div className="inline-flex items-center gap-2 rounded-full bg-golden-glow border border-golden/30 px-3 py-1 text-[9px] font-black uppercase tracking-[0.22em] text-golden mb-4 backdrop-blur-md">
-          {isFirst && <Sparkles className="h-3 w-3 text-golden" />}
-          <span>{article.category}</span>
+      {/* Floating Glassmorphic Card Container for 100% legible text */}
+      <div className="relative z-20 mt-auto m-4 lg:m-6 p-6 rounded-[2rem] bg-zinc-950/50 backdrop-blur-[6px] border border-white/10 shadow-2xl flex flex-col justify-between">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white/80 mb-3.5">
+            <span>{article.category.toLowerCase() === "aktualności" ? "Wiadomość dnia" : article.category}</span>
+          </div>
+
+          <h2
+            className={`font-semibold text-white leading-snug tracking-tight transition-colors duration-300 line-clamp-2 text-balance ${
+              total === 3 ? "text-base lg:text-[17px] xl:text-[18px]" : total === 2 ? "text-lg lg:text-xl" : "text-xl sm:text-2xl"
+            }`}
+          >
+            {formatTitle(article.title)}
+          </h2>
+
+          <p
+            className={`mt-2 text-white/60 leading-relaxed font-medium ${
+              total === 3 ? "text-[11px] lg:text-xs line-clamp-2" : "text-xs line-clamp-3"
+            }`}
+          >
+            {article.excerpt}
+          </p>
         </div>
 
-        <h2
-          className={`font-light text-white leading-[1.15] tracking-tight group-hover:text-golden transition-colors duration-300 line-clamp-3 text-balance ${
-            total === 3 ? "text-xl lg:text-2xl xl:text-[26px]" : total === 2 ? "text-2xl lg:text-3xl" : "text-3xl sm:text-4xl"
-          }`}
-        >
-          {formatTitle(article.title)}
-        </h2>
-
-        <p
-          className={`mt-3 text-[#dad7cd]/80 leading-relaxed font-medium ${
-            total === 3 ? "text-xs lg:text-[13px] line-clamp-2" : "text-sm line-clamp-3"
-          }`}
-        >
-          {article.excerpt}
-        </p>
-
-        <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
+        <div className="mt-5.5 pt-4 border-t border-white/5 flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
           <motion.a
             href={`/aktualnosci/${article.slug}`}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group/btn relative inline-flex items-center justify-between gap-4 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-white hover:bg-dusty-olive-hover shadow-lg hover:shadow-dusty-olive/30 transition-all cursor-pointer duration-300 w-fit"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="group/btn relative inline-flex items-center justify-between gap-3.5 rounded-full bg-gradient-to-r from-[#208fcf] to-[#54b4eb] pl-4 pr-1.5 py-1.5 text-[9px] font-black uppercase tracking-widest text-white shadow-lg shadow-[#208fcf]/10 hover:shadow-[#208fcf]/20 hover:from-[#1d82bd] hover:to-[#4ea8de] transition-all cursor-pointer duration-300 w-fit"
           >
             <span>Czytaj</span>
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white group-hover/btn:bg-white/35 transition-all duration-300">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white group-hover/btn:bg-white/35 transition-all duration-300">
               <ArrowRight className="h-3 w-3" />
             </div>
           </motion.a>
 
-          <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-[#dad7cd]/60">
+          <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-white/40">
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-3 w-3 text-toffee-brown" />
+              <Calendar className="h-3.5 w-3.5 text-white/35" />
               {article.date}
             </span>
-            {total < 3 && (
-              <>
-                <span className="h-1 w-1 rounded-full bg-white/15" />
-                <span className="flex items-center gap-1.5">
-                  <Clock className="h-3 w-3 text-toffee-brown" />
-                  {article.readTime}
-                </span>
-              </>
-            )}
           </div>
         </div>
       </div>

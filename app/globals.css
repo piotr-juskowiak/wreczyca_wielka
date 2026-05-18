@@ -18,7 +18,7 @@
      ───────────────────────────────────────────────────────────── */
 
   /* CORE NEUTRALS — kremowe tła, głęboka oliwka jako foreground */
-  --background: #ffffff;          /* biały */
+  --background: #faf9f6;          /* bardzo jasny, ciepły szary/kremowy */
   --foreground: #344e41;          /* charcoal-brown — głęboka, czytelna oliwka */
   --card: #ffffff;
   --card-foreground: #344e41;

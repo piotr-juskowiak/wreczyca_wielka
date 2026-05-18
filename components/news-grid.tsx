@@ -6,7 +6,7 @@ import Link from "next/link"
 import { NewsCard } from "./news-card"
 import { NewsSidebar } from "./news-sidebar"
 import type { NewsArticle } from "@/lib/news-service"
-import { Trophy, Music, MapPin, ChevronDown, Sparkles, X, ArrowUpRight, Calendar } from "lucide-react"
+import { Trophy, Music, MapPin, ChevronDown, Sparkles, X, ArrowUpRight, Calendar, Newspaper } from "lucide-react"
 import { toast } from "sonner"
 
 // Fully exhaustive list of all 28 villages (Sołectwa) inside Gmina Wręczyca Wielka
@@ -104,7 +104,15 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
     toast.success(`Wybrano sołectwo: ${solectwoName}`, {
       description: "Filtrowanie wiadomości oraz ogłoszeń dedykowanych dla wybranej miejscowości...",
       duration: 3500,
-      icon: <MapPin className="h-4 w-4 text-[#3a5a40]" />
+      icon: <MapPin className="h-4 w-4 text-[#d97706]" />
+    })
+  }
+
+  const handleCategoryFilter = (cat: string) => {
+    toast.success(`Filtrowanie: ${cat}`, {
+      description: `Wyświetlam najnowsze wiadomości z kategorii ${cat.toLowerCase()}...`,
+      duration: 3000,
+      icon: <Sparkles className="h-4 w-4 text-[#00933f]" />
     })
   }
 
@@ -123,15 +131,14 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 border-b border-[#dad7cd]/40 pb-8"
       >
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-golden-lightest text-golden-dark px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 border border-golden-light/40 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5 animate-pulse text-golden" />
-            Serwis Informacyjny
-          </span>
-          <h2 id="latest-news" className="text-4xl md:text-5xl font-light text-[#344e41] text-balance leading-tight">
-            Co nowego w gminie?
+          <h2 id="latest-news" className="text-4xl md:text-5xl font-light text-slate-800 tracking-tight leading-[1.12] mb-4.5">
+            Życie i Wydarzenia we <br className="hidden sm:inline" />
+            <span className="font-semibold text-slate-900">
+              Wręczycy Wielkiej
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-stone-500 font-medium">
-            Przeglądaj zorganizowane informacje, sport, kulturę oraz znajdź wieści ze swojego sołectwa.
+          <p className="text-sm md:text-base text-stone-500 font-semibold leading-relaxed max-w-xl">
+            Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
           </p>
         </div>
         <a
@@ -151,27 +158,122 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         {/* LEFT COLUMN: Structured News Rows */}
         <div className="flex-1 w-full space-y-16">
           
-          {/* ROW 1: SPORT */}
+          {/* ROW 0: WIADOMOŚCI (LATEST NEWS - MATCHING SECTION STYLE) */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#00933f]/8 border border-[#00933f]/15 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-golden-lightest text-golden-dark border border-golden-light/20 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#00933f]/10 text-[#00933f] border border-[#00933f]/20 shadow-sm shrink-0">
+                  <Newspaper className="h-4.5 w-4.5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-800 uppercase tracking-wider">
+                    Wiadomości
+                  </h3>
+                  <span className="text-[10px] text-[#00933f]/85 font-bold uppercase tracking-wider block">Najnowsze wydarzenia i doniesienia</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 sm:justify-end">
+                <button
+                  onClick={() => handleCategoryFilter("Lokalne")}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#00933f] hover:text-[#007f36] transition-colors cursor-pointer"
+                >
+                  <span>Lokalne</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#00933f]/20" />
+                <button
+                  onClick={() => handleCategoryFilter("Regionalne")}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#00933f] hover:text-[#007f36] transition-colors cursor-pointer"
+                >
+                  <span>Regionalne</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+              {articles.slice(0, 3).map((article) => (
+                <NewsCard key={article.id} article={article} />
+              ))}
+            </div>
+          </div>
+
+          {/* ROW 1: SPORT - BLUE THEME */}
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#208fcf]/8 border border-[#208fcf]/15 rounded-2xl gap-4 shadow-sm">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#208fcf]/10 text-[#208fcf] border border-[#208fcf]/20 shadow-sm shrink-0">
                   <Trophy className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#344e41] uppercase tracking-wider">
+                  <h3 className="text-base font-bold text-slate-800 uppercase tracking-wider">
                     Sport w Gminie
                   </h3>
-                  <span className="text-[10px] text-dusty-olive/80 font-bold uppercase tracking-wider block">Wydarzenia, rozgrywki i rekreacja</span>
+                  <span className="text-[10px] text-[#208fcf]/85 font-bold uppercase tracking-wider block">Wydarzenia, rozgrywki i rekreacja</span>
                 </div>
               </div>
-              <button
-                onClick={() => setActivePopupCategory("Sport")}
-                className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-dusty-olive hover:text-golden-dark transition-colors cursor-pointer"
-              >
-                <span>Zobacz więcej</span>
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              
+              <div className="flex items-center gap-3.5 flex-wrap sm:justify-end">
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie dyscypliny: Piłka nożna", {
+                      description: "Pobieranie aktualności piłkarskich z klubów GKS Wręczyca Wielka, Sokół Wręczyca Wielka, Płomień Czarna Wieś oraz Amator Golce.",
+                      duration: 3500,
+                      icon: <Trophy className="h-4 w-4 text-[#208fcf]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:text-[#1a7bb3] transition-colors cursor-pointer"
+                >
+                  <span>Piłka nożna</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#208fcf]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie dyscypliny: Rekreacja", {
+                      description: "Pobieranie informacji o ścieżkach rowerowych, spływach kajakowych i rekreacji ruchowej.",
+                      duration: 3500,
+                      icon: <Trophy className="h-4 w-4 text-[#208fcf]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:text-[#1a7bb3] transition-colors cursor-pointer"
+                >
+                  <span>Rekreacja</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#208fcf]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie dyscypliny: Sporty walki", {
+                      description: "Pobieranie sukcesów i wydarzeń sekcji karate, kickboxingu oraz innych sztuk walki we Wręczycy Wielkiej.",
+                      duration: 3500,
+                      icon: <Trophy className="h-4 w-4 text-[#208fcf]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:text-[#1a7bb3] transition-colors cursor-pointer"
+                >
+                  <span>Sporty walki</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#208fcf]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie dyscypliny: Tenis stołowy", {
+                      description: "Pobieranie wyników i harmonogramów turniejów oraz rozgrywek ligowych tenisa stołowego.",
+                      duration: 3500,
+                      icon: <Trophy className="h-4 w-4 text-[#208fcf]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#208fcf] hover:text-[#1a7bb3] transition-colors cursor-pointer"
+                >
+                  <span>Tenis stołowy</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -183,25 +285,79 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 2: KULTURA I ROZRYWKA */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#344e41]/8 border border-[#344e41]/15 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-golden-lightest text-golden-dark border border-golden-light/20 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#344e41]/10 text-[#344e41] border border-[#344e41]/20 shadow-sm shrink-0">
                   <Music className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#344e41] uppercase tracking-wider">
+                  <h3 className="text-base font-bold text-slate-800 uppercase tracking-wider">
                     Kultura i Rozrywka
                   </h3>
-                  <span className="text-[10px] text-dusty-olive/80 font-bold uppercase tracking-wider block">Festiwale, koncerty i lokalne tradycje</span>
+                  <span className="text-[10px] text-[#344e41]/85 font-bold uppercase tracking-wider block">Festiwale, koncerty i lokalne tradycje</span>
                 </div>
               </div>
-              <button
-                onClick={() => setActivePopupCategory("Kultura")}
-                className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-dusty-olive hover:text-golden-dark transition-colors cursor-pointer"
-              >
-                <span>Zobacz więcej</span>
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              
+              <div className="flex items-center gap-3.5 flex-wrap sm:justify-end">
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie: GOK Wręczyca Wielka", {
+                      description: "Pobieranie aktualności z Gminnego Ośrodka Kultury we Wręczycy Wielkiej, w tym zapisów na warsztaty i wystawy.",
+                      duration: 3500,
+                      icon: <Music className="h-4 w-4 text-[#344e41]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#344e41] hover:text-[#23352c] transition-colors cursor-pointer"
+                >
+                  <span>GOK</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#344e41]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie kategorii: Muzyka", {
+                      description: "Pobieranie informacji o koncertach Dziecięcej Orkiestry Dętej, chórów i festiwalach muzycznych w gminie.",
+                      duration: 3500,
+                      icon: <Music className="h-4 w-4 text-[#344e41]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#344e41] hover:text-[#23352c] transition-colors cursor-pointer"
+                >
+                  <span>Muzyka</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#344e41]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie kategorii: Rozrywka", {
+                      description: "Pobieranie informacji o piknikach rodzinnych, Dniach Wręczycy Wielkiej, rajdach i kinie plenerowym.",
+                      duration: 3500,
+                      icon: <Music className="h-4 w-4 text-[#344e41]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#344e41] hover:text-[#23352c] transition-colors cursor-pointer"
+                >
+                  <span>Rozrywka</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+                <span className="h-3 w-px bg-[#344e41]/20 hidden md:inline" />
+
+                <button
+                  onClick={() => {
+                    toast.info("Filtrowanie kategorii: Teatr", {
+                      description: "Pobieranie informacji o spektaklach teatralnych, teatrzykach dziecięcych i występach grup dramatycznych.",
+                      duration: 3500,
+                      icon: <Music className="h-4 w-4 text-[#344e41]" />
+                    })
+                  }}
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#344e41] hover:text-[#23352c] transition-colors cursor-pointer"
+                >
+                  <span>Teatr</span>
+                  <span className="text-[11px] leading-none transition-transform group-hover:translate-x-0.5">»</span>
+                </button>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -213,21 +369,21 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
           {/* ROW 3: SOŁECTWA */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#d97706]/8 border border-[#d97706]/15 rounded-2xl gap-4 shadow-sm">
               <div className="flex items-center gap-3.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-golden-lightest text-golden-dark border border-golden-light/20 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#d97706]/10 text-[#d97706] border border-[#d97706]/20 shadow-sm shrink-0">
                   <MapPin className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#344e41] uppercase tracking-wider">
+                  <h3 className="text-base font-bold text-slate-800 uppercase tracking-wider">
                     Sołectwa Gminy Wręczyca Wielka
                   </h3>
-                  <span className="text-[10px] text-dusty-olive/80 font-bold uppercase tracking-wider block">Nasze miejscowości i lokalne społeczności</span>
+                  <span className="text-[10px] text-[#d97706]/85 font-bold uppercase tracking-wider block">Nasze miejscowości i lokalne społeczności</span>
                 </div>
               </div>
               <button
                 onClick={() => setActivePopupCategory("Sołectwa")}
-                className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-dusty-olive hover:text-golden-dark transition-colors cursor-pointer"
+                className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[#d97706] hover:text-[#b45309] transition-colors cursor-pointer sm:justify-end"
               >
                 <span>Zobacz więcej</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -241,7 +397,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
               ))}
             </div>
 
-            <p className="text-xs text-[#3a5a40]/65 font-medium leading-relaxed max-w-2xl pt-2">
+            <p className="text-xs text-slate-500 font-medium leading-relaxed max-w-2xl pt-2">
               Wybierz swoje sołectwo z poniższej listy, aby szybko filtrować dedykowane wiadomości, obwieszczenia oraz lokalne inicjatywy mieszkańców.
             </p>
 
@@ -253,9 +409,9 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                   onClick={() => handleSolectwoClick(sol)}
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group p-3.5 rounded-2xl bg-white border border-stone-200 text-center text-xs font-semibold text-[#344e41] hover:bg-golden hover:text-[#344e41] hover:border-golden hover:shadow-md transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+                  className="group p-3.5 rounded-2xl bg-white border border-stone-200 text-center text-xs font-semibold text-slate-700 hover:bg-[#d97706]/10 hover:text-[#d97706] hover:border-[#d97706]/35 hover:shadow-md transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-dusty-olive group-hover:text-[#344e41] transition-colors duration-300 shrink-0" />
+                  <MapPin className="h-3.5 w-3.5 text-slate-400 group-hover:text-[#d97706] transition-colors duration-300 shrink-0" />
                   <span className="truncate">{sol}</span>
                 </motion.button>
               ))}

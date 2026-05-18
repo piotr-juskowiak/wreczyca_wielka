@@ -10,12 +10,19 @@ export default async function HomePage() {
   const featuredArticles = articles.slice(0, 9)
 
   return (
-    <main className="min-h-screen bg-background">
-      <SiteHeader />
-      {featuredArticles.length > 0 && <HeroNews articles={featuredArticles} />}
-      {articles.length > 0 && <NewsGrid articles={articles} />}
-      <GalleryCarousel />
-      <SiteFooter />
+    <main className="min-h-screen bg-background relative overflow-hidden">
+      {/* Premium ambient background blobs */}
+      <div className="absolute top-[-5%] left-[-10%] w-[50%] aspect-square rounded-full bg-[#00933f]/[0.04] blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-[35%] right-[-10%] w-[45%] aspect-square rounded-full bg-[#208fcf]/[0.04] blur-[120px] pointer-events-none z-0" />
+      <div className="absolute bottom-[20%] left-[-5%] w-[40%] aspect-square rounded-full bg-[#d97706]/[0.03] blur-[120px] pointer-events-none z-0" />
+      
+      <div className="relative z-10">
+        <SiteHeader />
+        {featuredArticles.length > 0 && <HeroNews articles={featuredArticles} />}
+        {articles.length > 0 && <NewsGrid articles={articles} />}
+        <GalleryCarousel />
+        <SiteFooter />
+      </div>
     </main>
   )
 }

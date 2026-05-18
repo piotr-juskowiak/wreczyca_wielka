@@ -41,7 +41,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
     <motion.article
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-border/60 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 ${tintClass}`}
+      className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-border/60 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-golden-glow hover:border-golden/40 ${tintClass}`}
     >
       <a href={`/aktualnosci/${article.slug}`} className="flex flex-col h-full">
         <div className="relative aspect-[16/10] overflow-hidden m-2 rounded-[1.5rem]">
@@ -83,10 +83,10 @@ export function NewsCard({ article }: { article: NewsArticle }) {
           </p>
 
           <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between">
-            <span className="text-xs font-bold text-dusty-olive opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+            <span className="text-xs font-bold text-golden-dark opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
               Czytaj więcej
             </span>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-dusty-olive group-hover:text-white group-hover:rotate-12 shadow-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground/70 transition-all group-hover:bg-golden group-hover:text-[#344e41] group-hover:rotate-12 shadow-sm border group-hover:border-golden">
               <ArrowUpRight className="h-5 w-5" />
             </span>
           </div>

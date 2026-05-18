@@ -192,7 +192,7 @@ export function SiteFooter() {
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:kontakt@wreczycawielka.pl" className="text-muted-foreground hover:text-primary break-all">
+                <a href="mailto:kontakt@wreczycawielka.pl" className="text-muted-foreground hover:text-primary break-all text-[13px]">
                   kontakt@wreczycawielka.pl
                 </a>
               </li>

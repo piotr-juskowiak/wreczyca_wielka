@@ -157,7 +157,7 @@ export function SiteHeader() {
                     transition={{ delay: 0.4 + idx * 0.05 }}
                     onHoverStart={() => setHoveredIdx(idx)}
                     onHoverEnd={() => setHoveredIdx(null)}
-                    className={`relative rounded-xl px-5 py-2 text-[12px] font-black uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
+                    className={`relative rounded-xl px-5 py-2 text-[12px] font-bold uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
                       ${isActive
                         ? 'text-white'
                         : 'text-slate-600 hover:text-[rgb(32,143,207)]'

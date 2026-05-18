@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock, Quote, Sparkles, Building2 } from "lucide-react"
+import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock } from "lucide-react"
 import { toast } from "sonner"
 
 const ANNOUNCEMENTS = [
@@ -29,36 +28,34 @@ const ANNOUNCEMENTS = [
   },
 ]
 
-const DEFAULT_COMMENTS = [
+const MOST_COMMENTED_ARTICLES = [
   {
-    id: "com-1",
-    author: "Marta K.",
-    avatarBg: "bg-white text-dusty-olive",
-    initials: "MK",
-    comment: "Bardzo się cieszę z planów modernizacji boiska szkolnego! Nasze dzieci w końcu będą miały świetne warunki do gry w piłkę.",
-    source: "Wypowiedź pod: Inwestycje w oświatę",
-    time: "2 godz. temu",
-    timestamp: Date.now() - 7200000,
+    id: "mc-1",
+    title: "Tomasz Osiński zostanie nowym radnym gminy Wręczyca Wielka",
+    commentsCount: 41,
+    category: "Samorząd",
+    slug: "tomasz-osinski-zostanie-nowym-radnym-gminy-wreczyca-wielka",
   },
   {
-    id: "com-2",
-    author: "Tomasz W.",
-    avatarBg: "bg-white text-toffee-brown",
-    initials: "TW",
-    comment: "Czy są już znane szczegóły na temat dofinansowania wymiany starych pieców na ten rok? Chętnie skorzystam z programu.",
-    source: "Wypowiedź pod: Czyste powietrze",
-    time: "5 godz. temu",
-    timestamp: Date.now() - 18000000,
+    id: "mc-2",
+    title: "Żenująca propozycja stawek dla druhów OSP w gminie Wręczyca Wielka",
+    commentsCount: 26,
+    category: "Bezpieczeństwo",
+    slug: "zenujaca-propozycja-stawek-dla-druhow-osp-w-gminie-wreczyca-wielka",
   },
   {
-    id: "com-3",
-    author: "Ewa i Piotr",
-    avatarBg: "bg-white text-charcoal-brown-solid",
-    initials: "EP",
-    comment: "Koncert orkiestry dętej na rynku był po prostu wspaniały! Oby więcej takich kulturalnych wydarzeń plenerowych w te wakacje.",
-    source: "Wypowiedź pod: Majowy festiwal",
-    time: "1 dzień temu",
-    timestamp: Date.now() - 86400000,
+    id: "mc-3",
+    title: "Adam Skalik nowym komendantem gminnym ZOSPRP we Wręczycy Wielkiej! Ogromna porażka PSL i jej działaczy!",
+    commentsCount: 26,
+    category: "Polityka",
+    slug: "adam-skalik-nowym-komendantem-gminnym-zosprp-we-wreczycy-wielkiej-ogromna-porazka-psl-i-jej-dzialaczy",
+  },
+  {
+    id: "mc-4",
+    title: "Strażacy myją przystanki – zdjęcie musi być!",
+    commentsCount: 26,
+    category: "Lokalne",
+    slug: "strazacy-myja-przystanki-zdjecie-musi-byc",
   },
 ]
 
@@ -80,32 +77,6 @@ const WEATHER_FORECAST = [
 ]
 
 export function NewsSidebar() {
-  const [comments, setComments] = useState<any[]>([])
-
-  const loadLatestComments = () => {
-    try {
-      const stored = localStorage.getItem("wreczyca_comments")
-      let allComments = []
-      if (stored) {
-        allComments = JSON.parse(stored)
-      } else {
-        localStorage.setItem("wreczyca_comments", JSON.stringify(DEFAULT_COMMENTS))
-        allComments = DEFAULT_COMMENTS
-      }
-      const sorted = allComments.sort((a: any, b: any) => b.timestamp - a.timestamp).slice(0, 3)
-      setComments(sorted)
-    } catch (e) {
-      console.error("Failed to load latest comments in sidebar:", e)
-      setComments(DEFAULT_COMMENTS.slice(0, 3))
-    }
-  }
-
-  useEffect(() => {
-    loadLatestComments()
-    window.addEventListener("commentsUpdated", loadLatestComments)
-    return () => window.removeEventListener("commentsUpdated", loadLatestComments)
-  }, [])
-
   return (
     <aside className="w-full lg:w-[380px] shrink-0 space-y-8 select-none">
 
@@ -137,7 +108,7 @@ export function NewsSidebar() {
           <button
             onClick={() => {
               toast.info("Biuro Ogłoszeń i Reklam", {
-                description: "Napisz na e-mail: ug@wreczyca-wielka.pl lub zadzwoń pod nr tel. (34) 317 01 10 w celu ustalenia szczegółów.",
+                description: "Napisz na e-mail: kontakt@wreczycawielka.pl lub zadzwoń pod nr tel. (34) 317 01 10 w celu ustalenia szczegółów.",
                 duration: 6000,
                 icon: <Megaphone className="h-4 w-4 text-golden-dark" />
               })
@@ -227,7 +198,7 @@ export function NewsSidebar() {
         </div>
       </motion.div>
 
-      {/* 2. LATEST COMMENTS — PREMIUM NATURAL CARD */}
+      {/* 2. MOST COMMENTED — PREMIUM NATURAL CARD */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -248,66 +219,44 @@ export function NewsSidebar() {
             </div>
             <div>
               <h3 className="text-[13px] font-bold uppercase tracking-widest text-stone-800 leading-tight">
-                Głos Mieszkańców
+                Najczęściej Komentowane
               </h3>
               <span className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block mt-0.5">
-                Najnowsze opinie i dyskusje
+                Głos mieszkańców i najpopularniejsze dyskusje
               </span>
             </div>
           </div>
 
-          <div className="space-y-4">
-            {comments.map((com, idx) => {
-              // Create dynamic pastel/earthy background gradients for avatars
-              const avatarGradients = [
-                "from-primary/10 to-primary/5 text-primary border-primary/20",
-                "from-toffee-brown/20 to-toffee-brown/5 text-[#588157] border-toffee-brown/30",
-                "from-amber-100 to-amber-50 text-amber-800 border-amber-200"
-              ]
-              const avatarClass = avatarGradients[idx % avatarGradients.length]
-
-              return (
-                <div
-                  key={com.id}
-                  className="group/item relative overflow-hidden bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-4.5 border border-stone-200/50 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left"
-                >
-                  {/* Decorative background watermark quote */}
-                  <Quote className="absolute -right-2 -bottom-2 h-12 w-12 text-stone-200/10 stroke-[1] pointer-events-none group-hover/item:text-toffee-brown/[0.05] group-hover/item:scale-110 transition-all duration-300" />
-
-                  <div className="relative z-10 flex gap-3.5">
-                    <div
-                      className={`h-9 w-9 rounded-xl shrink-0 flex items-center justify-center font-semibold text-[11px] shadow-sm bg-gradient-to-br border ${avatarClass}`}
-                    >
-                      {com.initials}
-                    </div>
-                    <div className="flex-1 space-y-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-[12.5px] font-bold text-stone-850 leading-none">
-                          {com.author}
-                        </span>
-                        <span className="text-[10px] font-normal text-stone-400 flex items-center gap-1 shrink-0 leading-none">
-                          <Clock className="h-3 w-3 text-stone-300" /> {com.time}
-                        </span>
-                      </div>
-                      <p className="text-[11.5px] text-stone-600 font-normal leading-relaxed italic pr-2">
-                        &ldquo;{com.comment}&rdquo;
-                      </p>
-                      <div className="inline-flex items-center gap-1 mt-2.5 text-[9.5px] font-medium uppercase tracking-wider text-primary/75 hover:text-primary transition-colors cursor-pointer bg-primary/[0.04] hover:bg-primary/[0.08] px-2.5 py-0.5 rounded-lg max-w-full">
-                        <span className="h-1 w-1 rounded-full bg-primary/40 shrink-0" />
-                        <span className="truncate">{com.source}</span>
-                      </div>
-                    </div>
-                  </div>
+          <div className="space-y-3">
+            {MOST_COMMENTED_ARTICLES.map((article) => (
+              <a
+                key={article.id}
+                href={`/aktualnosci/${article.slug}`}
+                className="group flex gap-4 bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-3.5 border border-stone-200/50 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left items-center animate-fadeIn"
+              >
+                {/* Speech bubble badge using a modern clean box layout */}
+                <div className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-xl bg-toffee-brown/10 border border-toffee-brown/20 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm gap-0.5">
+                  <MessageSquare className="h-3.5 w-3.5 text-[#8f7a66] group-hover:text-white/80 transition-colors" />
+                  <span className="text-[11px] font-bold leading-none">{article.commentsCount}</span>
                 </div>
-              )
-            })}
+                
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[11.5px] font-normal text-stone-850 group-hover:text-primary transition-colors duration-200 line-clamp-2 leading-relaxed">
+                    {article.title}
+                  </h4>
+                  <span className="text-[9.5px] font-normal text-stone-450 mt-1 block">
+                    {article.category}
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
 
           <a
-            href="/glos-mieszkancow"
+            href="/aktualnosci"
             className="group/btn mt-5 flex items-center justify-center gap-2 rounded-xl bg-transparent hover:bg-toffee-brown border border-toffee-brown/20 hover:border-toffee-brown py-3 text-[10px] font-semibold uppercase tracking-widest text-primary hover:text-white transition-all duration-300 shadow-[0_2px_6px_rgba(0,0,0,0.01)] cursor-pointer"
           >
-            <span>Dołącz do dyskusji</span>
+            <span>Zobacz wszystkie dyskusje</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
           </a>
         </div>

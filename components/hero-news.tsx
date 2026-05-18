@@ -161,6 +161,44 @@ export function HeroNews({ articles }: { articles: NewsArticle[] }) {
   )
 }
 
+function getCategoryColor(category: string) {
+  const cat = category.toLowerCase();
+  
+  // 1. Niebieski (Blue) - Sport
+  if (cat.includes("sport")) {
+    return {
+      text: "text-sky-750",
+      bg: "bg-sky-50/90 border-sky-100",
+      dot: "bg-sky-500",
+    }
+  }
+  
+  // 2. Żółty (Yellow) - Kultura, Edukacja, Zdrowie
+  if (cat.includes("kultur") || cat.includes("edukacj") || cat.includes("zdrow")) {
+    return {
+      text: "text-amber-850",
+      bg: "bg-amber-50/90 border-amber-200/50",
+      dot: "bg-amber-500",
+    }
+  }
+  
+  // 3. Pomarańcz (Orange) - Wydarzenia, Sołectwa, Inicjatywy
+  if (cat.includes("wydarzen") || cat.includes("sołectw") || cat.includes("inicjatyw")) {
+    return {
+      text: "text-orange-750",
+      bg: "bg-orange-50/90 border-orange-100",
+      dot: "bg-orange-500",
+    }
+  }
+  
+  // 4. Zielony (Green) - Wiadomości, Ogłoszenia, Inwestycje, Środowisko, Aktualności (default)
+  return {
+    text: "text-primary",
+    bg: "bg-[#f4f6f1]/90 border-primary/10",
+    dot: "bg-primary",
+  }
+}
+
 function HeroPanel({
   article,
   index,
@@ -171,6 +209,7 @@ function HeroPanel({
   total: number
 }) {
   const showBorder = index < total - 1
+  const colors = getCategoryColor(article.category)
 
   return (
     <motion.a
@@ -202,8 +241,8 @@ function HeroPanel({
         <div>
           {/* Category & Date Metadata Row */}
           <div className="flex items-center justify-between gap-4 mb-3">
-            <div className="inline-flex items-center gap-1.5 text-[8.5px] font-bold uppercase tracking-widest text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+            <div className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[8.5px] font-black uppercase tracking-widest shadow-sm ${colors.bg} ${colors.text}`}>
+              <span className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse`} />
               <span>{article.category.toLowerCase() === "aktualności" ? "Wiadomość dnia" : article.category}</span>
             </div>
 
@@ -219,7 +258,7 @@ function HeroPanel({
           </h3>
 
           {/* Excerpt */}
-          <p className="mt-2.5 text-slate-600 leading-relaxed font-normal text-xs line-clamp-2">
+          <p className="mt-2.5 text-slate-600 leading-relaxed font-normal text-sm line-clamp-2">
             {article.excerpt}
           </p>
         </div>

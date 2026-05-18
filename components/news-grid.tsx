@@ -111,37 +111,37 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[2.5rem] border border-stone-200/60 bg-white p-8 sm:p-10 lg:p-12 mb-16 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-8 sm:gap-10 min-h-[180px]"
+        className="relative overflow-hidden rounded-[2.5rem] border border-[#e4e2d9] bg-[#faf9f5] p-8 sm:p-10 lg:p-12 mb-16 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-8 sm:gap-10 min-h-[220px] group"
       >
-        {/* Lupine Meadow Backdrop Image under a premium, slightly dark green overlay */}
-        <div className="absolute inset-0 z-0 opacity-35 pointer-events-none select-none">
+        {/* Sunlit Vivid Forest Backdrop Image - highly visible and colorful */}
+        <div className="absolute inset-0 z-0 opacity-80 pointer-events-none select-none transition-transform duration-1000 group-hover:scale-103">
           <img 
-            src="https://st4.depositphotos.com/36035726/37940/i/450/depositphotos_379400648-stock-photo-beautiful-meadow-blooming-lupines-green.jpg" 
-            alt="Łąka kwiatów" 
+            src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2000&auto=format&fit=crop" 
+            alt="Majestatyczny las" 
             className="h-full w-full object-cover object-center scale-102"
           />
-          {/* Slightly dark green overlay gradient: solid white on left for text, transitioning to elegant deep green on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-[#0c2415]/55" />
+          {/* Elegant warm sand fade: solid alabaster-sand on the left for text contrast, transitioning to transparent on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f5] via-[#faf9f5]/92 to-[#faf9f5]/20" />
         </div>
 
-        {/* Ambient Glows Inside the Card */}
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00933f]/5 blur-3xl pointer-events-none" />
+        {/* Decorative subtle ambient brand glow */}
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
         {/* LEFT COLUMN: Greeting Text (65% width on desktop) */}
-        <div className="flex-1 max-w-2xl border-l-2 border-[#00933f] pl-6 md:pl-8 relative z-10 space-y-4">
+        <div className="flex-1 max-w-2xl border-l-[3.5px] border-primary pl-6 md:pl-8 relative z-10 space-y-4">
           {/* Minimalist Sub-indicator */}
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#00933f]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#00933f] animate-pulse" />
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             Oficjalny Serwis Gminy
           </div>
           
           <h2 id="latest-news" className="text-3xl sm:text-4xl md:text-5xl font-light text-slate-800 tracking-tight leading-[1.2] mb-4">
             Życie i Wydarzenia we <br className="hidden sm:inline" />
-            <span className="font-light text-slate-900">
+            <span className="font-semibold text-primary">
               Wręczycy Wielkiej
             </span>
           </h2>
-          <p className="text-sm md:text-[14.5px] text-slate-500 font-normal leading-relaxed max-w-xl tracking-wide">
+          <p className="text-xs md:text-sm text-slate-500 font-normal leading-relaxed max-w-xl tracking-wide">
             Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
           </p>
         </div>
@@ -151,7 +151,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           {/* Zobacz aktualności Pill Button */}
           <a
             href="/aktualnosci"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-[#00933f] border border-stone-250 hover:border-[#00933f] pl-5 pr-2.5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-slate-700 hover:text-white shadow-sm hover:shadow-md transition-all duration-300 shrink-0 cursor-pointer"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-primary border border-stone-200 hover:border-primary pl-5 pr-2.5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-slate-700 hover:text-white shadow-sm hover:shadow-md transition-all duration-300 shrink-0 cursor-pointer"
           >
             <span>Zobacz aktualności</span>
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 group-hover:bg-white/10 text-slate-400 group-hover:text-white transition-all duration-300">

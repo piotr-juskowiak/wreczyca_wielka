@@ -10,11 +10,11 @@ import {
   Instagram,
   Shield,
   ArrowRight,
-  CheckCircle2,
   ExternalLink,
+  Megaphone,
 } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { toast } from "sonner"
 
 const columns = [
   {
@@ -55,78 +55,48 @@ const socials = [
 ]
 
 export function SiteFooter() {
-  const [subscribed, setSubscribed] = useState(false)
-
   return (
     <footer className="mt-20 border-t border-border/40 bg-stone-50/50">
-      {/* Newsletter Section */}
+      {/* Advertising Placeholder Card following the exact scheme of the sidebar ad */}
       <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
-        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-[#365239]/15 flex items-center bg-[#365239]">
-          {/* Subtle Background Texture */}
-          <div className="absolute inset-0 z-0 opacity-20">
-            <img 
-              src="/newsletter-bg.jpg" 
-              alt="Wręczyca Wielka" 
-              className="h-full w-full object-cover mix-blend-overlay grayscale"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#365239] via-[#365239]/85 to-transparent" />
-          </div>
+        <div className="relative -translate-y-12 overflow-hidden rounded-[2.5rem] border border-dashed border-stone-300/80 bg-stone-100/30 hover:bg-stone-100/50 backdrop-blur-md p-8 md:p-12 shadow-sm transition-all duration-500 text-center group">
+          {/* Subtle decorative grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl font-normal tracking-tight text-white mb-2">
-                Zapisz się do <span className="text-[#dcfce7] font-normal">newslettera</span>
-              </h3>
-              <p className="text-sm text-white/90 max-w-md mx-auto lg:mx-0">
-                Najważniejsze informacje i alerty gminne prosto na Twój e-mail.
-              </p>
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Elegant Gray Icon */}
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white border border-stone-200 shadow-sm text-stone-400 mb-4 group-hover:scale-105 transition-transform duration-300">
+              <Megaphone className="h-5.5 w-5.5 text-stone-400/80" strokeWidth={1.8} />
             </div>
 
-            <div className="lg:w-1/2 w-full max-w-md">
-              {!subscribed ? (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    setSubscribed(true)
-                  }}
-                  className="flex flex-col sm:flex-row gap-2 p-1.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10"
-                >
-                  <input
-                    type="email"
-                    required
-                    placeholder="Twój adres e-mail"
-                    className="h-12 flex-1 rounded-xl bg-white/90 px-4 text-sm text-slate-800 placeholder:text-muted-foreground outline-none transition-all focus:bg-white"
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="h-12 px-6 rounded-xl bg-white text-[#365239] font-normal text-xs uppercase tracking-widest shadow-md hover:bg-[#f4f7f5] transition-all duration-300 whitespace-nowrap cursor-pointer"
-                  >
-                    Zapisz się
-                  </motion.button>
-                </form>
-              ) : (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"
-                >
-                  <div className="h-10 w-10 rounded-full bg-white text-[#365239] flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="h-5 w-5" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="text-sm font-normal text-white uppercase tracking-wider">Dziękujemy!</h4>
-                    <p className="text-xs text-white/80">Potwierdź subskrypcję na swoim e-mailu.</p>
-                  </div>
-                </motion.div>
-              )}
-              <div className="mt-3 flex items-center gap-2 px-2">
-                <CheckCircle2 className="h-3 w-3 text-white/80" />
-                <p className="text-[10px] text-white/70 uppercase tracking-widest font-normal">
-                  Akceptujesz politykę prywatności i RODO.
-                </p>
-              </div>
+            <h3 className="text-xl md:text-2xl font-bold text-slate-800 uppercase tracking-wider mb-2">
+              Miejsce na Twoją reklamę
+            </h3>
+            
+            <p className="text-xs md:text-sm text-stone-500 font-normal max-w-xl leading-relaxed mb-6">
+              Dotrzyj z ofertą do tysięcy unikalnych użytkowników każdego dnia. Promuj swój lokalny biznes w sercu naszej społeczności.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4.5 w-full">
+              <button
+                onClick={() => {
+                  toast.info("Biuro Ogłoszeń i Reklam", {
+                    description: "Napisz na e-mail: kontakt@wreczycawielka.pl lub zadzwoń pod nr tel. (34) 317 01 10 w celu ustalenia szczegółów.",
+                    duration: 6000,
+                    icon: <Megaphone className="h-4 w-4 text-primary" />
+                  })
+                }}
+                className="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-900 border border-stone-200 hover:border-slate-900 text-stone-600 hover:text-white px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer whitespace-nowrap"
+              >
+                <span>Skontaktuj się</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <a 
+                href="mailto:kontakt@wreczycawielka.pl"
+                className="text-stone-500 hover:text-primary text-xs font-semibold uppercase tracking-widest transition-colors whitespace-nowrap font-normal"
+              >
+                kontakt@wreczycawielka.pl
+              </a>
             </div>
           </div>
         </div>
@@ -142,10 +112,10 @@ export function SiteFooter() {
               </div>
               <div className="leading-tight">
                 <p className="text-base font-bold text-foreground">Wręczyca Wielka</p>
-                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Niezależny przegląd gminny</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Niezależny przegląd gminny</p>
               </div>
             </div>
-            <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-sm text-muted-foreground leading-relaxed font-normal">
               Twój codzienny punkt styku z życiem Wręczycy Wielkiej. Dostarczamy rzetelnych informacji, promujemy lokalne inicjatywy i wspieramy społeczność mieszkańców.
             </p>
 
@@ -175,7 +145,7 @@ export function SiteFooter() {
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 group"
+                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 group font-normal"
                     >
                       {l.label}
                       <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -189,7 +159,7 @@ export function SiteFooter() {
           {/* Contact widget */}
           <div className="lg:col-span-2">
             <h4 className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">Kontakt</h4>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-4 text-sm font-normal">
               <li className="flex gap-3">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
                 <a href="mailto:kontakt@wreczycawielka.pl" className="text-muted-foreground hover:text-primary break-all text-[13px]">
@@ -212,17 +182,17 @@ export function SiteFooter() {
         {/* Disclaimer Area */}
         <div className="mt-16 pt-8 border-t border-border/60">
           <div className="bg-stone-100/50 rounded-2xl p-6 md:p-8 mb-10">
-            <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
+            <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto font-normal">
               <span className="font-bold text-foreground/80">Ważna informacja:</span> Portal <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
             </p>
             <div className="mt-4 text-center">
-              <span className="text-[10px] text-muted-foreground/60">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: redakcja@wreczyca-wielka.pl</span>
+              <span className="text-[10px] text-muted-foreground/60 font-normal">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: kontakt@wreczycawielka.pl</span>
             </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground font-normal">
                 © {new Date().getFullYear()} WreczycaWielka.pl. Wszelkie prawa zastrzeżone.
               </p>
             </div>

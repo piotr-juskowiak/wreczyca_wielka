@@ -62,7 +62,7 @@ export default function KontaktPage() {
               {
                 icon: Mail,
                 title: "E-mail",
-                lines: ["ug@wreczyca-wielka.pl"],
+                lines: ["kontakt@wreczycawielka.pl"],
                 color: "bg-[#dad7cd] text-[#588157]",
               },
               {

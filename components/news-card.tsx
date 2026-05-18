@@ -42,7 +42,7 @@ function getCategoryColor(category: string) {
   }
 }
 
-export function NewsCard({ article }: { article: NewsArticle }) {
+export function NewsCard({ article, hideCategory = false }: { article: NewsArticle; hideCategory?: boolean }) {
   const colors = getCategoryColor(article.category)
 
   return (
@@ -55,10 +55,12 @@ export function NewsCard({ article }: { article: NewsArticle }) {
         {/* Aspect ratio optimized to show text-heavy graphics without cropping top/bottom */}
         <div className="relative aspect-[16/10.5] overflow-hidden m-2.5 rounded-[1.4rem] bg-stone-50 border border-stone-100 shadow-sm">
           {/* Category Floating Pill at top left */}
-          <div className={`absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[8.5px] font-black uppercase tracking-widest shadow-sm backdrop-blur-sm ${colors.bg} ${colors.text}`}>
-            <span className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse`} />
-            <span>{article.category}</span>
-          </div>
+          {!hideCategory && (
+            <div className={`absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[8.5px] font-black uppercase tracking-widest shadow-sm backdrop-blur-sm ${colors.bg} ${colors.text}`}>
+              <span className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse`} />
+              <span>{article.category}</span>
+            </div>
+          )}
 
           <motion.img
             src={article.image}

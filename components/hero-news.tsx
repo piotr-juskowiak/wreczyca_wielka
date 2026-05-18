@@ -241,7 +241,7 @@ function HeroPanel({
         <div>
           {/* Category & Date Metadata Row */}
           <div className="flex items-center justify-between gap-4 mb-3">
-            <div className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[8.5px] font-black uppercase tracking-widest shadow-sm ${colors.bg} ${colors.text}`}>
+            <div className={`inline-flex items-center gap-1.5 text-[8.5px] font-black uppercase tracking-widest ${colors.text}`}>
               <span className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse`} />
               <span>{article.category.toLowerCase() === "aktualności" ? "Wiadomość dnia" : article.category}</span>
             </div>

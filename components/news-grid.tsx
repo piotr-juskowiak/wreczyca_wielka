@@ -202,7 +202,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {articles.slice(0, 3).map((article) => (
-                <NewsCard key={article.id} article={article} />
+                <NewsCard key={article.id} article={article} hideCategory={true} />
               ))}
             </div>
           </div>
@@ -282,7 +282,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {sportArticles.map((article) => (
-                <NewsCard key={article.id} article={article} />
+                <NewsCard key={article.id} article={article} hideCategory={true} />
               ))}
             </div>
           </div>
@@ -363,7 +363,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {cultureArticles.map((article) => (
-                <NewsCard key={article.id} article={article} />
+                <NewsCard key={article.id} article={article} hideCategory={true} />
               ))}
             </div>
           </div>
@@ -394,7 +394,7 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
             {/* 3 Latest Articles for Sołectwa */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {solectwaArticles.map((article) => (
-                <NewsCard key={article.id} article={article} />
+                <NewsCard key={article.id} article={article} hideCategory={true} />
               ))}
             </div>
           </div>

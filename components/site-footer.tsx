@@ -83,7 +83,7 @@ export function SiteFooter() {
                   toast.info("Biuro Ogłoszeń i Reklam", {
                     description: "Napisz na e-mail: kontakt@wreczycawielka.pl lub zadzwoń pod nr tel. (34) 317 01 10 w celu ustalenia szczegółów.",
                     duration: 6000,
-                    icon: <Megaphone className="h-4 w-4 text-primary" />
+                    icon: <Megaphone className="h-4 w-4 text-[#208fcf]" />
                   })
                 }}
                 className="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-900 border border-stone-200 hover:border-slate-900 text-stone-600 hover:text-white px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer whitespace-nowrap"
@@ -93,7 +93,7 @@ export function SiteFooter() {
               </button>
               <a 
                 href="mailto:kontakt@wreczycawielka.pl"
-                className="text-stone-500 hover:text-primary text-xs font-semibold uppercase tracking-widest transition-colors whitespace-nowrap font-normal"
+                className="text-stone-500 hover:text-[#208fcf] text-xs font-semibold uppercase tracking-widest transition-colors whitespace-nowrap font-normal"
               >
                 kontakt@wreczycawielka.pl
               </a>
@@ -111,11 +111,11 @@ export function SiteFooter() {
                 <img src="/logo-new.png" alt="Wręczyca Wielka" className="h-9 w-9 object-contain" />
               </div>
               <div className="leading-tight">
-                <p className="text-base font-bold text-foreground">Wręczyca Wielka</p>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Niezależny przegląd gminny</p>
+                <p className="text-base font-bold text-slate-800">Wręczyca Wielka</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Niezależny przegląd gminny</p>
               </div>
             </div>
-            <p className="mt-6 text-sm text-muted-foreground leading-relaxed font-normal">
+            <p className="mt-6 text-sm text-slate-500 leading-relaxed font-normal">
               Twój codzienny punkt styku z życiem Wręczycy Wielkiej. Dostarczamy rzetelnych informacji, promujemy lokalne inicjatywy i wspieramy społeczność mieszkańców.
             </p>
 
@@ -139,13 +139,13 @@ export function SiteFooter() {
           {/* Link columns */}
           {columns.map((col) => (
             <div key={col.title} className="lg:col-span-2">
-              <h4 className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">{col.title}</h4>
+              <h4 className="text-sm font-bold text-slate-800 mb-6 uppercase tracking-wider">{col.title}</h4>
               <ul className="space-y-3.5 text-sm">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 group font-normal"
+                      className="text-slate-500 hover:text-[#208fcf] transition-colors flex items-center gap-1.5 group font-normal"
                     >
                       {l.label}
                       <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -158,11 +158,11 @@ export function SiteFooter() {
 
           {/* Contact widget */}
           <div className="lg:col-span-2">
-            <h4 className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">Kontakt</h4>
+            <h4 className="text-sm font-bold text-slate-800 mb-6 uppercase tracking-wider">Kontakt</h4>
             <ul className="space-y-4 text-sm font-normal">
               <li className="flex gap-3">
-                <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:kontakt@wreczycawielka.pl" className="text-muted-foreground hover:text-primary break-all text-[13px]">
+                <Mail className="h-4 w-4 text-[#208fcf] shrink-0" />
+                <a href="mailto:kontakt@wreczycawielka.pl" className="text-slate-500 hover:text-[#208fcf] break-all text-[13px]">
                   kontakt@wreczycawielka.pl
                 </a>
               </li>
@@ -182,27 +182,27 @@ export function SiteFooter() {
         {/* Disclaimer Area */}
         <div className="mt-16 pt-8 border-t border-border/60">
           <div className="bg-stone-100/50 rounded-2xl p-6 md:p-8 mb-10">
-            <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto font-normal">
-              <span className="font-bold text-foreground/80">Ważna informacja:</span> Portal <span className="font-semibold text-primary">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
+            <p className="text-xs text-slate-500 leading-relaxed text-center max-w-4xl mx-auto font-normal">
+              <span className="font-bold text-slate-700">Ważna informacja:</span> Portal <span className="font-semibold text-[#208fcf]">WreczycaWielka.pl</span> ma charakter informacyjny i jest prywatną inicjatywą nie związaną w żaden sposób z Urzędem Gminy Wręczyca Wielka. Dostarczamy Państwu najświeższych informacji i wiadomości związanych z gminą Wręczyca Wielka oraz działalnością organów gminnych.
             </p>
             <div className="mt-4 text-center">
-              <span className="text-[10px] text-muted-foreground/60 font-normal">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: kontakt@wreczycawielka.pl</span>
+              <span className="text-[10px] text-slate-400 font-normal">Redaktor Naczelny: Paweł Gąsiorski | Kontakt: kontakt@wreczycawielka.pl</span>
             </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <p className="text-xs text-muted-foreground font-normal">
+              <p className="text-xs text-slate-500 font-normal">
                 © {new Date().getFullYear()} WreczycaWielka.pl. Wszelkie prawa zastrzeżone.
               </p>
             </div>
             
-            <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-              <a href="/reklama" className="hover:text-primary transition-colors">Reklama</a>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <a href="/reklama" className="hover:text-[#208fcf] transition-colors">Reklama</a>
               <span className="h-1 w-1 rounded-full bg-border" />
-              <a href="/redakcja" className="hover:text-primary transition-colors">Redakcja</a>
+              <a href="/redakcja" className="hover:text-[#208fcf] transition-colors">Redakcja</a>
               <span className="h-1 w-1 rounded-full bg-border" />
-              <a href="/polityka-prywatnosci" className="hover:text-primary transition-colors">Polityka prywatności</a>
+              <a href="/polityka-prywatnosci" className="hover:text-[#208fcf] transition-colors">Polityka prywatności</a>
             </div>
           </div>
         </div>

@@ -85,6 +85,44 @@ function guessCategory(title: string, body: string): string {
   return "Aktualności"
 }
 
+function formatTitle(title: string): string {
+  if (!title) return title
+  const clean = title.trim()
+  if (clean.length === 0) return title
+
+  // Sentence-case: first letter capital, rest lowercase
+  let formatted = clean.charAt(0).toUpperCase() + clean.slice(1).toLowerCase()
+
+  // Polish acronyms & local nouns to restore correct casing
+  const replacements: [RegExp, string | ((m: string) => string)][] = [
+    [/\bosp\b/gi, "OSP"],
+    [/\bgok\b/gi, "GOK"],
+    [/\bpsl\b/gi, "PSL"],
+    [/\bngo\b/gi, "NGO"],
+    [/\bwręczyc[ay] wielk[aąej]\b/gi, (match) => {
+      return match.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+    }],
+    [/\bwręczyc[ay]\b/gi, "Wręczycy"],
+    [/\bwręczyc[ae]\b/gi, "Wręczyce"],
+    [/\bbieżeni[aa]\b/gi, "Bieżenia"],
+    [/\bbieżeń\b/gi, "Bieżeń"],
+    [/\bkłobuck[au]\b/gi, "Kłobucku"],
+    [/\bkłobuck\b/gi, "Kłobuck"],
+    [/\btruskolas[ay]\b/gi, "Truskolasy"],
+    [/\bgrodzisk[ao]\b/gi, "Grodzisko"],
+  ]
+
+  for (const [regex, replacement] of replacements) {
+    if (typeof replacement === "function") {
+      formatted = formatted.replace(regex, replacement as any)
+    } else {
+      formatted = formatted.replace(regex, replacement as string)
+    }
+  }
+
+  return formatted
+}
+
 function getText(v: unknown): string {
   if (typeof v === "string") return v
   if (v && typeof v === "object" && v !== null) {
@@ -142,7 +180,7 @@ export async function fetchNews(): Promise<NewsArticle[]> {
     const entries: AtomEntry[] = data?.feed?.entry ?? []
 
     return entries.map((entry, i): NewsArticle => {
-      const title = stripHtml(getText(entry.title))
+      const title = formatTitle(stripHtml(getText(entry.title)))
       const contentRaw = getText(entry.content) || getText(entry.summary)
       const excerpt = stripHtml(getText(entry.summary) || contentRaw).slice(0, 260)
 

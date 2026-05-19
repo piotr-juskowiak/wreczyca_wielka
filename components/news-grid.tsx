@@ -6,7 +6,7 @@ import Link from "next/link"
 import { NewsCard } from "./news-card"
 import { NewsSidebar } from "./news-sidebar"
 import type { NewsArticle } from "@/lib/news-service"
-import { Trophy, Music, MapPin, ChevronDown, Sparkles, X, ArrowUpRight, Calendar, Newspaper } from "lucide-react"
+import { Trophy, Music, MapPin, ChevronRight, Sparkles, X, ArrowUpRight, Calendar, Newspaper, Trees } from "lucide-react"
 import { toast } from "sonner"
 
 export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
@@ -105,59 +105,67 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
       aria-labelledby="latest-news"
       className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-20 select-none"
     >
-      {/* Editorial Welcome Greeting Banner — Light Neutral Glassmorphic Card */}
+      {/* Hero powitalny */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[2.5rem] border border-[#e4e2d9] bg-[#faf9f5] p-8 sm:p-10 lg:p-12 mb-16 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-8 sm:gap-10 min-h-[220px] group"
+        className="group relative mb-16 min-h-[340px] overflow-hidden rounded-[2.5rem] border border-white/25 bg-[#344e41] shadow-[0_28px_60px_-24px_rgba(52,78,65,0.4)] sm:min-h-[380px] lg:min-h-[420px]"
       >
-        {/* Sunlit Vivid Forest Backdrop Image - highly visible and colorful */}
-        <div className="absolute inset-0 z-0 opacity-80 pointer-events-none select-none transition-transform duration-1000 group-hover:scale-103">
-          <img 
-            src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2000&auto=format&fit=crop" 
-            alt="Majestatyczny las" 
-            className="h-full w-full object-cover object-center scale-102"
+        {/* Tło */}
+        <div className="pointer-events-none absolute inset-0 z-0 select-none transition-[transform] duration-[1.4s] ease-out group-hover:scale-[1.025]">
+          <img
+            src="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvMTA0MTA1NTc2LzU3ZjY0ZGFkNGMwMzVjOWRhNjE2YWFhZGIyY2NhOGU2LmpwZyIsImVkaXRzIjp7InRvRm9ybWF0Ijoid2VicCIsInJlc2l6ZSI6eyJ3aWR0aCI6IjIwNDgiLCJoZWlnaHQiOiIyMDQ4IiwiZml0IjoiaW5zaWRlIn0sInJvdGF0ZSI6bnVsbCwianBlZyI6eyJ0cmVsbGlzUXVhbnRpc2F0aW9uIjp0cnVlLCJvdmVyc2hvb3REZXJpbmdpbmciOnRydWUsIm9wdGltaXNlU2NhbnMiOnRydWUsInF1YW50aXNhdGlvblRhYmxlIjozfX19"
+            alt="Krajobraz ze skalistym zboczem, zielenią i niebem"
+            className="h-full w-full object-cover object-[52%_38%] sm:object-[48%_35%] saturate-[1.06] contrast-[1.03]"
           />
-          {/* Elegant warm sand fade: solid alabaster-sand on the left for text contrast, transitioning to transparent on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f5] via-[#faf9f5]/92 to-[#faf9f5]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e22]/55 via-[#1a2e22]/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2e22]/20 via-transparent to-transparent" />
         </div>
 
-        {/* Decorative subtle ambient brand glow */}
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
-
-        {/* LEFT COLUMN: Greeting Text (65% width on desktop) */}
-        <div className="flex-1 max-w-2xl border-l-[3.5px] border-primary pl-6 md:pl-8 relative z-10 space-y-4">
-          {/* Minimalist Sub-indicator */}
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            Oficjalny Serwis Gminy
-          </div>
-          
-          <h2 id="latest-news" className="text-3xl sm:text-4xl md:text-5xl font-light text-slate-800 tracking-tight leading-[1.2] mb-4">
-            Życie i Wydarzenia we <br className="hidden sm:inline" />
-            <span className="font-semibold text-primary">
-              Wręczycy Wielkiej
-            </span>
-          </h2>
-          <p className="text-xs md:text-sm text-slate-500 font-normal leading-relaxed max-w-xl tracking-wide">
-            Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
-          </p>
-        </div>
-
-        {/* RIGHT COLUMN: Action Button (35% width on desktop) */}
-        <div className="relative z-10 shrink-0 self-start sm:self-auto">
-          {/* Zobacz aktualności Pill Button */}
-          <a
-            href="/aktualnosci"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-primary border border-stone-200 hover:border-primary pl-5 pr-2.5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-slate-700 hover:text-white shadow-sm hover:shadow-md transition-all duration-300 shrink-0 cursor-pointer"
-          >
-            <span>Zobacz aktualności</span>
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 group-hover:bg-white/10 text-slate-400 group-hover:text-white transition-all duration-300">
-              <ChevronDown className="h-4 w-4 -rotate-90 transition-transform group-hover:translate-x-0.5" />
+        {/* Treść — dolne wyrównanie, jeden spójny panel */}
+        <div className="relative z-10 flex min-h-[340px] flex-col justify-end p-6 sm:min-h-[380px] sm:p-9 lg:min-h-[420px] lg:p-11">
+          <div className="w-full rounded-[1.75rem] border border-border/60 bg-white p-6 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.12)] sm:p-8 lg:max-w-[58rem] lg:p-9">
+            <div className="mb-5 flex flex-wrap items-center gap-2.5">
+              <span className="inline-flex items-center gap-2 rounded-full border border-stone-200/70 bg-white/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-stone-300" />
+                </span>
+                Oficjalny serwis gminy
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200/70 bg-white/80 px-2.5 py-1 text-[10px] font-semibold text-stone-400">
+                <Trees className="h-3 w-3 text-stone-300" aria-hidden />
+                28 sołectw
+              </span>
             </div>
-          </a>
+
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+              <div className="min-w-0 flex-1">
+                <h2
+                  id="latest-news"
+                  className="text-balance text-[1.75rem] font-light leading-[1.12] tracking-tight text-[#4a5e52] sm:text-4xl lg:text-[2.75rem]"
+                >
+                  Życie i wydarzenia we{" "}
+                  <span className="font-semibold">Wręczycy Wielkiej</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-[#3d4f44]/90 sm:text-[0.9375rem]">
+                  Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe
+                  lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
+                </p>
+              </div>
+
+              <Link
+                href="/aktualnosci"
+                className="group/btn inline-flex shrink-0 items-center gap-3 self-start rounded-full bg-gradient-to-r from-[#00933f] via-[#008237] to-[#006e2e] py-2.5 pl-5 pr-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_8px_24px_-8px_rgba(0,147,63,0.45)] transition-all duration-300 hover:brightness-110 lg:self-end"
+              >
+                <span>Zobacz aktualności</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover/btn:translate-x-0.5">
+                  <ChevronRight className="h-4 w-4" aria-hidden />
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
       </motion.div>
 

@@ -1,8 +1,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Megaphone, MessageSquare, CloudSun, Sun, CloudRain, Cloud, ArrowRight, Calendar, Clock } from "lucide-react"
+import Link from "next/link"
+import {
+  Megaphone,
+  MessageSquare,
+  CloudSun,
+  Sun,
+  CloudRain,
+  Cloud,
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+  Landmark,
+  TrendingUp,
+} from "lucide-react"
 import { toast } from "sonner"
+
+const GREEN_GRADIENT = "bg-gradient-to-r from-[#14a858] via-[#0f9d4c] to-[#0b9448]"
+const GREEN_BADGE = "bg-emerald-50 text-[#008237] border-emerald-200/70"
+const GREEN_DOT = "bg-[#00933f]"
 
 const ANNOUNCEMENTS = [
   {
@@ -59,6 +76,8 @@ const MOST_COMMENTED_ARTICLES = [
   },
 ]
 
+const MAX_COMMENTS = Math.max(...MOST_COMMENTED_ARTICLES.map((a) => a.commentsCount))
+
 const WEATHER_FORECAST = [
   { day: "Poniedziałek", tempDay: 19, tempNight: 10, icon: Sun, desc: "Słonecznie", color: "text-[#a3b18a]" },
   { day: "Wtorek", tempDay: 21, tempNight: 12, icon: Sun, desc: "Słonecznie", color: "text-[#a3b18a]" },
@@ -88,11 +107,9 @@ export function NewsSidebar() {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className="relative overflow-hidden rounded-[2rem] bg-stone-50/50 border border-dashed border-stone-300/80 p-6 flex flex-col items-center justify-center text-center group h-[220px] shadow-sm hover:bg-stone-50 hover:border-stone-400/80 transition-all duration-300"
       >
-        {/* Subtle decorative grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+        <motion.div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
         <div className="relative z-10 flex flex-col items-center">
-          {/* Elegant Gray Icon */}
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-stone-200 shadow-sm text-stone-400 mb-3 group-hover:scale-105 transition-transform duration-300">
             <Megaphone className="h-5 w-5 text-stone-400/80" strokeWidth={1.8} />
           </div>
@@ -121,144 +138,185 @@ export function NewsSidebar() {
         </div>
       </motion.div>
 
-      {/* 1. MUNICIPAL ANNOUNCEMENTS — PREMIUM NATURAL CARD */}
+      {/* 1. Ogłoszenia UG */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="relative overflow-hidden rounded-[2.25rem] border border-stone-200 bg-white/70 backdrop-blur-md p-6 shadow-sm hover:shadow-[0_12px_30px_rgba(58,90,64,0.06)] transition-all duration-500 text-stone-855"
+        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        aria-labelledby="sidebar-announcements"
       >
-        {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-primary" />
-        
-        {/* Subtle background decorative circle */}
-        <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-primary/[0.02] pointer-events-none" />
-
-        <div className="relative z-10">
-          <div className="flex items-center gap-3.5 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/10 text-primary shadow-[0_2px_10px_rgba(58,90,64,0.05)]">
-              <Megaphone className="h-4.5 w-4.5" strokeWidth={2} />
+        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
+              <Landmark className="h-4 w-4" strokeWidth={1.75} />
             </div>
-            <div>
-              <h3 className="text-[13px] font-bold uppercase tracking-widest text-stone-800 leading-tight">
-                Ogłoszenia Urzędu Gminy
+            <div className="min-w-0">
+              <h3
+                id="sidebar-announcements"
+                className="text-xs font-bold uppercase tracking-widest text-white"
+              >
+                Ogłoszenia UG
               </h3>
-              <span className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block mt-0.5">
-                Oficjalny Biuletyn Informacyjny
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
+                Biuletyn informacji publicznej
               </span>
             </div>
           </div>
+          <span className="hidden shrink-0 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90 sm:inline">
+            Oficjalne
+          </span>
+        </div>
 
-          <div className="space-y-4">
-            {ANNOUNCEMENTS.map((ann) => {
-              // Custom left accent color or tag styling based on category
-              let accentColor = "border-l-primary"
-              let tagStyle = "text-primary bg-primary/5 border border-primary/10"
-              
-              if (ann.category === "Techniczne") {
-                accentColor = "border-l-amber-500"
-                tagStyle = "text-amber-800 bg-amber-50 border border-amber-200/50"
-              } else if (ann.category === "Inicjatywy") {
-                accentColor = "border-l-toffee-brown"
-                tagStyle = "text-[#65764d] bg-toffee-brown/10 border border-toffee-brown/20"
-              }
-
-              return (
-                <div
-                  key={ann.id}
-                  className={`group cursor-pointer bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-4.5 border border-stone-200/50 border-l-[3.5px] ${accentColor} shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left`}
-                >
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
-                    <span className={`text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${tagStyle}`}>
-                      {ann.category}
-                    </span>
-                    <span className="text-[10.5px] font-normal text-stone-400 flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5 text-stone-300" /> {ann.date}
-                    </span>
+        <div className="p-5">
+        <ol className="divide-y divide-border/60">
+          {ANNOUNCEMENTS.map((ann, index) => (
+              <li key={ann.id}>
+                <article className="group relative flex gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60">
+                  <div className="flex w-11 shrink-0 flex-col items-center pt-0.5">
+                    <span
+                      className={`h-2 w-2 rounded-full ${GREEN_DOT} ring-4 ring-background`}
+                      aria-hidden
+                    />
+                    {index < ANNOUNCEMENTS.length - 1 && (
+                      <span
+                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-emerald-100"
+                        aria-hidden
+                      />
+                    )}
                   </div>
-                  <h4 className="text-[13px] font-bold text-[#2e3f35] group-hover:text-primary transition-colors duration-200 line-clamp-1 leading-snug">
-                    {ann.title}
-                  </h4>
-                  <p className="mt-1.5 text-[11.5px] text-stone-500 font-normal line-clamp-2 leading-relaxed">
-                    {ann.excerpt}
-                  </p>
-                </div>
-              )
-            })}
-          </div>
 
-          <a
-            href="/ogloszenia"
-            className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-transparent hover:bg-primary border border-primary/20 hover:border-primary py-3 text-[10px] font-semibold uppercase tracking-widest text-primary hover:text-white transition-all duration-300 shadow-[0_2px_6px_rgba(0,0,0,0.01)] cursor-pointer"
-          >
-            <span>Wszystkie ogłoszenia</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </a>
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <span
+                        className={`inline-flex rounded-md border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${GREEN_BADGE}`}
+                      >
+                        {ann.category}
+                      </span>
+                      <time className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                        <Calendar className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
+                        {ann.date}
+                      </time>
+                    </div>
+                    <h4 className="text-[13px] font-semibold leading-snug text-foreground transition-colors group-hover:text-[#00933f] line-clamp-2">
+                      {ann.title}
+                    </h4>
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                      {ann.excerpt}
+                    </p>
+                  </div>
+
+                  <ChevronRight
+                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
+                    aria-hidden
+                  />
+                </article>
+              </li>
+            ))}
+        </ol>
+
+        <Link
+          href="/ogloszenia"
+          className={`group mt-5 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:brightness-[1.03] ${GREEN_GRADIENT}`}
+        >
+          <span>Wszystkie ogłoszenia</span>
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </Link>
         </div>
       </motion.div>
 
-      {/* 2. MOST COMMENTED — PREMIUM NATURAL CARD */}
+      {/* 2. Najczęściej komentowane */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="relative overflow-hidden rounded-[2.25rem] border border-stone-200 bg-white/70 backdrop-blur-md p-6 shadow-sm hover:shadow-[0_12px_30px_rgba(58,90,64,0.06)] transition-all duration-500 text-stone-855"
+        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        aria-labelledby="sidebar-most-commented"
       >
-        {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-toffee-brown" />
-
-        {/* Subtle background decorative circle */}
-        <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-toffee-brown/[0.03] pointer-events-none" />
-
-        <div className="relative z-10">
-          <div className="flex items-center gap-3.5 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-toffee-brown/10 border border-toffee-brown/10 text-primary shadow-[0_2px_10px_rgba(163,177,138,0.05)]">
-              <MessageSquare className="h-4.5 w-4.5" strokeWidth={2} />
+        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
+              <TrendingUp className="h-4 w-4" strokeWidth={1.75} />
             </div>
-            <div>
-              <h3 className="text-[13px] font-bold uppercase tracking-widest text-stone-800 leading-tight">
-                Najczęściej Komentowane
+            <div className="min-w-0">
+              <h3
+                id="sidebar-most-commented"
+                className="text-xs font-bold uppercase tracking-widest text-white"
+              >
+                Najczęściej komentowane
               </h3>
-              <span className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block mt-0.5">
-                Głos mieszkańców i najpopularniejsze dyskusje
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
+                Ranking aktywności mieszkańców
               </span>
             </div>
           </div>
+          <span className="flex shrink-0 items-center gap-1 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90">
+            <MessageSquare className="h-3 w-3" aria-hidden />
+            Live
+          </span>
+        </div>
 
-          <div className="space-y-3">
-            {MOST_COMMENTED_ARTICLES.map((article) => (
-              <a
-                key={article.id}
-                href={`/aktualnosci/${article.slug}`}
-                className="group flex gap-4 bg-[#faf9f5]/60 hover:bg-white rounded-2xl p-3.5 border border-stone-200/50 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_20px_rgba(58,90,64,0.06)] hover:-translate-y-[2px] transition-all duration-300 text-left items-center animate-fadeIn"
-              >
-                {/* Speech bubble badge using a modern clean box layout */}
-                <div className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-xl bg-toffee-brown/10 border border-toffee-brown/20 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm gap-0.5">
-                  <MessageSquare className="h-3.5 w-3.5 text-[#8f7a66] group-hover:text-white/80 transition-colors" />
-                  <span className="text-[11px] font-bold leading-none">{article.commentsCount}</span>
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-[11.5px] font-normal text-stone-850 group-hover:text-primary transition-colors duration-200 line-clamp-2 leading-relaxed">
-                    {article.title}
-                  </h4>
-                  <span className="text-[9.5px] font-normal text-stone-450 mt-1 block">
-                    {article.category}
+        <div className="p-5">
+        <ol className="divide-y divide-border/60">
+          {MOST_COMMENTED_ARTICLES.map((article, index) => {
+            const engagement = Math.round((article.commentsCount / MAX_COMMENTS) * 100)
+
+            return (
+              <li key={article.id}>
+                <Link
+                  href={`/aktualnosci/${article.slug}`}
+                  className="group flex items-start gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60"
+                >
+                  <span
+                    className="w-7 shrink-0 pt-0.5 text-center text-lg font-light tabular-nums leading-none text-[#00933f]/25 transition-colors group-hover:text-[#00933f]/60"
+                    aria-hidden
+                  >
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                </div>
-              </a>
-            ))}
-          </div>
 
-          <a
-            href="/aktualnosci"
-            className="group/btn mt-5 flex items-center justify-center gap-2 rounded-xl bg-transparent hover:bg-toffee-brown border border-toffee-brown/20 hover:border-toffee-brown py-3 text-[10px] font-semibold uppercase tracking-widest text-primary hover:text-white transition-all duration-300 shadow-[0_2px_6px_rgba(0,0,0,0.01)] cursor-pointer"
-          >
-            <span>Zobacz wszystkie dyskusje</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
-          </a>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-[13px] font-medium leading-snug text-foreground transition-colors group-hover:text-[#00933f] line-clamp-2">
+                      {article.title}
+                    </h4>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <span className={`rounded-md border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${GREEN_BADGE}`}>
+                        {article.category}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#00933f]">
+                        <MessageSquare className="h-3 w-3" aria-hidden />
+                        {article.commentsCount}
+                      </span>
+                    </div>
+                    <div
+                      className="mt-2.5 h-1 overflow-hidden rounded-full bg-emerald-100"
+                      role="presentation"
+                    >
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#14a858]/75 to-[#0b9448] transition-all duration-500 group-hover:from-[#14a858] group-hover:to-[#0a9045]"
+                        style={{ width: `${engagement}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <ChevronRight
+                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
+                    aria-hidden
+                  />
+                </Link>
+              </li>
+            )
+          })}
+        </ol>
+
+        <Link
+          href="/aktualnosci"
+          className={`group mt-5 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:brightness-[1.03] ${GREEN_GRADIENT}`}
+        >
+          <span>Zobacz wszystkie dyskusje</span>
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </Link>
         </div>
       </motion.div>
 
@@ -268,27 +326,36 @@ export function NewsSidebar() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-        className="rounded-3xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        aria-labelledby="sidebar-weather"
       >
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-dusty-olive-light text-dusty-olive">
-            <CloudSun className="h-4 w-4" />
+        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
+              <CloudSun className="h-4 w-4" strokeWidth={1.75} />
+            </div>
+            <div className="min-w-0">
+              <h3
+                id="sidebar-weather"
+                className="text-xs font-bold uppercase tracking-widest text-white"
+              >
+                Pogoda Wręczyca Wielka
+              </h3>
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
+                Prognoza 14-dniowa
+              </span>
+            </div>
           </div>
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-foreground">
-              Pogoda Wręczyca Wielka
-            </h3>
-            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
-              Prognoza 14-dniowa
-            </span>
-          </div>
+          <span className="hidden shrink-0 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90 sm:inline">
+            Live
+          </span>
         </div>
+        <div className="p-6">
 
         <div className="relative overflow-hidden flex items-center justify-between text-white p-5 rounded-2xl mb-6 shadow-md border border-slate-200/10 group/weather">
-          {/* Weather photo background with a subtle dark overlay for maximum text legibility */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/weather:scale-105 pointer-events-none" 
-            style={{ backgroundImage: "url('/weather-sunny.png')" }} 
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/weather:scale-105 pointer-events-none"
+            style={{ backgroundImage: "url('/weather-sunny.png')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-slate-800/40 to-slate-950/60 pointer-events-none" />
 
@@ -330,6 +397,7 @@ export function NewsSidebar() {
               </div>
             )
           })}
+        </div>
         </div>
       </motion.div>
 

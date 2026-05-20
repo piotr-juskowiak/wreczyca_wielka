@@ -11,6 +11,33 @@ const SOLECTWA = [
   "Wręczyca Mała", "Wręczyca Wielka I", "Wręczyca Wielka II", "Wydra", "Zamłynie"
 ]
 
+const SOLECTWA_NEWS = [
+  {
+    id: "sn-1",
+    solectwo: "Truskolasy",
+    title: "Nowe oświetlenie LED na głównej ulicy",
+    date: "19 maja 2026",
+    excerpt: "Zakończono modernizację oświetlenia drogowego, co znacząco poprawi bezpieczeństwo po zmroku.",
+    image: "https://images.unsplash.com/photo-1517400508447-f8dd518b86e3?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "sn-2",
+    solectwo: "Kuleje",
+    title: "Rozbudowa placu zabaw i siłowni plenerowej",
+    date: "18 maja 2026",
+    excerpt: "Wkrótce ruszą prace nad powiększeniem strefy rekreacyjnej dla dzieci i dorosłych.",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "sn-3",
+    solectwo: "Grodzisko",
+    title: "Zebranie wiejskie ws. funduszu sołeckiego",
+    date: "16 maja 2026",
+    excerpt: "Zapraszamy wszystkich mieszkańców na spotkanie dotyczące podziału środków na rok 2027.",
+    image: "https://images.unsplash.com/photo-1577416412292-747c6607f055?q=80&w=600&auto=format&fit=crop"
+  }
+]
+
 export function GalleryCarousel() {
   return (
     <section
@@ -19,13 +46,13 @@ export function GalleryCarousel() {
       className="relative overflow-hidden bg-gradient-to-br from-[#1c2e20] via-[#121f15] to-[#0a120c] py-20 lg:py-24 text-white border-y border-stone-900/60 select-none"
     >
       {/* Background Image under Dark Cinematic Overlay */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none select-none">
+      <div className="absolute inset-0 z-0 opacity-25 pointer-events-none select-none">
         <img 
           src="https://d-art.ppstatic.pl/kadry/k/r/a0/b9/5a9e7fddb86d4_o_xlarge.jpg" 
           alt="Gmina Wręczyca Wielka" 
-          className="h-full w-full object-cover object-center grayscale contrast-125 mix-blend-luminosity"
+          className="h-full w-full object-cover object-center grayscale contrast-100 mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1c2e20]/95 via-[#121f15]/90 to-[#0a120c]/98" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1c2e20]/85 via-[#121f15]/80 to-[#0a120c]/90" />
       </div>
 
       {/* Bottom gradient fade & soft blur transition */}
@@ -54,6 +81,43 @@ export function GalleryCarousel() {
           <p className="mt-4 text-xs sm:text-sm text-stone-400 font-normal leading-relaxed max-w-xl">
             Poznaj 28 wyjątkowych miejscowości tworzących naszą gminną społeczność. Wybierz sołectwo, aby filtrować wiadomości, alerty i inicjatywy mieszkańców z Twojej okolicy.
           </p>
+        </div>
+
+        {/* Latest News from Villages */}
+        <div className="mb-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+          {SOLECTWA_NEWS.map((news) => (
+            <motion.a
+              key={news.id}
+              href={`/aktualnosci/solectwa/${news.id}`}
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-300 shadow-lg hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
+            >
+              <div className="aspect-[16/9] w-full overflow-hidden bg-[#121f15]">
+                <img 
+                  src={news.image} 
+                  alt={news.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
+                />
+              </div>
+              <div className="absolute top-3 left-3 z-10">
+                <span className="inline-flex items-center rounded-lg bg-black/60 backdrop-blur-md px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[#a3b18a] border border-white/10 shadow-sm">
+                  <MapPin className="mr-1 h-3 w-3" />
+                  {news.solectwo}
+                </span>
+              </div>
+              <div className="p-5">
+                <time className="block text-[9px] font-semibold uppercase tracking-widest text-white/40 mb-2">
+                  {news.date}
+                </time>
+                <h3 className="text-[14px] font-medium text-white/95 leading-snug mb-2 group-hover:text-[#a3b18a] transition-colors line-clamp-2">
+                  {news.title}
+                </h3>
+                <p className="text-[11.5px] text-white/50 leading-relaxed line-clamp-2">
+                  {news.excerpt}
+                </p>
+              </div>
+            </motion.a>
+          ))}
         </div>
 
         {/* Interactive Village Grid - Premium Dark Glassmorphism */}

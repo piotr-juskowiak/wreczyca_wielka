@@ -13,13 +13,13 @@ import {
   Calendar,
   ChevronRight,
   Landmark,
-  TrendingUp,
+  Info,
 } from "lucide-react"
 import { toast } from "sonner"
 
-const GREEN_GRADIENT = "bg-gradient-to-r from-[#14a858] via-[#0f9d4c] to-[#0b9448]"
+const ANNOUNCEMENTS_HEADER_IMAGE = "https://i.imgur.com/y1KOVK4.png"
+const COMMENTS_HEADER_IMAGE = "https://i.imgur.com/34TpIGu.png"
 const GREEN_BADGE = "bg-emerald-50 text-[#008237] border-emerald-200/70"
-const GREEN_DOT = "bg-[#00933f]"
 
 const ANNOUNCEMENTS = [
   {
@@ -75,8 +75,6 @@ const MOST_COMMENTED_ARTICLES = [
     slug: "strazacy-myja-przystanki-zdjecie-musi-byc",
   },
 ]
-
-const MAX_COMMENTS = Math.max(...MOST_COMMENTED_ARTICLES.map((a) => a.commentsCount))
 
 const WEATHER_FORECAST = [
   { day: "Poniedziałek", tempDay: 19, tempNight: 10, icon: Sun, desc: "Słonecznie", color: "text-[#a3b18a]" },
@@ -144,29 +142,26 @@ export function NewsSidebar() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        className="overflow-hidden rounded-3xl bg-card shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.14)] transition-all duration-300"
         aria-labelledby="sidebar-announcements"
       >
-        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
-              <Landmark className="h-4 w-4" strokeWidth={1.75} />
+        <div 
+          className="relative flex items-center justify-center gap-3 px-5 py-6 overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: `url(${ANNOUNCEMENTS_HEADER_IMAGE})` }}
+        >
+          {/* Bardzo delikatne przyciemnienie tylko po to, by biały tekst był czytelny na jasnym zdjęciu */}
+          <div className="absolute inset-0 bg-black/25" />
+          <div className="relative z-10 flex items-center gap-3.5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md border border-white/30">
+              <Landmark className="h-5 w-5" strokeWidth={1.75} />
             </div>
-            <div className="min-w-0">
-              <h3
-                id="sidebar-announcements"
-                className="text-xs font-bold uppercase tracking-widest text-white"
-              >
-                Ogłoszenia UG
-              </h3>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
-                Biuletyn informacji publicznej
-              </span>
-            </div>
+            <h3
+              id="sidebar-announcements"
+              className="text-[13px] font-black uppercase tracking-[0.2em] text-white drop-shadow-md"
+            >
+              Ogłoszenia UG
+            </h3>
           </div>
-          <span className="hidden shrink-0 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90 sm:inline">
-            Oficjalne
-          </span>
         </div>
 
         <div className="p-5">
@@ -176,26 +171,23 @@ export function NewsSidebar() {
                 <article className="group relative flex gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60">
                   <div className="flex w-11 shrink-0 flex-col items-center pt-0.5">
                     <span
-                      className={`h-2 w-2 rounded-full ${GREEN_DOT} ring-4 ring-background`}
+                      className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-4 ring-background shadow-sm z-10"
                       aria-hidden
-                    />
+                    >
+                      <Info className="h-4 w-4" strokeWidth={2.5} />
+                    </span>
                     {index < ANNOUNCEMENTS.length - 1 && (
                       <span
-                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-emerald-100"
+                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-emerald-100/70"
                         aria-hidden
                       />
                     )}
                   </div>
 
-                  <div className="min-w-0 flex-1">
-                    <div className="mb-2 flex flex-wrap items-center gap-2">
-                      <span
-                        className={`inline-flex rounded-md border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${GREEN_BADGE}`}
-                      >
-                        {ann.category}
-                      </span>
-                      <time className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                        <Calendar className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
+                  <div className="min-w-0 flex-1 pt-1">
+                    <div className="mb-1.5 flex flex-wrap items-center gap-2">
+                      <time className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80">
+                        <Calendar className="h-3 w-3 shrink-0" aria-hidden />
                         {ann.date}
                       </time>
                     </div>
@@ -216,107 +208,77 @@ export function NewsSidebar() {
             ))}
         </ol>
 
-        <Link
-          href="/ogloszenia"
-          className={`group mt-5 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:brightness-[1.03] ${GREEN_GRADIENT}`}
-        >
-          <span>Wszystkie ogłoszenia</span>
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+        {/* Usunięto przycisk Wszystkie ogłoszenia na prośbę użytkownika */}
         </div>
       </motion.div>
 
-      {/* 2. Najczęściej komentowane */}
+      {/* 2. Głos mieszkańców */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
-        aria-labelledby="sidebar-most-commented"
+        className="overflow-hidden rounded-3xl bg-card shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.14)] transition-all duration-300"
+        aria-labelledby="sidebar-residents-voice"
       >
-        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
-              <TrendingUp className="h-4 w-4" strokeWidth={1.75} />
+        <div 
+          className="relative flex items-center justify-center gap-3 px-5 py-6 overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: `url(${COMMENTS_HEADER_IMAGE})` }}
+        >
+          <div className="absolute inset-0 bg-black/25" />
+          <div className="relative z-10 flex items-center gap-3.5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md border border-white/30">
+              <MessageSquare className="h-5 w-5" strokeWidth={1.75} />
             </div>
-            <div className="min-w-0">
-              <h3
-                id="sidebar-most-commented"
-                className="text-xs font-bold uppercase tracking-widest text-white"
-              >
-                Najczęściej komentowane
-              </h3>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
-                Ranking aktywności mieszkańców
-              </span>
-            </div>
+            <h3
+              id="sidebar-residents-voice"
+              className="text-[13px] font-black uppercase tracking-[0.2em] text-white drop-shadow-md"
+            >
+              Głos mieszkańców
+            </h3>
           </div>
-          <span className="flex shrink-0 items-center gap-1 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90">
-            <MessageSquare className="h-3 w-3" aria-hidden />
-            Live
-          </span>
         </div>
 
         <div className="p-5">
         <ol className="divide-y divide-border/60">
-          {MOST_COMMENTED_ARTICLES.map((article, index) => {
-            const engagement = Math.round((article.commentsCount / MAX_COMMENTS) * 100)
-
-            return (
+          {MOST_COMMENTED_ARTICLES.map((article, index) => (
               <li key={article.id}>
                 <Link
                   href={`/aktualnosci/${article.slug}`}
-                  className="group flex items-start gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60"
+                  className="group flex items-start gap-3.5 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60"
                 >
                   <span
-                    className="w-7 shrink-0 pt-0.5 text-center text-lg font-light tabular-nums leading-none text-[#00933f]/25 transition-colors group-hover:text-[#00933f]/60"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-[13px] font-black tabular-nums text-stone-500 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-700 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
                     aria-hidden
                   >
-                    {String(index + 1).padStart(2, "0")}
+                    {index + 1}
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <h4 className="text-[13px] font-medium leading-snug text-foreground transition-colors group-hover:text-[#00933f] line-clamp-2">
+                    <h4 className="text-[13px] font-semibold leading-snug text-slate-800 transition-colors group-hover:text-[#00933f] line-clamp-2">
                       {article.title}
                     </h4>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
                       <span className={`rounded-md border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${GREEN_BADGE}`}>
                         {article.category}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#00933f]">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#00933f]">
                         <MessageSquare className="h-3 w-3" aria-hidden />
                         {article.commentsCount}
                       </span>
                     </div>
-                    <div
-                      className="mt-2.5 h-1 overflow-hidden rounded-full bg-emerald-100"
-                      role="presentation"
-                    >
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#14a858]/75 to-[#0b9448] transition-all duration-500 group-hover:from-[#14a858] group-hover:to-[#0a9045]"
-                        style={{ width: `${engagement}%` }}
-                      />
-                    </div>
                   </div>
 
                   <ChevronRight
-                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
+                    className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
                     aria-hidden
                   />
                 </Link>
               </li>
-            )
-          })}
+            ))}
         </ol>
 
-        <Link
-          href="/aktualnosci"
-          className={`group mt-5 flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:brightness-[1.03] ${GREEN_GRADIENT}`}
-        >
-          <span>Zobacz wszystkie dyskusje</span>
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+        {/* Usunięto przycisk Wszystkie dyskusje na prośbę użytkownika */}
         </div>
       </motion.div>
 
@@ -326,30 +288,9 @@ export function NewsSidebar() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-        className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        className="overflow-hidden rounded-3xl bg-card shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.14)] transition-all duration-300"
         aria-labelledby="sidebar-weather"
       >
-        <div className={`flex items-center justify-between gap-3 px-5 py-4 ${GREEN_GRADIENT}`}>
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/12 text-white shadow-sm">
-              <CloudSun className="h-4 w-4" strokeWidth={1.75} />
-            </div>
-            <div className="min-w-0">
-              <h3
-                id="sidebar-weather"
-                className="text-xs font-bold uppercase tracking-widest text-white"
-              >
-                Pogoda Wręczyca Wielka
-              </h3>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100/90">
-                Prognoza 14-dniowa
-              </span>
-            </div>
-          </div>
-          <span className="hidden shrink-0 rounded-lg border border-white/15 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white/90 sm:inline">
-            Live
-          </span>
-        </div>
         <div className="p-6">
 
         <div className="relative overflow-hidden flex items-center justify-between text-white p-5 rounded-2xl mb-6 shadow-md border border-slate-200/10 group/weather">
@@ -360,7 +301,7 @@ export function NewsSidebar() {
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-slate-800/40 to-slate-950/60 pointer-events-none" />
 
           <div className="relative z-10 space-y-1">
-            <span className="text-[9px] font-semibold uppercase tracking-widest text-amber-300 animate-pulse">Aktualnie</span>
+            <span className="text-[9px] font-semibold uppercase tracking-widest text-amber-300 animate-pulse">Pogoda Wręczyca Wlk.</span>
             <div className="text-4xl font-extralight tracking-tighter">18°C</div>
             <div className="text-[10px] font-normal text-white/95">Słonecznie i ciepło</div>
           </div>
@@ -371,7 +312,7 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="space-y-3.5 max-h-[320px] overflow-y-auto pr-1.5 scrollbar-thin">
+        <div className="space-y-3.5 max-h-[500px] overflow-y-auto pr-1.5 scrollbar-thin">
           {WEATHER_FORECAST.map((w, idx) => {
             const Icon = w.icon
             return (

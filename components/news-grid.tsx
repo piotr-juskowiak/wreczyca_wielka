@@ -6,7 +6,7 @@ import Link from "next/link"
 import { NewsCard } from "./news-card"
 import { NewsSidebar } from "./news-sidebar"
 import type { NewsArticle } from "@/lib/news-service"
-import { Trophy, Music, MapPin, ChevronRight, Sparkles, X, ArrowUpRight, Calendar, Newspaper, Trees } from "lucide-react"
+import { Trophy, Music, MapPin, ChevronRight, Sparkles, X, ArrowUpRight, Calendar, Newspaper, Trees, Images } from "lucide-react"
 import { toast } from "sonner"
 
 export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
@@ -40,6 +40,14 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
     }
     return filtered.slice(0, 3)
   }, [articles])
+
+  const cultureGallery = useMemo(() => {
+    const picked = cultureArticles.filter((article) => article.image)
+    const pickedIds = new Set(picked.map((article) => article.id))
+    const fallback = articles.filter((article) => article.image && !pickedIds.has(article.id))
+
+    return [...picked, ...fallback].slice(0, 6)
+  }, [articles, cultureArticles])
 
   // 3. Filter articles for Sołectwa row (safely fallback & pad to exactly 3 articles if matching are short)
   const solectwaArticles = useMemo(() => {
@@ -111,60 +119,60 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="group relative mb-16 min-h-[340px] overflow-hidden rounded-[2.5rem] border border-white/25 bg-[#344e41] shadow-[0_28px_60px_-24px_rgba(52,78,65,0.4)] sm:min-h-[380px] lg:min-h-[420px]"
+        className="group relative mb-20 min-h-[460px] lg:min-h-[540px] overflow-hidden rounded-[2.5rem] bg-stone-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] flex items-center"
       >
-        {/* Tło */}
-        <div className="pointer-events-none absolute inset-0 z-0 select-none transition-[transform] duration-[1.4s] ease-out group-hover:scale-[1.025]">
+        {/* Tło Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvMTA0MTA1NTc2LzU3ZjY0ZGFkNGMwMzVjOWRhNjE2YWFhZGIyY2NhOGU2LmpwZyIsImVkaXRzIjp7InRvRm9ybWF0Ijoid2VicCIsInJlc2l6ZSI6eyJ3aWR0aCI6IjIwNDgiLCJoZWlnaHQiOiIyMDQ4IiwiZml0IjoiaW5zaWRlIn0sInJvdGF0ZSI6bnVsbCwianBlZyI6eyJ0cmVsbGlzUXVhbnRpc2F0aW9uIjp0cnVlLCJvdmVyc2hvb3REZXJpbmdpbmciOnRydWUsIm9wdGltaXNlU2NhbnMiOnRydWUsInF1YW50aXNhdGlvblRhYmxlIjozfX19"
-            alt="Krajobraz ze skalistym zboczem, zielenią i niebem"
-            className="h-full w-full object-cover object-[52%_38%] sm:object-[48%_35%] saturate-[1.06] contrast-[1.03]"
+            src="https://i.imgur.com/dXT3cHI.png"
+            alt="Krajobraz Wręczyca Wielka"
+            className="h-full w-full object-cover object-[52%_38%] sm:object-[48%_35%] transition-transform duration-[2.5s] ease-out group-hover:scale-105 saturate-[1.1]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e22]/55 via-[#1a2e22]/10 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2e22]/20 via-transparent to-transparent" />
+          {/* Subtle gradient overlay to enhance text contrast on mobile if the card wraps, and add depth */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
         </div>
 
-        {/* Treść — dolne wyrównanie, jeden spójny panel */}
-        <div className="relative z-10 flex min-h-[340px] flex-col justify-end p-6 sm:min-h-[380px] sm:p-9 lg:min-h-[420px] lg:p-11">
-          <div className="w-full rounded-[1.75rem] border border-border/60 bg-white p-6 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.12)] sm:p-8 lg:max-w-[58rem] lg:p-9">
-            <div className="mb-5 flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-2 rounded-full border border-stone-200/70 bg-white/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-stone-300" />
+        {/* Floating Card */}
+        <div className="relative z-10 w-full p-5 sm:p-8 lg:p-12">
+          <div className="w-full max-w-[640px] rounded-[2rem] bg-white/95 backdrop-blur-xl border border-white p-7 sm:p-10 lg:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] transition-transform duration-500 hover:-translate-y-1">
+            <div className="mb-6 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-emerald-700 border border-emerald-100/50">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                 </span>
                 Oficjalny serwis gminy
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200/70 bg-white/80 px-2.5 py-1 text-[10px] font-semibold text-stone-400">
-                <Trees className="h-3 w-3 text-stone-300" aria-hidden />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-50 px-3.5 py-1.5 text-[10px] font-bold text-stone-500 uppercase tracking-widest border border-stone-200/50">
+                <Trees className="h-3.5 w-3.5 text-stone-400" aria-hidden />
                 28 sołectw
               </span>
             </div>
 
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-              <div className="min-w-0 flex-1">
-                <h2
-                  id="latest-news"
-                  className="text-balance text-[1.75rem] font-light leading-[1.12] tracking-tight text-[#4a5e52] sm:text-4xl lg:text-[2.75rem]"
-                >
-                  Życie i wydarzenia we{" "}
-                  <span className="font-semibold">Wręczycy Wielkiej</span>
-                </h2>
-                <p className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-[#3d4f44]/90 sm:text-[0.9375rem]">
-                  Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe
-                  lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
-                </p>
-              </div>
+            <h2
+              id="latest-news"
+              className="text-balance text-[2rem] font-medium leading-[1.1] tracking-tight text-slate-900 sm:text-[2.5rem] lg:text-[3rem] mb-5"
+            >
+              Życie i wydarzenia we{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400 font-bold">
+                Wręczycy Wielkiej
+              </span>
+            </h2>
+            
+            <p className="max-w-xl text-pretty text-base leading-relaxed text-slate-600 mb-8 sm:text-[1.0625rem]">
+              Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe
+              lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
+            </p>
 
-              <Link
-                href="/aktualnosci"
-                className="group/btn inline-flex shrink-0 items-center gap-3 self-start rounded-full bg-gradient-to-r from-[#00933f] via-[#008237] to-[#006e2e] py-2.5 pl-5 pr-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_8px_24px_-8px_rgba(0,147,63,0.45)] transition-all duration-300 hover:brightness-110 lg:self-end"
-              >
-                <span>Zobacz aktualności</span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover/btn:translate-x-0.5">
-                  <ChevronRight className="h-4 w-4" aria-hidden />
-                </span>
-              </Link>
-            </div>
+            <Link
+              href="/aktualnosci"
+              className="group/btn inline-flex items-center gap-4 rounded-full bg-slate-900 py-3.5 pl-7 pr-3 text-[11px] font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-600/20 active:scale-95"
+            >
+              <span>Zobacz aktualności</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover/btn:translate-x-1">
+                <ChevronRight className="h-4 w-4" aria-hidden />
+              </span>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -374,37 +382,61 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                 <NewsCard key={article.id} article={article} hideCategory={true} />
               ))}
             </div>
-          </div>
 
-          {/* ROW 3: SOŁECTWA */}
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gradient-to-r from-[#d97706] via-[#af6215] to-[#8d4e0e] border border-[#af6215]/30 rounded-2xl gap-4 shadow-sm">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/12 text-white border border-white/15 shadow-sm shrink-0">
-                  <MapPin className="h-4.5 w-4.5" />
+            {cultureGallery.length > 0 && (
+              <div className="overflow-hidden rounded-[2rem] border border-[#eadfc6] bg-[#fffdf6] p-4 shadow-[0_18px_42px_-30px_rgba(107,76,20,0.45)] sm:p-5">
+                <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div className="flex items-center gap-3.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#fff3c4] text-[#a37900] ring-1 ring-[#e0a800]/25">
+                      <Images className="h-5 w-5" aria-hidden />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold uppercase tracking-wider text-[#344e41]">
+                        Galeria
+                      </h3>
+                      <span className="block text-[10px] font-bold uppercase tracking-wider text-[#a37900]">
+                        Migawki z wydarzeń, koncertów i spotkań
+                      </span>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/kultura-i-rozrywka"
+                    className="group inline-flex w-fit items-center gap-2 rounded-xl border border-[#e0a800]/25 bg-white px-3.5 py-2 text-[9px] font-black uppercase tracking-widest text-[#8a6500] transition-all hover:border-[#a37900]/35 hover:bg-[#fff8dd]"
+                  >
+                    <span>Zobacz więcej</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-white uppercase tracking-wider">
-                    Sołectwa Gminy Wręczyca Wielka
-                  </h3>
-                  <span className="text-[10px] text-orange-50/90 font-bold uppercase tracking-wider block">Nasze miejscowości i lokalne społeczności</span>
+
+                <div className="grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[170px] lg:grid-cols-4">
+                  {cultureGallery.map((article, index) => (
+                    <Link
+                      key={`gallery-${article.id}`}
+                      href={`/aktualnosci/${article.slug}`}
+                      className={`group relative overflow-hidden rounded-[1.25rem] bg-stone-100 shadow-sm ring-1 ring-black/5 ${
+                        index === 0 ? "col-span-2 row-span-2" : ""
+                      }`}
+                    >
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/68 via-black/8 to-transparent opacity-85 transition-opacity group-hover:opacity-72" />
+                      <div className="absolute inset-x-0 bottom-0 p-3.5 text-white">
+                        <span className="mb-1.5 inline-flex rounded-md bg-white/16 px-2 py-0.5 text-[8px] font-black uppercase tracking-widest text-white/85 backdrop-blur-md">
+                          {article.category}
+                        </span>
+                        <h4 className="text-[13px] font-semibold leading-tight line-clamp-2">
+                          {article.title}
+                        </h4>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
-              <Link
-                href="/solectwa"
-                className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-orange-100 hover:text-white bg-white/8 hover:bg-white/15 border border-white/10 rounded-xl px-3.5 py-2 transition-colors cursor-pointer sm:justify-end"
-              >
-                <span>Zobacz więcej</span>
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-
-            {/* 3 Latest Articles for Sołectwa */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-              {solectwaArticles.map((article) => (
-                <NewsCard key={article.id} article={article} hideCategory={true} />
-              ))}
-            </div>
+            )}
           </div>
 
         </div>

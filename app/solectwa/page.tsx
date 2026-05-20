@@ -2,11 +2,11 @@
 
 import { useState, useMemo, useEffect } from "react"
 import useSWR from "swr"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { NewsCard } from "@/components/news-card"
-import { MapPin, Search, Sparkles, Navigation, Globe, Building2, HelpCircle } from "lucide-react"
+import { MapPin, Search, Navigation, Globe, HelpCircle, Loader2 } from "lucide-react"
 import type { NewsArticle } from "@/lib/news-service"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
@@ -28,7 +28,6 @@ export default function SolectwaPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedSolectwo, setSelectedSolectwo] = useState<string | null>(null)
 
-  // Pre-select sołectwo from URL query parameter ?wybrane=...
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search)
@@ -39,157 +38,222 @@ export default function SolectwaPage() {
     }
   }, [])
 
-  // Filter sołectwa by search query
   const filteredSolectwa = useMemo(() => {
     const q = searchQuery.toLowerCase().trim()
     if (!q) return SOLECTWA
     return SOLECTWA.filter(s => s.toLowerCase().includes(q))
   }, [searchQuery])
 
-  // Filter articles matching the selected sołectwo
   const matchingArticles = useMemo(() => {
     if (!selectedSolectwo) {
-      // If no sołectwo is selected, show recent articles from "Sołectwa" category
-      return allArticles.filter(a => 
-        a.category === "Sołectwa" || 
+      return allArticles.filter(a =>
+        a.category === "Sołectwa" ||
         /(sołectw|sołtys|mieszkańc|lokaln|wiejsk|bieżeń|kalej|truskolas|grodzisk|gmin|sołec)/i.test(a.title + " " + a.excerpt)
-      ).slice(0, 6)
+      ).slice(0, 9)
     }
-    
-    // Exact or loose match to the specific village name
     const q = selectedSolectwo.toLowerCase()
-    return allArticles.filter(a => 
-      a.title.toLowerCase().includes(q) || 
+    const exact = allArticles.filter(a =>
+      a.title.toLowerCase().includes(q) ||
       a.excerpt.toLowerCase().includes(q)
     )
+    if (exact.length < 3) {
+      const extra = allArticles.filter(a =>
+        !exact.find(e => e.id === a.id) &&
+        /(sołectw|sołtys|mieszkańc|lokaln|wiejsk)/i.test(a.title + " " + a.excerpt)
+      )
+      return [...exact, ...extra].slice(0, 9)
+    }
+    return exact.slice(0, 9)
   }, [allArticles, selectedSolectwo])
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-
       <main className="flex-1">
-        {/* Editorial Hero Section */}
-        <section className="bg-gradient-to-b from-white to-secondary/30 border-b border-stone-200/60">
-          <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-            <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 rounded-full bg-golden-lightest border border-golden-light/40 px-3.5 py-1 text-[10px] font-black uppercase tracking-widest text-golden-dark mb-4 backdrop-blur-md">
-                <Navigation className="h-3.5 w-3.5 text-golden" />
-                Nasza Społeczność
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-light text-foreground leading-tight tracking-tight text-balance">
-                Sołectwa Gminy Wręczyca Wielka
-              </h1>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed text-pretty">
-                Gmina Wręczyca Wielka składa się z 28 sołectw, z których każde posiada swoją własną unikalną tożsamość, tradycje i historię. Wybierz swoją miejscowość, aby filtrować najnowsze wieści, ogłoszenia i inicjatywy lokalne.
-              </p>
-            </div>
 
-            {/* Search Input for villages */}
-            <div className="mt-8 relative max-w-xl">
-              <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Wyszukaj swoje sołectwo..."
-                className="w-full h-12 rounded-2xl bg-white pl-12 pr-4 text-base text-foreground shadow-sm placeholder:text-muted-foreground border border-border/50 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent transition-all"
-              />
-            </div>
+        {/* Hero Header */}
+        <section className="relative overflow-hidden border-b border-stone-200/60">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/96 via-white/90 to-amber-500/10" />
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/80 to-transparent" />
+
+          <div className="relative z-10 mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+            <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/25 px-3.5 py-1 text-[10px] font-black uppercase tracking-widest text-[#b45309] mb-4">
+              <Navigation className="h-3.5 w-3.5 text-[#d97706]" />
+              Nasza Społeczność
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-light text-foreground leading-tight tracking-tight text-balance">
+              Sołectwa Gminy <span className="whitespace-nowrap font-semibold text-[#b45309]">Wręczyca Wielka</span>
+            </h1>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-2xl">
+              Gmina Wręczyca Wielka jednoczy 28 dynamicznie rozwijających się sołectw. Wybierz miejscowość, aby filtrować najświeższe wiadomości i inicjatywy lokalne.
+            </p>
           </div>
         </section>
 
-        {/* Interactive Village Grid */}
-        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <h2 className="text-xl font-bold uppercase tracking-wider text-foreground mb-8 flex items-center gap-2">
-            <Building2 className="h-5 w-5 text-dusty-olive" />
-            Wybierz Sołectwo ({filteredSolectwa.length})
-          </h2>
+        {/* Main layout: Sidebar left + News right */}
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {filteredSolectwa.map((sol) => {
-              const isSelected = selectedSolectwo === sol
-              return (
-                <motion.button
-                  key={sol}
-                  onClick={() => setSelectedSolectwo(isSelected ? null : sol)}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group p-5 rounded-3xl border text-center text-sm font-semibold transition-all duration-300 cursor-pointer flex flex-col items-center justify-center gap-3 shadow-sm ${
-                    isSelected
-                      ? "bg-golden border-golden text-[#344e41] shadow-lg shadow-golden/10"
-                      : "bg-white border-stone-200/80 text-foreground hover:bg-stone-50 hover:border-dusty-olive/30 hover:shadow-md"
-                  }`}
-                >
-                  <MapPin className={`h-6 w-6 transition-colors ${
-                    isSelected ? "text-[#344e41]" : "text-dusty-olive group-hover:text-dusty-olive-hover"
-                  }`} />
-                  <span className="break-words w-full">{sol}</span>
-                </motion.button>
-              )
-            })}
-          </div>
+            {/* LEFT SIDEBAR: Search + Village List */}
+            <aside className="w-full lg:w-[320px] shrink-0 sticky top-4">
+              <div className="bg-white rounded-3xl border border-stone-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden">
+                {/* Sidebar header */}
+                <div className="bg-gradient-to-r from-[#d97706] via-[#b45309] to-[#92400e] px-5 py-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 border border-white/25">
+                      <MapPin className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-100">Wybierz sołectwo</p>
+                      <p className="text-[10px] text-amber-200/80 font-medium">{filteredSolectwa.length} miejscowości</p>
+                    </div>
+                  </div>
+                  {/* Search in sidebar */}
+                  <div className="relative mt-4">
+                    <Search className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-amber-200" />
+                    <input
+                      type="search"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Szukaj sołectwa..."
+                      className="w-full h-10 rounded-xl bg-white/15 border border-white/20 pl-10 pr-4 text-sm text-white placeholder:text-amber-200/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+                    />
+                  </div>
+                </div>
 
-          {filteredSolectwa.length === 0 && (
-            <div className="text-center py-12 rounded-3xl bg-white border border-border/40 p-8 shadow-sm">
-              <HelpCircle className="h-10 w-10 text-muted-foreground/60 mx-auto mb-3" />
-              <p className="font-semibold text-foreground">Nie znaleziono sołectwa o takiej nazwie</p>
-              <p className="text-sm text-muted-foreground mt-1">Upewnij się, że wpisałeś poprawną nazwę miejscowości.</p>
-            </div>
-          )}
-        </section>
-
-        {/* Dynamic News Section for selected village */}
-        <section className="bg-stone-50/50 border-t border-stone-200/50 py-16">
-          <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-border/50 pb-6">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-dusty-olive-light text-dusty-olive px-3.5 py-1 text-[9px] font-black uppercase tracking-widest mb-2 border border-dusty-olive/20">
-                  <Sparkles className="h-3.5 w-3.5 text-dusty-olive" />
-                  Wieści lokalne
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-light text-foreground">
-                  {selectedSolectwo 
-                    ? `Wiadomości z sołectwa: ${selectedSolectwo}`
-                    : "Wszystkie wiadomości z naszych sołectw"
-                  }
-                </h2>
+                {/* Village list — no scroll */}
+                <div className="p-3">
+                  {filteredSolectwa.length === 0 ? (
+                    <div className="text-center py-8">
+                      <HelpCircle className="h-8 w-8 text-muted-foreground/40 mx-auto mb-2" />
+                      <p className="text-sm font-medium text-muted-foreground">Nie znaleziono sołectwa</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-1">
+                      {filteredSolectwa.map((sol) => {
+                        const isSelected = selectedSolectwo === sol
+                        return (
+                          <motion.button
+                            key={sol}
+                            onClick={() => setSelectedSolectwo(isSelected ? null : sol)}
+                            whileTap={{ scale: 0.97 }}
+                            className={`group flex items-center gap-2 rounded-xl px-3 py-2.5 text-[12px] font-medium text-left transition-all duration-200 cursor-pointer ${
+                              isSelected
+                                ? "bg-gradient-to-r from-[#d97706] to-[#b45309] text-white shadow-md shadow-amber-900/15"
+                                : "text-slate-700 hover:bg-amber-50 hover:text-[#b45309]"
+                            }`}
+                          >
+                            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSelected ? "bg-amber-200" : "bg-amber-400 group-hover:bg-[#d97706]"}`} />
+                            <span className="truncate">{sol}</span>
+                          </motion.button>
+                        )
+                      })}
+                    </div>
+                  )}
+                  {selectedSolectwo && (
+                    <button
+                      onClick={() => setSelectedSolectwo(null)}
+                      className="mt-3 w-full rounded-xl border border-amber-200 bg-amber-50 py-2 text-[11px] font-bold uppercase tracking-wider text-[#b45309] hover:bg-amber-100 transition-colors cursor-pointer"
+                    >
+                      Pokaż wszystkie
+                    </button>
+                  )}
+                </div>
               </div>
-              
-              {selectedSolectwo && (
-                <button
-                  onClick={() => setSelectedSolectwo(null)}
-                  className="text-xs font-bold uppercase tracking-wider text-dusty-olive hover:text-dusty-olive-hover hover:underline cursor-pointer"
+            </aside>
+
+            {/* RIGHT: News articles */}
+            <div className="flex-1 w-full">
+              {/* Section header */}
+              <div className="flex items-end justify-between mb-8 pb-5 border-b border-stone-200/60">
+                <div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 text-[#b45309] px-3 py-1 text-[9px] font-black uppercase tracking-widest mb-2 border border-amber-500/20">
+                    Wieści lokalne
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-light text-foreground">
+                    {selectedSolectwo
+                      ? <><span className="font-semibold text-[#b45309]">{selectedSolectwo}</span> — wiadomości</>
+                      : "Wszystkie wiadomości z sołectw"
+                    }
+                  </h2>
+                </div>
+              </div>
+
+              {isLoading ? (
+                <div className="flex items-center justify-center py-24 text-muted-foreground">
+                  <Loader2 className="h-6 w-6 animate-spin mr-3 text-amber-500" />
+                  Wczytuję wiadomości lokalne…
+                </div>
+              ) : matchingArticles.length > 0 ? (
+                <motion.div
+                  key={selectedSolectwo ?? "all"}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
                 >
-                  Pokaż wszystkie miejscowości
-                </button>
+                  {matchingArticles.map((article) => (
+                    <NewsCard key={article.id} article={article} />
+                  ))}
+                </motion.div>
+              ) : (
+                <div className="text-center py-16 bg-white rounded-3xl border border-border/40 shadow-sm">
+                  <Globe className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                  <p className="font-semibold text-foreground">Brak dedykowanych artykułów</p>
+                  <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
+                    Aktualnie nie ma osobnych artykułów przypisanych do {selectedSolectwo}. Sprawdź ogólne wiadomości gminy!
+                  </p>
+                </div>
               )}
             </div>
+          </div>
+        </section>
 
-            {isLoading ? (
-              <div className="flex items-center justify-center py-20 text-muted-foreground">
-                <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mr-3" />
-                Wczytuję wiadomości lokalne…
-              </div>
-            ) : matchingArticles.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {matchingArticles.map((article) => (
-                  <NewsCard key={article.id} article={article} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16 bg-white rounded-3xl border border-border/40 p-8 shadow-sm">
-                <Globe className="h-10 w-10 text-muted-foreground/60 mx-auto mb-3 animate-pulse" />
-                <p className="font-semibold text-foreground">Brak dedykowanych artykułów</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Aktualnie nie ma osobnych artykułów przypisanych do {selectedSolectwo}. Zachęcamy do śledzenia ogólnych wiadomości z naszej gminy!
+        {/* CTA Banner with photo */}
+        <section className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="relative overflow-hidden rounded-3xl shadow-xl">
+            {/* Background photo */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070')" }}
+            />
+            {/* Orange gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#d97706]/95 via-[#b45309]/88 to-[#78350f]/80" />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 p-10 md:p-16">
+              <div className="flex-1">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-amber-100 mb-5 border border-white/15">
+                  Samorząd Lokalny
+                </span>
+                <h2 className="text-3xl md:text-4xl font-light leading-tight tracking-tight mb-4 text-white">
+                  Masz pomysł na rozwój <span className="font-semibold">swojej okolicy?</span>
+                </h2>
+                <p className="text-amber-100/85 mb-8 max-w-lg leading-relaxed font-light text-sm md:text-base">
+                  Zaangażuj się w życie lokalnej społeczności. Skontaktuj się ze swoim sołtysem lub przedstawicielami rady sołeckiej, aby zgłosić inicjatywę obywatelską i efektywnie wykorzystać fundusz sołecki.
                 </p>
+                <button className="rounded-2xl bg-white px-7 py-3.5 text-sm font-bold text-amber-800 shadow-md hover:bg-amber-50 transition-colors">
+                  Dane kontaktowe sołtysów
+                </button>
               </div>
-            )}
+              {/* Right side decorative image panel */}
+              <div className="hidden md:flex flex-1 justify-end">
+                <div className="relative w-72 h-52 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl">
+                  <img
+                    src="https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=600"
+                    alt="Społeczność"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/40 to-transparent" />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
-
       <SiteFooter />
     </div>
   )

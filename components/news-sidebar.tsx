@@ -43,7 +43,22 @@ const ANNOUNCEMENTS = [
     date: "12 maja 2026",
     category: "Inicjatywy",
   },
+  {
+    id: "ann-4",
+    title: "Bezpłatne badania profilaktyczne wzroku dla seniorów",
+    excerpt: "Zapraszamy mieszkańców gminy w wieku 60+ na bezpłatne badania okulistyczne i konsultacje lekarskie w Gminnym Ośrodku Zdrowia.",
+    date: "10 maja 2026",
+    category: "Zdrowie",
+  },
+  {
+    id: "ann-5",
+    title: "Zawiadomienie o sesji Rady Gminy Wręczyca Wielka",
+    excerpt: "Uprzejmie zawiadamiamy, że w dniu 25 maja 2026 roku o godzinie 10:00 odbędzie się uroczysta sesja Rady Gminy w sali konferencyjnej Urzędu Gminy.",
+    date: "8 maja 2026",
+    category: "Samorząd",
+  },
 ]
+
 
 const MOST_COMMENTED_ARTICLES = [
   {
@@ -73,6 +88,13 @@ const MOST_COMMENTED_ARTICLES = [
     commentsCount: 26,
     category: "Lokalne",
     slug: "strazacy-myja-przystanki-zdjecie-musi-byc",
+  },
+  {
+    id: "mc-5",
+    title: "Protest mieszkańców w sprawie budowy masztu 5G przy ul. Leśnej",
+    commentsCount: 19,
+    category: "Inicjatywy",
+    slug: "protest-mieszkancow-w-sprawie-budowy-masztu-5g-przy-ul-lesnej",
   },
 ]
 
@@ -166,41 +188,33 @@ export function NewsSidebar() {
 
         <div className="p-5">
         <ol className="divide-y divide-border/60">
-          {ANNOUNCEMENTS.map((ann, index) => (
+          {ANNOUNCEMENTS.map((ann) => (
               <li key={ann.id}>
-                <article className="group relative flex gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-[#a3b18a]/10">
-                  <div className="flex w-11 shrink-0 flex-col items-center pt-0.5">
-                    <span
-                      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#a3b18a]/15 text-[#8a9a70] ring-4 ring-background shadow-sm z-10"
-                      aria-hidden
-                    >
-                      <Info className="h-4 w-4" strokeWidth={2.5} />
-                    </span>
-                    {index < ANNOUNCEMENTS.length - 1 && (
-                      <span
-                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-[#a3b18a]/30"
-                        aria-hidden
-                      />
-                    )}
+                <article className="group relative flex items-center gap-4 rounded-2xl px-2 py-4 transition-colors hover:bg-[#a3b18a]/10">
+                  {/* Left: Larger Icon */}
+                  <div 
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#a3b18a]/15 text-[#8a9a70] shadow-sm transition-transform duration-300 group-hover:scale-105"
+                    aria-hidden
+                  >
+                    <Info className="h-5 w-5" strokeWidth={2.2} />
                   </div>
 
-                  <div className="min-w-0 flex-1 pt-1">
-                    <div className="mb-1.5 flex flex-wrap items-center gap-2">
+                  {/* Middle: Larger Heading, Date, No Description */}
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-[14px] font-bold leading-snug text-slate-800 transition-colors group-hover:text-[#8a9a70] line-clamp-2 pr-8">
+                      {ann.title}
+                    </h4>
+                    <div className="mt-2.5 flex items-center gap-1.5">
                       <time className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80">
                         <Calendar className="h-3 w-3 shrink-0" aria-hidden />
                         {ann.date}
                       </time>
                     </div>
-                    <h4 className="text-[13px] font-semibold leading-snug text-foreground transition-colors group-hover:text-[#8a9a70] line-clamp-2">
-                      {ann.title}
-                    </h4>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
-                      {ann.excerpt}
-                    </p>
                   </div>
 
+                  {/* Right: Vertically Centered Arrow */}
                   <ChevronRight
-                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#8a9a70]"
+                    className="h-5 w-5 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-1 group-hover:text-[#8a9a70]"
                     aria-hidden
                   />
                 </article>
@@ -245,20 +259,20 @@ export function NewsSidebar() {
               <li key={article.id}>
                 <Link
                   href={`/aktualnosci/${article.slug}`}
-                  className="group flex items-start gap-3.5 rounded-xl px-1 py-3.5 transition-colors hover:bg-[#a3b18a]/10"
+                  className="group relative flex items-center gap-4 rounded-2xl px-2 py-4 transition-colors hover:bg-[#a3b18a]/10"
                 >
                   <span
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-[13px] font-black tabular-nums text-stone-500 transition-colors group-hover:bg-[#a3b18a]/20 group-hover:text-[#8a9a70] shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#a3b18a]/15 text-[#8a9a70] text-[15px] font-extrabold shadow-sm transition-transform duration-300 group-hover:scale-105"
                     aria-hidden
                   >
                     {index + 1}
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <h4 className="text-[13px] font-semibold leading-snug text-slate-800 transition-colors group-hover:text-[#8a9a70] line-clamp-2">
+                    <h4 className="text-[14px] font-bold leading-snug text-slate-800 transition-colors group-hover:text-[#8a9a70] line-clamp-2 pr-8">
                       {article.title}
                     </h4>
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <div className="mt-2.5 flex flex-wrap items-center gap-2">
                       <span className={`rounded-md border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider bg-[#a3b18a]/15 text-[#8a9a70] border-[#a3b18a]/30`}>
                         {article.category}
                       </span>
@@ -270,7 +284,7 @@ export function NewsSidebar() {
                   </div>
 
                   <ChevronRight
-                    className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#8a9a70]"
+                    className="h-5 w-5 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-1 group-hover:text-[#8a9a70]"
                     aria-hidden
                   />
                 </Link>
@@ -312,14 +326,18 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="space-y-3.5 pr-1.5">
+        <div className="space-y-0 pr-1.5">
           {WEATHER_FORECAST.map((w, idx) => {
             const Icon = w.icon
             return (
               <div
                 key={idx}
-                className="flex items-center justify-between border-b border-border pb-3 last:border-0 last:pb-0"
+                className="relative flex items-center justify-between py-4 last:pb-0"
               >
+                {/* Shadow separator instead of grey border */}
+                {idx < WEATHER_FORECAST.length - 1 && (
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-stone-200/80 to-transparent shadow-[0_1px_3px_rgba(0,0,0,0.04)]" />
+                )}
                 <span className="text-xs font-normal text-foreground w-28 text-left">
                   {w.day}
                 </span>

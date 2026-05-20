@@ -11,6 +11,7 @@ import { toast } from "sonner"
 
 export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
   const [activePopupCategory, setActivePopupCategory] = useState<string | null>(null)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   // 1. Filter articles for Sport row (safely fallback to first 3 articles if none match)
   // 1. Filter articles for Sport row (safely fallback & pad to exactly 3 articles if matching are short)
@@ -129,30 +130,30 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
         className="mb-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
       >
         <div className="flex-1 w-full max-w-2xl">
-          <div className="mb-8 flex items-center gap-3">
-             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Oficjalny serwis gminy</span>
+          <div className="mb-6 flex items-center gap-3">
+             <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">Oficjalny serwis gminy</span>
              <span className="text-stone-300">•</span>
-             <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">28 sołectw</span>
+             <span className="text-[9px] font-bold uppercase tracking-widest text-stone-400">28 sołectw</span>
           </div>
 
           <h2
             id="latest-news"
-            className="text-[2.5rem] font-light leading-[1.1] tracking-tight text-slate-800 lg:text-[3.5rem] mb-6"
+            className="text-[1.75rem] font-light leading-[1.2] tracking-tight text-slate-800 lg:text-[2.25rem] mb-5"
           >
             Życie i wydarzenia we <span className="font-semibold text-slate-900 block mt-1">Wręczycy Wielkiej</span>
           </h2>
-          
-          <p className="text-base leading-relaxed text-stone-500 mb-10 sm:text-lg lg:text-xl font-light">
+
+          <p className="text-sm leading-relaxed text-stone-500 mb-8 sm:text-base lg:text-lg font-light">
             Oficjalny serwis informacyjny naszej społeczności. Poznaj najświeższe doniesienia, sukcesy sportowe
             lokalnych klubów, wydarzenia kulturalne GOK oraz bieżące sprawy z każdego z 28 sołectw.
           </p>
 
           <Link
             href="/aktualnosci"
-            className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-500 transition-colors hover:text-slate-900"
+            className="group inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-slate-500 transition-colors hover:text-slate-900"
           >
             <span className="border-b border-transparent group-hover:border-slate-900 pb-0.5 transition-colors">Wszystkie aktualności</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         </div>
 
@@ -205,6 +206,12 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {articles.slice(0, 3).map((article) => (
                 <NewsCard key={article.id} article={article} hideCategory={true} />
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {articles.slice(3, 5).map((article) => (
+                <NewsCard key={article.id} article={article} variant="horizontal" hideCategory={true} />
               ))}
             </div>
           </div>
@@ -397,29 +404,19 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
 
                 <div className="grid auto-rows-[160px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 sm:auto-rows-[180px]">
                   {cultureGallery.map((article, index) => (
-                    <Link
+                    <button
                       key={`gallery-${article.id}`}
-                      href={`/aktualnosci/${article.slug}`}
-                      className={`group relative overflow-hidden rounded-[1.25rem] bg-stone-100 shadow-sm ring-1 ring-black/5 hover:ring-black/10 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00933f] ${
+                      onClick={() => setSelectedImage(article.image)}
+                      className={`group relative overflow-hidden rounded-[1.25rem] bg-stone-100 shadow-sm ring-1 ring-black/5 hover:ring-black/10 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00933f] cursor-zoom-in text-left ${
                         index === 0 ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
                       } ${index > 2 ? "hidden md:block" : ""}`}
                     >
                       <img
                         src={article.image}
                         alt={article.title}
-                        className="h-full w-full object-cover transition-[transform,filter] duration-700 group-hover:scale-[1.03] group-hover:brightness-105"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
-                      
-                      <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                        <span className="mb-2 inline-flex rounded-md bg-white/15 px-2 py-1 text-[8px] font-black uppercase tracking-widest text-white/95 backdrop-blur-md border border-white/20">
-                          {article.category}
-                        </span>
-                        <h4 className={`font-semibold leading-[1.3] tracking-tight ${index === 0 ? "text-base sm:text-lg lg:text-xl line-clamp-3" : "text-xs sm:text-sm line-clamp-2"}`}>
-                          {article.title}
-                        </h4>
-                      </div>
-                    </Link>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -532,6 +529,46 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
                 )}
               </div>
 
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Lightbox for "W obiektywie" gallery */}
+      <AnimatePresence>
+        {selectedImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 select-none">
+            {/* Dark glass backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="absolute inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
+            />
+            
+            {/* Image Container with smooth entrance */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-5xl max-h-[85vh] z-10 overflow-hidden rounded-3xl border border-white/10 shadow-2xl"
+            >
+              <img
+                src={selectedImage}
+                alt="Powiększone zdjęcie"
+                className="w-full h-auto max-h-[85vh] object-contain rounded-3xl"
+              />
+              
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-all cursor-pointer border border-white/15 active:scale-95"
+                aria-label="Zamknij podgląd"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </motion.div>
           </div>
         )}

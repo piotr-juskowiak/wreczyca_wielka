@@ -99,7 +99,7 @@ export function SiteHeader() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100"
+        className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-lg shadow-slate-200/50 border-b border-slate-100"
       >
         <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8">
           {/* Top Row: Brand + Search + Actions */}
@@ -155,7 +155,7 @@ export function SiteHeader() {
           </div>
 
           {/* Bottom Row: Navigation */}
-          <div className="hidden lg:flex h-12 items-center justify-center border-t border-b border-[#208fcf]/10 bg-[rgba(32,143,207,0.045)] -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <div className="hidden lg:flex h-14 items-center justify-center border-t border-b border-[#208fcf]/10 bg-[rgba(32,143,207,0.045)] -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <nav className="flex items-center gap-1 relative">
               {navLinks.map((link, idx) => {
                 const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))
@@ -168,7 +168,7 @@ export function SiteHeader() {
                     transition={{ delay: 0.4 + idx * 0.05 }}
                     onHoverStart={() => setHoveredIdx(idx)}
                     onHoverEnd={() => setHoveredIdx(null)}
-                    className={`relative rounded-xl px-5 py-2 text-[12px] font-bold uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
+                    className={`relative rounded-xl px-7 py-2.5 text-[12px] font-bold uppercase tracking-wider transition-colors duration-300 whitespace-nowrap z-10
                       ${isActive
                         ? 'text-white'
                         : 'text-slate-600 hover:text-[rgb(32,143,207)]'
@@ -181,7 +181,7 @@ export function SiteHeader() {
                     {hoveredIdx === idx && !isActive && (
                       <motion.div
                         layoutId="nav-hover-pill"
-                        className="absolute inset-0 bg-white border border-[#208fcf]/10 shadow-sm rounded-xl -z-10"
+                        className="absolute inset-0 bg-white border border-[#208fcf]/20 shadow-[0_6px_18px_rgba(32,143,207,0.12)] rounded-xl -z-10"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -190,7 +190,7 @@ export function SiteHeader() {
                     {isActive && (
                       <motion.div
                         layoutId="nav-active-pill"
-                        className="absolute inset-0 bg-[rgb(32,143,207)] rounded-xl -z-10 shadow-sm shadow-[rgba(32,143,207,0.2)]"
+                        className="absolute inset-0 bg-[rgb(32,143,207)] rounded-xl -z-10 shadow-[0_8px_24px_rgba(32,143,207,0.45)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}

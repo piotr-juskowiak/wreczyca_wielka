@@ -51,13 +51,24 @@ export default function AktualnosciPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        <section className="bg-gradient-to-b from-white to-secondary/40">
-          <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* Hero section with background image */}
+        <section className="relative overflow-hidden">
+          {/* Background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069')" }}
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/88 to-[#00933f]/15" />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+
+          <div className="relative z-10 mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <span className="inline-flex items-center rounded-full bg-[#00933f]/10 border border-[#00933f]/20 px-3 py-1 text-xs font-semibold text-[#00933f] mb-4">
                 Aktualności
               </span>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-foreground text-balance leading-tight">
+              <h1 className="text-4xl sm:text-5xl font-bold text-foreground text-balance leading-tight">
                 Co słychać w gminie Wręczyca Wielka?
               </h1>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed text-pretty">
@@ -74,7 +85,7 @@ export default function AktualnosciPage() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Szukaj w aktualnościach..."
-                  className="w-full h-12 rounded-2xl bg-white pl-12 pr-4 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full h-12 rounded-2xl bg-white pl-12 pr-4 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#00933f]/40"
                 />
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -90,7 +101,7 @@ export default function AktualnosciPage() {
                   onClick={() => setActive(cat)}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     active === cat
-                      ? "bg-primary text-primary-foreground shadow-sm"
+                      ? "bg-[#00933f] text-white shadow-sm"
                       : "bg-white text-foreground/80 hover:bg-secondary"
                   }`}
                 >

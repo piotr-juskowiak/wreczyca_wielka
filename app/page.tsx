@@ -20,7 +20,7 @@ export default async function HomePage() {
         <SiteHeader />
         {featuredArticles.length > 0 && <HeroNews articles={featuredArticles} />}
         {articles.length > 0 && <NewsGrid articles={articles} />}
-        <GalleryCarousel />
+        <GalleryCarousel articles={articles} />
         <SiteFooter />
       </div>
     </main>

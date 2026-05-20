@@ -25,7 +25,7 @@ export default function KontaktPage() {
         <section className="bg-gradient-to-b from-white to-secondary/40">
           <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <span className="inline-flex items-center rounded-full bg-[#00933f]/10 px-3 py-1 text-xs font-semibold text-[#00933f]">
                 Kontakt
               </span>
               <h1 className="mt-4 text-4xl sm:text-5xl font-light text-foreground text-balance leading-tight">
@@ -51,7 +51,7 @@ export default function KontaktPage() {
                 icon: MapPin,
                 title: "Adres",
                 lines: ["ul. Sienkiewicza 1", "42-130 Wręczyca Wielka"],
-                color: "bg-[#a3b18a] text-[#3a5a40]",
+                color: "bg-[#00933f]/10 text-[#00933f]",
               },
               {
                 icon: Phone,
@@ -107,7 +107,7 @@ export default function KontaktPage() {
               </div>
               <div className="p-6 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#00933f]/10 text-[#00933f]">
                     <Building2 className="h-5 w-5" />
                   </div>
                   <div>
@@ -143,7 +143,7 @@ export default function KontaktPage() {
                   <input
                     id="name"
                     type="text"
-                    className="h-11 rounded-xl bg-secondary/60 px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className="h-11 rounded-xl bg-secondary/60 px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#00933f]/40"
                     placeholder="Jan Kowalski"
                   />
                 </div>
@@ -154,7 +154,7 @@ export default function KontaktPage() {
                   <input
                     id="email"
                     type="email"
-                    className="h-11 rounded-xl bg-secondary/60 px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className="h-11 rounded-xl bg-secondary/60 px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#00933f]/40"
                     placeholder="jan@example.com"
                   />
                 </div>
@@ -165,7 +165,7 @@ export default function KontaktPage() {
                   <textarea
                     id="msg"
                     rows={5}
-                    className="rounded-xl bg-secondary/60 px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className="rounded-xl bg-secondary/60 px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#00933f]/40"
                     placeholder="W czym możemy pomóc?"
                   />
                 </div>
@@ -174,7 +174,7 @@ export default function KontaktPage() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md"
+                  className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#00933f] px-6 text-sm font-semibold text-white shadow-sm hover:shadow-md hover:bg-[#007a34] transition-colors"
                 >
                   <Send className="h-4 w-4" />
                   Wyślij wiadomość

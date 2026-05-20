@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Figtree } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { PagePreloader } from '@/components/page-preloader'
 import { ScrollToTop } from '@/components/scroll-to-top'
@@ -7,10 +7,11 @@ import { CookieBanner } from '@/components/cookie-banner'
 
 import './globals.css'
 
-const figtree = Figtree({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-figtree',
+  variable: '--font-plus-jakarta',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pl" className={`${figtree.variable} bg-background`} suppressHydrationWarning>
+    <html lang="pl" className={`${plusJakartaSans.variable} bg-background`} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <PagePreloader />
         {children}

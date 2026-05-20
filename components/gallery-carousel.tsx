@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Compass, MapPin, ChevronRight } from "lucide-react"
+import { Compass, MapPin, ArrowUpRight } from "lucide-react"
+import Link from "next/link"
 
 const SOLECTWA = [
   "Bieżeń", "Bór Zapilski", "Borowe", "Brzezinki", "Czarna Wieś", "Długi Kąt",
@@ -35,6 +36,30 @@ const SOLECTWA_NEWS = [
     date: "16 maja 2026",
     excerpt: "Zapraszamy wszystkich mieszkańców na spotkanie dotyczące podziału środków na rok 2027.",
     image: "https://images.unsplash.com/photo-1577416412292-747c6607f055?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "sn-4",
+    solectwo: "Węglowice",
+    title: "Sukces lokalnego koła gospodyń wiejskich",
+    date: "14 maja 2026",
+    excerpt: "Nasze gospodynie zdobyły pierwsze miejsce w wojewódzkim konkursie kulinarnym.",
+    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "sn-5",
+    solectwo: "Kalej",
+    title: "Nowa nawierzchnia boiska sportowego",
+    date: "12 maja 2026",
+    excerpt: "Zakończono prace nad nową murawą, która posłuży lokalnej drużynie młodzieżowej.",
+    image: "https://images.unsplash.com/photo-1518605368461-1e1e1fd25b37?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "sn-6",
+    solectwo: "Bieżeń",
+    title: "Akcja sprzątania lasów i ścieżek rowerowych",
+    date: "10 maja 2026",
+    excerpt: "Kolejna udana edycja akcji ekologicznej, w której wzięło udział ponad 100 mieszkańców.",
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600&auto=format&fit=crop"
   }
 ]
 
@@ -43,107 +68,101 @@ export function GalleryCarousel() {
     <section
       id="przewodnik"
       aria-labelledby="guide-title"
-      className="relative overflow-hidden bg-gradient-to-br from-[#1c2e20] via-[#121f15] to-[#0a120c] py-20 lg:py-24 text-white border-y border-stone-900/60 select-none"
+      className="relative overflow-hidden bg-stone-50 py-20 lg:py-24 text-slate-900 border-y border-stone-200 select-none"
     >
-      {/* Background Image under Dark Cinematic Overlay */}
-      <div className="absolute inset-0 z-0 opacity-25 pointer-events-none select-none">
-        <img 
-          src="https://d-art.ppstatic.pl/kadry/k/r/a0/b9/5a9e7fddb86d4_o_xlarge.jpg" 
-          alt="Gmina Wręczyca Wielka" 
-          className="h-full w-full object-cover object-center grayscale contrast-100 mix-blend-luminosity"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1c2e20]/85 via-[#121f15]/80 to-[#0a120c]/90" />
-      </div>
-
-      {/* Bottom gradient fade & soft blur transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#0a120c] via-[#0a120c]/45 to-transparent backdrop-blur-[3px] pointer-events-none z-10" />
-
-      {/* Ambient premium glowing blobs */}
-      <div className="absolute top-1/4 left-1/3 -translate-y-1/2 w-[40%] aspect-square rounded-full bg-[#588157]/[0.08] blur-[120px] pointer-events-none z-0" />
-      <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[35%] aspect-square rounded-full bg-[#a3b18a]/[0.05] blur-[120px] pointer-events-none z-0" />
-      
-      {/* Subtle background radial dot pattern */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(#dad7cd_1px,transparent_1px)] [background-size:24px_24px]" />
-
       <div className="mx-auto max-w-[94rem] px-4 sm:px-6 lg:px-8 relative z-10">
-
         {/* Header - Editorial Style */}
-        <div className="max-w-3xl mb-14">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.05] border border-white/10 px-3.5 py-1.5 text-[9px] font-bold uppercase tracking-widest text-[#a3b18a] mb-4 backdrop-blur-sm">
-            <Compass className="h-3.5 w-3.5 text-[#a3b18a]" />
+        <div className="max-w-3xl mb-12">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00933f]/10 border border-[#00933f]/20 px-3.5 py-1.5 text-[9px] font-bold uppercase tracking-widest text-[#00933f] mb-4">
+            <Compass className="h-3.5 w-3.5 text-[#00933f]" />
             Odkryj naszą gminę
           </span>
           
-          <h2 id="guide-title" className="text-3xl md:text-5xl font-light text-white leading-tight tracking-tight">
-            Sołectwa Gminy <span className="font-normal text-[#a3b18a] block sm:inline">Wręczyca Wielka</span>
+          <h2 id="guide-title" className="text-3xl md:text-5xl font-light text-slate-900 leading-tight tracking-tight">
+            Sołectwa Gminy <span className="font-semibold text-[#00933f] block sm:inline">Wręczyca Wielka</span>
           </h2>
           
-          <p className="mt-4 text-xs sm:text-sm text-stone-400 font-normal leading-relaxed max-w-xl">
-            Poznaj 28 wyjątkowych miejscowości tworzących naszą gminną społeczność. Wybierz sołectwo, aby filtrować wiadomości, alerty i inicjatywy mieszkańców z Twojej okolicy.
+          <p className="mt-4 text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-2xl">
+            Poznaj 28 wyjątkowych miejscowości tworzących naszą gminną społeczność. Wybierz sołectwo z listy po lewej, aby zobaczyć aktualności, alerty i lokalne inicjatywy mieszkańców.
           </p>
         </div>
 
-        {/* Latest News from Villages */}
-        <div className="mb-14 grid grid-cols-1 md:grid-cols-3 gap-5">
-          {SOLECTWA_NEWS.map((news) => (
-            <motion.a
-              key={news.id}
-              href={`/aktualnosci/solectwa/${news.id}`}
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-300 shadow-lg hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
-            >
-              <div className="aspect-[16/9] w-full overflow-hidden bg-[#121f15]">
-                <img 
-                  src={news.image} 
-                  alt={news.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
-                />
-              </div>
-              <div className="absolute top-3 left-3 z-10">
-                <span className="inline-flex items-center rounded-lg bg-black/60 backdrop-blur-md px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[#a3b18a] border border-white/10 shadow-sm">
-                  <MapPin className="mr-1 h-3 w-3" />
-                  {news.solectwo}
-                </span>
-              </div>
-              <div className="p-5">
-                <time className="block text-[9px] font-semibold uppercase tracking-widest text-white/40 mb-2">
-                  {news.date}
-                </time>
-                <h3 className="text-[14px] font-medium text-white/95 leading-snug mb-2 group-hover:text-[#a3b18a] transition-colors line-clamp-2">
-                  {news.title}
-                </h3>
-                <p className="text-[11.5px] text-white/50 leading-relaxed line-clamp-2">
-                  {news.excerpt}
-                </p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
+          
+          {/* LEFT: Sołectwa List (30%) */}
+          <div className="w-full lg:w-[30%] shrink-0 flex flex-col">
+            <div className="mb-6 flex items-center justify-between border-b border-stone-200 pb-4 shrink-0">
+              <h3 className="text-lg font-bold text-slate-900 tracking-wide">Wybierz sołectwo</h3>
+              <span className="text-xs font-medium text-slate-500 bg-white border border-stone-200 px-2 py-1 rounded-md">28 miejscowości</span>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 flex-1 auto-rows-[1fr]">
+              {SOLECTWA.map((sol) => (
+                <motion.a
+                  key={sol}
+                  href={`/solectwa?wybrane=${encodeURIComponent(sol)}`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group flex items-center justify-between p-2.5 rounded-xl bg-white border border-stone-200 hover:border-[#00933f]/40 hover:shadow-sm text-slate-600 hover:text-[#00933f] transition-all duration-300 cursor-pointer h-full"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <MapPin className="h-3.5 w-3.5 text-stone-300 group-hover:text-[#00933f] shrink-0 transition-colors" />
+                    <span className="text-xs font-medium truncate">
+                      {sol}
+                    </span>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
 
-        {/* Interactive Village Grid - Premium Dark Glassmorphism */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3.5">
-          {SOLECTWA.map((sol) => (
-            <motion.a
-              key={sol}
-              href={`/solectwa?wybrane=${encodeURIComponent(sol)}`}
-              whileHover={{ y: -5, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-[#3a5a40]/90 hover:border-[#a3b18a]/30 text-white/90 hover:text-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_30px_rgba(58,90,64,0.25)] cursor-pointer"
-            >
-              <div className="flex items-center gap-2.5 min-w-0">
-                {/* Custom MapPin Container */}
-                <div className="flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-lg bg-white/[0.05] group-hover:bg-white/20 text-[#a3b18a] group-hover:text-white transition-all duration-300 shadow-inner">
-                  <MapPin className="h-3.5 w-3.5" />
-                </div>
-                <span className="text-[11.5px] font-medium truncate leading-none tracking-tight">
-                  {sol}
-                </span>
-              </div>
-              <ChevronRight className="h-3.5 w-3.5 text-white/30 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5" />
-            </motion.a>
-          ))}
-        </div>
+          {/* RIGHT: News Grid (70%) */}
+          <div className="w-full lg:w-[70%]">
+            <div className="mb-6 flex items-center justify-between border-b border-stone-200 pb-4">
+              <h3 className="text-lg font-bold text-slate-900 tracking-wide">Najnowsze z sołectw</h3>
+              <Link href="/solectwa" className="text-xs font-medium text-[#00933f] hover:text-[#006e2e] transition-colors flex items-center gap-1 group">
+                Wszystkie wieści <ArrowUpRight className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+              {SOLECTWA_NEWS.map((news) => (
+                <motion.a
+                  key={news.id}
+                  href={`/aktualnosci/solectwa/${news.id}`}
+                  whileHover={{ y: -5 }}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-stone-200 hover:border-[#00933f]/30 transition-all duration-300 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,147,63,0.10)] h-full"
+                >
+                  <div className="aspect-[16/10] w-full overflow-hidden bg-stone-100 shrink-0 relative">
+                    <img 
+                      src={news.image} 
+                      alt={news.title}
+                      className="w-full h-full object-cover transition-[transform,filter] duration-700 group-hover:scale-[1.03] group-hover:brightness-105"
+                    />
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-flex items-center rounded-lg bg-white/90 backdrop-blur-md px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[#006e2e] shadow-sm border border-white/25">
+                        <MapPin className="mr-1.5 h-3 w-3" />
+                        {news.solectwo}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col flex-1 p-5">
+                    <time className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">
+                      {news.date}
+                    </time>
+                    <h4 className="text-[15px] font-bold text-slate-900 leading-snug mb-2 group-hover:text-[#006e2e] transition-colors line-clamp-2">
+                      {news.title}
+                    </h4>
+                    <p className="text-xs text-stone-500 leading-relaxed line-clamp-3 mt-auto">
+                      {news.excerpt}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   )

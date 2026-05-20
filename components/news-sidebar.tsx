@@ -168,17 +168,17 @@ export function NewsSidebar() {
         <ol className="divide-y divide-border/60">
           {ANNOUNCEMENTS.map((ann, index) => (
               <li key={ann.id}>
-                <article className="group relative flex gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60">
+                <article className="group relative flex gap-3 rounded-xl px-1 py-3.5 transition-colors hover:bg-[#a3b18a]/10">
                   <div className="flex w-11 shrink-0 flex-col items-center pt-0.5">
                     <span
-                      className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-4 ring-background shadow-sm z-10"
+                      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#a3b18a]/15 text-[#8a9a70] ring-4 ring-background shadow-sm z-10"
                       aria-hidden
                     >
                       <Info className="h-4 w-4" strokeWidth={2.5} />
                     </span>
                     {index < ANNOUNCEMENTS.length - 1 && (
                       <span
-                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-emerald-100/70"
+                        className="mt-1 w-px flex-1 min-h-[2.5rem] bg-[#a3b18a]/30"
                         aria-hidden
                       />
                     )}
@@ -191,7 +191,7 @@ export function NewsSidebar() {
                         {ann.date}
                       </time>
                     </div>
-                    <h4 className="text-[13px] font-semibold leading-snug text-foreground transition-colors group-hover:text-[#00933f] line-clamp-2">
+                    <h4 className="text-[13px] font-semibold leading-snug text-foreground transition-colors group-hover:text-[#8a9a70] line-clamp-2">
                       {ann.title}
                     </h4>
                     <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
@@ -200,7 +200,7 @@ export function NewsSidebar() {
                   </div>
 
                   <ChevronRight
-                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
+                    className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#8a9a70]"
                     aria-hidden
                   />
                 </article>
@@ -245,24 +245,24 @@ export function NewsSidebar() {
               <li key={article.id}>
                 <Link
                   href={`/aktualnosci/${article.slug}`}
-                  className="group flex items-start gap-3.5 rounded-xl px-1 py-3.5 transition-colors hover:bg-emerald-50/60"
+                  className="group flex items-start gap-3.5 rounded-xl px-1 py-3.5 transition-colors hover:bg-[#a3b18a]/10"
                 >
                   <span
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-[13px] font-black tabular-nums text-stone-500 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-700 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-[13px] font-black tabular-nums text-stone-500 transition-colors group-hover:bg-[#a3b18a]/20 group-hover:text-[#8a9a70] shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
                     aria-hidden
                   >
                     {index + 1}
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <h4 className="text-[13px] font-semibold leading-snug text-slate-800 transition-colors group-hover:text-[#00933f] line-clamp-2">
+                    <h4 className="text-[13px] font-semibold leading-snug text-slate-800 transition-colors group-hover:text-[#8a9a70] line-clamp-2">
                       {article.title}
                     </h4>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
-                      <span className={`rounded-md border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${GREEN_BADGE}`}>
+                      <span className={`rounded-md border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider bg-[#a3b18a]/15 text-[#8a9a70] border-[#a3b18a]/30`}>
                         {article.category}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#00933f]">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#8a9a70]">
                         <MessageSquare className="h-3 w-3" aria-hidden />
                         {article.commentsCount}
                       </span>
@@ -270,7 +270,7 @@ export function NewsSidebar() {
                   </div>
 
                   <ChevronRight
-                    className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#00933f]"
+                    className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:text-[#8a9a70]"
                     aria-hidden
                   />
                 </Link>
@@ -312,7 +312,7 @@ export function NewsSidebar() {
           </div>
         </div>
 
-        <div className="space-y-3.5 max-h-[500px] overflow-y-auto pr-1.5 scrollbar-thin">
+        <div className="space-y-3.5 pr-1.5">
           {WEATHER_FORECAST.map((w, idx) => {
             const Icon = w.icon
             return (

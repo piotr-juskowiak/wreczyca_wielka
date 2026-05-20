@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Search, Menu, Shield, Cloud, Sun, CloudRain, CloudSun, ChevronDown } from "lucide-react"
+import { Search, Menu, Shield, Cloud, Sun, CloudRain, CloudSun, ChevronDown, CalendarDays } from "lucide-react"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { SearchDialog } from "@/components/search-dialog"
@@ -9,6 +9,13 @@ import { AnnouncementTicker } from "@/components/announcement-ticker"
 
 function WeatherWidget() {
   const [isOpen, setIsOpen] = useState(false)
+
+  const today = new Date()
+  const dateStr = today.toLocaleDateString('pl-PL', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+  })
 
   const forecast = [
     { day: "Dziś", temp: "18°C", icon: <Sun className="h-4 w-4 text-[#208fcf]" />, desc: "Słonecznie" },
@@ -29,7 +36,11 @@ function WeatherWidget() {
       >
         <Sun className="h-4 w-4 text-[#208fcf] animate-spin-slow" />
         <span>18°C</span>
-        <span className="text-slate-400 font-normal">Wręczyca</span>
+        <span className="text-slate-400 font-normal hidden lg:inline">Wręczyca</span>
+        <span className="text-slate-500 font-semibold text-[10px] hidden md:flex border-l border-slate-200 pl-2 items-center gap-1">
+          <CalendarDays className="h-3 w-3 inline-block mr-0.5 text-[#208fcf]" />
+          {dateStr}
+        </span>
         <ChevronDown className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
